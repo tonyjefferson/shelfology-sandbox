@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping & Returns | Shelfology</title>
+    <meta name="description" content="Free shipping on orders 24" or less. Made-to-measure items cannot be returned. Stock brackets returnable within 30 days. Learn about our shipping and return policies.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #54737B;
+            --accent-color: #67AFCE;
+            --text-color: #484643;
+            --border-color: #54737B;
+            --bg-light: #FFFDFB;
+            --success-color: #7F8953;
+            --warning-color: #DBB463;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: #FFFDFB;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+        
+        /* Sticky Navigation Sidebar */
+        .nav-sidebar {
+            position: sticky;
+            top: 20px;
+            height: fit-content;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            background: #FFFDFB;
+            border: 2px solid #54737B;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .nav-sidebar h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            color: #54737B;
+            font-weight: 600;
+        }
+        
+        .nav-sidebar ul {
+            list-style: none;
+        }
+        
+        .nav-sidebar li {
+            margin-bottom: 8px;
+        }
+        
+        .nav-sidebar a {
+            color: #484643;
+            text-decoration: underline;
+            font-weight: 500;
+            font-size: 14px;
+            display: block;
+            padding: 6px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .nav-sidebar a:hover,
+        .nav-sidebar a.active {
+            background: #67AFCE;
+            color: #FFFDFB;
+            text-decoration: none;
+        }
+        
+        /* Main Content */
+        .main-content {
+            max-width: 900px;
+        }
+        
+        h1 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 2.25em;
+            font-weight: 700;
+            color: #54737B;
+            line-height: 1.3;
+            margin-bottom: 0.6em;
+        }
+        
+        .page-intro {
+            font-size: 1.25em;
+            color: #484643;
+            line-height: 1.7;
+            margin-bottom: 1.5em;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #67AFCE;
+        }
+        
+        h2 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.75em;
+            font-weight: 700;
+            color: #54737B;
+            line-height: 1.3;
+            margin-top: 1.8em;
+            margin-bottom: 0.7em;
+            padding-top: 20px;
+            position: relative;
+        }
+        
+        h2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #67AFCE;
+        }
+        
+        h3 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.375em;
+            font-weight: 600;
+            color: #54737B;
+            line-height: 1.4;
+            margin-top: 1.5em;
+            margin-bottom: 0.7em;
+        }
+        
+        h4 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.125em;
+            font-weight: 600;
+            color: #54737B;
+            margin-bottom: 8px;
+        }
+        
+        p {
+            font-size: 1.125em;
+            color: #484643;
+            line-height: 1.7;
+            margin-bottom: 1.2em;
+        }
+        
+        /* TL;DR Section - Special Styling */
+        .tldr-section {
+            background: #67AFCE;
+            color: #FFFDFB;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+        
+        .tldr-section h2 {
+            color: #FFFDFB;
+            margin-top: 0;
+            padding-top: 0;
+        }
+        
+        .tldr-section h2::before {
+            display: none;
+        }
+        
+        .tldr-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .tldr-item {
+            background: rgba(255, 253, 251, 0.15);
+            padding: 15px;
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .tldr-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        
+        .tldr-item a {
+            color: #FFFDFB;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        /* Lists */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            font-size: 1.125em;
+            color: #484643;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+        
+        /* Highlighted Info Boxes */
+        .info-box {
+            background: #FFFDFB;
+            border-left: 4px solid #67AFCE;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(72, 70, 67, 0.1);
+        }
+        
+        .info-box.warning {
+            border-left-color: #DBB463;
+            background: #FFFDFB;
+        }
+        
+        .info-box.success {
+            border-left-color: #7F8953;
+            background: #FFFDFB;
+        }
+        
+        .info-box strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #54737B;
+            font-weight: 600;
+        }
+        
+        .info-box ul {
+            margin-top: 10px;
+        }
+        
+        .info-box p {
+            margin-bottom: 0.5em;
+        }
+        
+        /* Fee Table */
+        .fee-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #FFFDFB;
+            box-shadow: 0 2px 4px rgba(72, 70, 67, 0.1);
+        }
+        
+        .fee-table th,
+        .fee-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #54737B;
+            font-size: 1.125em;
+            color: #484643;
+            line-height: 1.7;
+        }
+        
+        .fee-table th {
+            background: #54737B;
+            color: #FFFDFB;
+            font-weight: 600;
+        }
+        
+        .fee-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .fee-table tr:hover {
+            background: rgba(103, 175, 206, 0.1);
+        }
+        
+        /* Step-by-step process */
+        .step-process {
+            counter-reset: step-counter;
+            margin: 20px 0;
+        }
+        
+        .step-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 25px;
+        }
+        
+        .step-item::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: #67AFCE;
+            color: #FFFDFB;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .step-item p {
+            margin-bottom: 0.5em;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #67AFCE;
+            color: #FFFDFB;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(72, 70, 67, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .back-to-top:hover {
+            background: #54737B;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(72, 70, 67, 0.3);
+        }
+        
+        /* Contact Info Highlight */
+        .contact-highlight {
+            display: inline-block;
+            background: #67AFCE;
+            color: #FFFDFB;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .contact-highlight:hover {
+            background: #54737B;
+        }
+        
+        /* Address Block */
+        .address-block {
+            background: #FFFDFB;
+            padding: 15px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin: 15px 0;
+            border-left: 4px solid #67AFCE;
+            box-shadow: 0 2px 4px rgba(72, 70, 67, 0.1);
+        }
+        
+        /* Body Links */
+        a {
+            color: #67AFCE;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        a:hover {
+            color: #54737B;
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-sidebar {
+                position: static;
+                max-height: none;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .tldr-section {
+                padding: 20px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            .nav-sidebar,
+            .back-to-top {
+                display: none;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sticky Navigation Sidebar -->
+        <nav class="nav-sidebar">
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#tldr">TL;DR Quick Answers</a></li>
+                <li><a href="#timeline">Order Timeline</a></li>
+                <li><a href="#free-shipping">Free Shipping</a></li>
+                <li><a href="#standard-shipping">Standard Shipping</a></li>
+                <li><a href="#freight-shipping">Freight Shipping</a></li>
+                <li><a href="#returns">Returns Policy</a></li>
+                <li><a href="#how-to-return">How to Start a Return</a></li>
+                <li><a href="#changes-cancellations">Changes & Cancellations</a></li>
+                <li><a href="#defects-warranty">Defects & Warranty</a></li>
+                <li><a href="#custom-altered">Custom & Altered Orders</a></li>
+                <li><a href="#promotions">Promotions</a></li>
+                <li><a href="#contact">Questions?</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 id="top">Shipping & Returns</h1>
+            <p class="page-intro">Everything you need to know about getting your custom shelving to your door—and what happens if you need to send something back.</p>
+            
+            <!-- TL;DR Section -->
+            <section id="tldr" class="tldr-section">
+                <h2>TL;DR: The Quick Answers</h2>
+                
+                <div class="tldr-grid">
+                    <div class="tldr-item">
+                        <strong>Does Shelfology offer free shipping?</strong>
+                        Yes—free economy shipping on orders 24" or shorter and 40 lbs or less to the contiguous U.S. Must be signed into your account. Excludes Alaska, Hawaii, and clearance items.
+                    </div>
+                    
+                    <div class="tldr-item">
+                        <strong>How long until my order ships?</strong>
+                        2-3 days for non-coated hardware, 5-7 days for powder-coated hardware and shelf systems. Check individual product pages for specifics. Shipping takes 2-7 days after that.
+                    </div>
+                    
+                    <div class="tldr-item">
+                        <strong>Can I return my custom shelving?</strong>
+                        No—made-to-measure items cannot be returned. Only stock brackets (Aksel, Glenn, Yuri non-coated, Drake) can be returned within 30 days if unused and unopened.
+                    </div>
+                    
+                    <div class="tldr-item">
+                        <strong>How do I start a return?</strong>
+                        Email <a href="mailto:hello@shelfology.com">hello@shelfology.com</a> or call <a href="tel:9492441083">949.244.1083</a> within 30 days of delivery. You pay return shipping to our Idaho facility.
+                    </div>
+                    
+                    <div class="tldr-item">
+                        <strong>Can I cancel or change my order?</strong>
+                        Within 24 hours: free changes or cancellation. Days 2-3: 15% fee (we've already bought materials). After 3 days: too late, no changes possible.
+                    </div>
+                    
+                    <div class="tldr-item">
+                        <strong>Who pays for return shipping?</strong>
+                        You do. We refund the product cost only, not original shipping.
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Understanding Timeline -->
+            <section id="timeline">
+                <h2>Understanding Your Order Timeline</h2>
+                
+                <p><strong>Lead time</strong> = how long we take to make your order in our Idaho shop<br>
+                <strong>Shipping time</strong> = how long carriers take to deliver it to your door<br>
+                <strong>Total time</strong> = both combined</p>
+                
+                <p>We control lead times. FedEx/UPS control shipping times.</p>
+                
+                <p>Lead times vary by product—check each product page for specifics. Your lead time clock starts when your order is finalized and paid. If you change your order, the lead time resets.</p>
+                
+                <p>Need it faster? We charge a 40% rush fee to bump you to the front of the line. Call <a href="tel:9492441083" class="contact-highlight">949.244.1083</a>.</p>
+                
+                <div class="info-box warning">
+                    <strong>Important:</strong> Faster shipping (2-Day, Overnight) doesn't change our production time—it only speeds up delivery after your order leaves our shop.
+                </div>
+            </section>
+            
+            <!-- Free Shipping -->
+            <section id="free-shipping">
+                <h2>Free Shipping</h2>
+                
+                <p>Free economy shipping is available on eligible orders to the contiguous U.S. <strong>You must be signed into your account</strong> to qualify.</p>
+                
+                <h3>Qualifies for free shipping:</h3>
+                <ul>
+                    <li>Products 24" or less in length</li>
+                    <li>Total cart weight 40 lbs or less</li>
+                </ul>
+                
+                <h3>Does not qualify:</h3>
+                <ul>
+                    <li>Alaska, Hawaii, or international addresses</li>
+                    <li>Clearance items</li>
+                    <li>Orders exceeding size/weight limits</li>
+                </ul>
+            </section>
+            
+            <!-- Standard Shipping -->
+            <section id="standard-shipping">
+                <h2>Standard Shipping</h2>
+                
+                <p>Most products between 25-80" in length and 1-125 lbs fall into standard shipping. These orders don't qualify for free shipping.</p>
+                
+                <p>At checkout, choose from:</p>
+                <ul>
+                    <li>Ground (2-7 days transit)</li>
+                    <li>2-Day Air</li>
+                    <li>Overnight</li>
+                    <li>International</li>
+                </ul>
+                
+                <p>Rates calculate in real-time based on your order's size, weight, and destination.</p>
+                
+                <p>We primarily ship via FedEx and UPS (USPS in special cases). No P.O. boxes, but we do ship to freight forwarding services.</p>
+            </section>
+            
+            <!-- Freight Shipping -->
+            <section id="freight-shipping">
+                <h2>Freight Shipping (LTL)</h2>
+                
+                <p>Orders 125 lbs or more ship via LTL freight. Not eligible for free shipping.</p>
+                
+                <p>We use a broker system to get you the lowest freight rate available. If your shelf is 85" or longer, it ships freight regardless of weight—you'll thank us when it arrives in one gorgeous piece.</p>
+                
+                <p>Need a custom quote? Call <a href="tel:9492441083" class="contact-highlight">949.244.1083</a>.</p>
+            </section>
+            
+            <!-- Returns Policy -->
+            <section id="returns">
+                <h2>Returns: The Reality of Custom Work</h2>
+                
+                <p>Most of our products are made-to-measure by the inch—sized and colored specifically for you with rad, sweat, and tears from your favorite shelf geeks. Unlike returning a TV to Costco, we can't resell custom items to the next person.</p>
+                
+                <p>This means you have a bit more responsibility to make sure you're ordering exactly what you want. Please use our resources: detailed product pages, YouTube tutorials, and our insanely talented customer experience team (who honestly geek out on easy transactions and happy customers).</p>
+                
+                <h3>What You Can Return</h3>
+                
+                <div class="info-box success">
+                    <strong>Stock brackets only:</strong>
+                    <ul>
+                        <li>Aksel floating shelf brackets</li>
+                        <li>Glenn floating mantel brackets</li>
+                        <li>Yuri floating desk brackets (non-powder coated only)</li>
+                        <li>Drake floating countertop brackets</li>
+                    </ul>
+                    
+                    <strong>Must be:</strong>
+                    <ul>
+                        <li>Unopened, unused, undamaged</li>
+                        <li>Returned within 30 days of delivery</li>
+                        <li>In original, resellable condition</li>
+                    </ul>
+                </div>
+                
+                <h3>What You Cannot Return</h3>
+                
+                <div class="info-box warning">
+                    <strong>Made-to-measure items:</strong>
+                    <ul>
+                        <li>All shelving systems</li>
+                        <li>Hooks</li>
+                        <li>Cabinet pulls</li>
+                        <li>Bookends</li>
+                        <li>Poster hangers</li>
+                        <li>Swag (t-shirts, hats)</li>
+                    </ul>
+                    
+                    <p><strong>Any altered or customized products</strong> (even if the base product is normally returnable)</p>
+                </div>
+                
+                <p><strong>You pay return shipping.</strong> We do not refund original shipping costs.</p>
+            </section>
+            
+            <!-- How to Start a Return -->
+            <section id="how-to-return">
+                <h2>How to Start a Return</h2>
+                
+                <div class="step-process">
+                    <div class="step-item">
+                        <h4>Contact us within 30 days</h4>
+                        <p>Email <a href="mailto:hello@shelfology.com" class="contact-highlight">hello@shelfology.com</a> or call <a href="tel:9492441083" class="contact-highlight">949.244.1083</a> (M-F, 8am-4pm MT). Have your order number ready and let us know what you're returning and why.</p>
+                    </div>
+                    
+                    <div class="step-item">
+                        <h4>We confirm eligibility</h4>
+                        <p>We'll verify your item qualifies for return (stock brackets only, not made-to-measure or altered items).</p>
+                    </div>
+                    
+                    <div class="step-item">
+                        <h4>Pack and ship</h4>
+                        <p>Carefully package the item in original, unused condition. You arrange and pay for return shipping to:</p>
+                        <div class="address-block">
+                            Shelfology Returns<br>
+                            156 N. 2nd East<br>
+                            Rexburg, Idaho 83440
+                        </div>
+                    </div>
+                    
+                    <div class="step-item">
+                        <h4>Get your refund</h4>
+                        <p>We process refunds 1-2 days after receiving your return. Credits appear in your account within 2-7 days depending on your bank or card issuer.</p>
+                        <p><strong>We refund the product cost only—not original shipping charges.</strong></p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Changes & Cancellations -->
+            <section id="changes-cancellations">
+                <h2>Order Changes & Cancellations</h2>
+                
+                <p>The nature of made-to-measure means that once we've started your order, changes get expensive and complicated. Time and money get wasted. Feelings get hurt. Sandwiches go stale and uneaten. Milk spills. All things that can be avoided.</p>
+                
+                <h3>24-Hour Window</h3>
+                
+                <p>You have 24 hours after placing your order to make changes or cancel for free. Contact us at <a href="mailto:hello@shelfology.com" class="contact-highlight">hello@shelfology.com</a> or <a href="tel:9492441083" class="contact-highlight">949.244.1083</a>.</p>
+                
+                <p>If you ordered outside business hours (M-F, 8am-4pm MT), you have until 4pm MT the next business day.</p>
+                
+                <div class="info-box">
+                    <strong>Have ready:</strong> Order number and contact information
+                </div>
+                
+                <h3>Days 2-3: The Material Zone</h3>
+                
+                <p>We've already purchased materials and started cutting. Changes or cancellations during this window incur:</p>
+                <ul>
+                    <li>15% time/material fee on entire order</li>
+                    <li>Plus any additional costs specific to your request</li>
+                </ul>
+                
+                <p>Payment for changes must be received before we resume work.</p>
+                
+                <h3>After 3 Business Days: Too Late</h3>
+                
+                <p>Your order is too far along. No changes, edits, or cancellations possible. All sales are final.</p>
+                
+                <table class="fee-table">
+                    <thead>
+                        <tr>
+                            <th>Timeframe</th>
+                            <th>Fee</th>
+                            <th>What's Possible</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0-24 hours</td>
+                            <td>Free</td>
+                            <td>Changes and cancellations allowed</td>
+                        </tr>
+                        <tr>
+                            <td>Days 2-3</td>
+                            <td>15% fee + additional costs</td>
+                            <td>Changes possible with fees</td>
+                        </tr>
+                        <tr>
+                            <td>After day 3</td>
+                            <td>N/A</td>
+                            <td>No changes allowed</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="info-box warning">
+                    <strong>Note:</strong> If you've ordered an altered version of our products (changed from website configuration), sales are final after 24 hours regardless.
+                </div>
+            </section>
+            
+            <!-- Defects & Warranty -->
+            <section id="defects-warranty">
+                <h2>Defects & Warranty</h2>
+                
+                <p>If something arrives with a manufacturing defect, we'll repair or replace it. Warranty coverage varies by product—check our Warranty Page for specifics.</p>
+                
+                <p>For damaged items requiring repair or replacement, contact us at <a href="tel:9492441083" class="contact-highlight">949.244.1083</a> or <a href="mailto:hello@shelfology.com" class="contact-highlight">hello@shelfology.com</a>. We'll send you a return label if needed.</p>
+                
+                <div class="info-box warning">
+                    <strong>We are not responsible for items lost, stolen, or damaged in transit.</strong> If your package goes full "Roddy Piper" after leaving our facility or disappears from your porch, file a claim with the carrier using your tracking number.
+                </div>
+            </section>
+            
+            <!-- Custom & Altered Orders -->
+            <section id="custom-altered">
+                <h2>Custom & Altered Orders</h2>
+                
+                <p><strong>Custom order:</strong> A one-off product not available on our website, made just for you (ex: a custom towel bar).</p>
+                
+                <p><strong>Altered order:</strong> A product from our website with modifications (ex: changing an Aksel shelf from 13" to 13.5").</p>
+                
+                <p>We offer custom and altered orders to our Trade Army (professional customers). If you're a trade pro, sign up and contact your rep at <a href="tel:9492441083" class="contact-highlight">949.244.1083</a> or <a href="mailto:sales@shelfology.com" class="contact-highlight">sales@shelfology.com</a>.</p>
+                
+                <h3>For non-Trade customers</h3>
+                
+                <p>We offer limited alterations on existing products:</p>
+                <ul>
+                    <li>Length</li>
+                    <li>Depth</li>
+                    <li>Rod count</li>
+                    <li>Rod length</li>
+                </ul>
+                
+                <div class="info-box warning">
+                    <strong>Important:</strong> Once altered, items cannot be returned or cancelled after 24 hours (manufacturing defects still covered under warranty).
+                </div>
+            </section>
+            
+            <!-- Promotions -->
+            <section id="promotions">
+                <h2>Promotions</h2>
+                
+                <p>We love rewarding customers with fun promotions—discounts, free shipping, exclusive deals. All promotional offers:</p>
+                
+                <ul>
+                    <li>Valid only on our official website</li>
+                    <li>May have minimum purchase amounts or product restrictions</li>
+                    <li>Cannot be combined with other offers unless stated</li>
+                    <li>Include clear expiration dates</li>
+                    <li>Must be redeemed at checkout (no retroactive applications)</li>
+                </ul>
+                
+                <p>Refunds for promotional items reflect the actual amount paid. If you return part of an order and no longer meet promotional terms, discounted/free items may need to be returned.</p>
+                
+                <p>We reserve the right to modify or cancel promotions anytime. Questions? Call <a href="tel:9492441083" class="contact-highlight">949.244.1083</a> or email <a href="mailto:hello@shelfology.com" class="contact-highlight">hello@shelfology.com</a>.</p>
+            </section>
+            
+            <!-- Contact -->
+            <section id="contact">
+                <h2>Questions?</h2>
+                
+                <p>Not sure if your order qualifies for something? Call us at <a href="tel:9492441083" class="contact-highlight">949.244.1083</a> or email <a href="mailto:hello@shelfology.com" class="contact-highlight">hello@shelfology.com</a>.</p>
+                
+                <p>We're a small company run by humans. Mistakes happen. We're here to make things right—just give us the chance to help.</p>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <a href="#top" class="back-to-top" id="backToTop">↑</a>
+    
+    <script>
+        // Back to Top Button Visibility
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Active navigation highlighting
+        const navLinks = document.querySelectorAll('.nav-sidebar a');
+        const sections = document.querySelectorAll('section[id], h1[id]');
+        
+        function updateActiveNav() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav(); // Run on load
+    </script>
+</body>
+</html>
