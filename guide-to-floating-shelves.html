@@ -1,0 +1,1250 @@
+<article id="Top" class="shelfology-page" style="max-width: 960px; margin: 0 auto; padding: 0 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+
+  <!-- Inline CSS (no HEAD access) -->
+  <style>
+    /* Kill theme-added "second underline" / link borders inside this page only */
+    .shelfology-page a { border-bottom: none !important; box-shadow: none !important; -webkit-box-shadow: none !important; }
+    .shelfology-page a:before, .shelfology-page a:after { border-bottom: none !important; box-shadow: none !important; }
+
+    /* Smooth scrolling for anchor links (modern browsers) */
+    .shelfology-page { scroll-behavior: smooth; }
+
+    /* Responsive grids */
+    @media (max-width: 720px) {
+      .shelfology-page .pros-cons-grid { grid-template-columns: 1fr !important; gap: 1.25rem !important; }
+      .shelfology-page .room-cards-grid { grid-template-columns: 1fr !important; gap: 1.25rem !important; }
+      .shelfology-page .tile-grid { grid-template-columns: 1fr !important; }
+    }
+
+    /* Back-to-top button */
+    .shelfology-backtotop {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: #54737B;
+      color: #FFFDFB;
+      border: 1px solid #54737B;
+      text-decoration: none !important;
+      font-weight: 800;
+      line-height: 1;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+    .shelfology-backtotop:focus { outline: 3px solid rgba(103,175,206,0.6); outline-offset: 2px; }
+  </style>
+
+  <!-- Inline JS (no HEAD access) -->
+  <script>
+    (function () {
+      // Smooth scroll for in-page anchor links inside this article (fallback + consistency)
+      function smoothScrollTo(el) {
+        if (!el) return;
+        var y = el.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: y - 8, behavior: 'smooth' });
+      }
+
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+        if (!a) return;
+
+        // Only handle anchors that target elements on the page
+        var hash = a.getAttribute('href');
+        if (!hash || hash.length < 2) return;
+
+        var target = document.getElementById(hash.slice(1));
+        if (!target) return;
+
+        e.preventDefault();
+        smoothScrollTo(target);
+
+        // Update URL hash without jump
+        try {
+          history.pushState(null, '', hash);
+        } catch (err) {}
+      });
+
+      // Back-to-top button show/hide
+      var btn = null;
+      function initBackToTop() {
+        btn = document.getElementById('ShelfologyBackToTop');
+        if (!btn) return;
+
+        function toggle() {
+          if (window.pageYOffset > 700) {
+            btn.style.display = 'flex';
+          } else {
+            btn.style.display = 'none';
+          }
+        }
+        toggle();
+        window.addEventListener('scroll', toggle, { passive: true });
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          try { history.pushState(null, '', '#Top'); } catch (err) {}
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBackToTop);
+      } else {
+        initBackToTop();
+      }
+    })();
+  </script>
+
+  <!-- INTRO -->
+  <p style="font-size: 1.25em; color: #484643; line-height: 1.7; margin-bottom: 1.5em;">
+    Shopping for floating shelves can be tough. Selecting the right floating shelf — or DIY floating shelf bracket — and properly installing it might seem like a daunting task. But have no fear: your friendly neighborhood Shelfologists to the rescue! We've taken the time to answer just about every question anyone has ever asked (or Googled!) about floating shelves. Float on!
+  </p>
+
+  <!-- TOP CTA: Quick exit to shop -->
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:1em; flex-wrap:wrap; padding: 1rem 1.25rem; margin: 0 0 1.25rem; background:#FFFDFB; border:1px solid #54737B; border-radius: 8px;">
+    <div style="min-width: 220px;">
+      <div style="font-weight: 700; color:#54737B; font-size: 1.05em; line-height: 1.2; margin-bottom: 0.2em;">
+        Ready to shop?
+      </div>
+      <div style="color:#484643; font-size: 0.98em; line-height: 1.5;">
+        Browse our floating shelves by style, size, and finish.
+      </div>
+    </div>
+
+    <div style="display:flex; gap:0.75em; align-items:center; flex-wrap:wrap;">
+      <a href="https://shelfology.com/collections/floating-shelves" style="display:inline-block; padding:0.65em 1.05em; border-radius:999px; background:#54737B; color:#FFFDFB; font-weight:700; font-size:0.95em; text-decoration:none !important; border:1px solid #54737B;">
+        Shop floating shelves →
+      </a>
+
+      <a href="#RoomByRoom" style="display:inline-block; padding:0.65em 1.05em; border-radius:999px; background:#FFFDFB; color:#484643; font-weight:700; font-size:0.95em; text-decoration:none !important; border:1px solid #54737B;">
+        Help me choose →
+      </a>
+    </div>
+  </div>
+
+  <!-- TABLE OF CONTENTS -->
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 0.6em;"><strong>Jump to a topic:</strong></p>
+
+  <ul style="list-style: none; padding: 1.25rem 1.5rem; margin: 0.5em 0 2em; background: #FFFDFB; border: 1px solid #54737B; border-radius: 6px;">
+    <li style="margin-bottom: 0.5em;"><a href="#TheBasics" style="color: #67AFCE; text-decoration: underline; font-weight: 500; font-size: 1em; line-height: 1.6; border-bottom: none !important;">Floating Shelf 101: The Basics</a></li>
+    <li style="margin-bottom: 0.5em;"><a href="#ProsAndCons" style="color: #67AFCE; text-decoration: underline; font-weight: 500; font-size: 1em; line-height: 1.6; border-bottom: none !important;">Are Floating Shelves a Good Idea? Pros, Cons, and How They Compare</a></li>
+    <li style="margin-bottom: 0.5em;"><a href="#Technical" style="color: #67AFCE; text-decoration: underline; font-weight: 500; font-size: 1em; line-height: 1.6; border-bottom: none !important;">A Technical Guide: Installation, Weight Capacity, Tools, and Materials</a></li>
+    <li style="margin-bottom: 0.5em;"><a href="#SpacingAndHeight" style="color: #67AFCE; text-decoration: underline; font-weight: 500; font-size: 1em; line-height: 1.6; border-bottom: none !important;">Spacing &amp; Height Guide: How Far Apart and How High</a></li>
+    <li style="margin-bottom: 0.5em;"><a href="#RoomByRoom" style="color: #67AFCE; text-decoration: underline; font-weight: 500; font-size: 1em; line-height: 1.6; border-bottom: none !important;">Room-by-Room Guide: Kitchen, Bathroom, Living Room, and More</a></li>
+    <li style="margin-bottom: 0;"><a href="#Style" style="color: #67AFCE; text-decoration: underline; font-weight: 500; font-size: 1em; line-height: 1.6; border-bottom: none !important;">Floating Shelf Style Guide: Tips for Styling and Decorating</a></li>
+  </ul>
+
+  <!-- ─── SECTION 1: THE BASICS ─── -->
+  <h2 id="TheBasics" style="font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3; margin-top: 2.5em; margin-bottom: 0.4em; padding-top: 0.5em; border-top: 2px solid #67AFCE;">
+    Floating Shelf 101: The Basics
+  </h2>
+
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What is a Floating Shelf?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    A floating shelf is a shelf that is attached to a wall with concealed mounting hardware (a floating shelf bracket), leaving little-or-no visible means of support. The result: beautiful, minimal storage that seemingly levitates in thin air.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Read more: <a href="https://shelfology.com/blogs/shelfology-u/a-brief-history-of-floating-shelves-and-open-shelving" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">A Brief History of Floating Shelves and Open Shelving</a>
+  </p>
+
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How are floating shelves secured to floating shelf brackets?
+  </h3>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/related-floating-shelf-bracket-101.jpg?v=1718902995" alt="Diagram showing how a floating shelf attaches to wall-mounted bracket with support rods and set screws" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      How floating shelves attach to brackets
+    </figcaption>
+  </figure>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    There are two options to use when securing your shelf to the floating shelf bracket. First, you can drill a hole through the shelf down into the support rod and secure them together with what we like to call a "set screw." All of our Aksel systems come with this already done for you, but if you are purchasing a floating shelf system elsewhere, you could easily do it yourself. Securing the shelf to the support rods is the preferred method, as this allows you to undo the set screw, remove the shelf, and move the whole system in the future. Easy peasy.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The second option is to secure the shelf to the support rods with an adhesive. We always recommend a <em style="font-style: italic; color: #54737B;">semi-permanent</em> fix like a kitchen and bath silicone. This will hold the shelf hardware and wood together, but will also allow you to wiggle the shelf off of the support rods should you ever wish to remove it. Some contractors and builders prefer a permanent adhesive instead. Just be sure not to overfill the holes in the shelf—a little goes a long way!
+  </p>
+  <div style="text-align:right; margin: 0 0 0.9em;">
+    <a href="#Top" style="color:#67AFCE; text-decoration: underline; font-weight:600; font-size:0.95em;">Back to top ↑</a>
+  </div>
+  <!-- ─── SECTION 2: PROS & CONS ─── -->
+  <h2 id="ProsAndCons" style="font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3; margin-top: 2.5em; margin-bottom: 0.4em; padding-top: 0.5em; border-top: 2px solid #67AFCE;">
+    Are Floating Shelves a Good Idea?
+  </h2>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Yes — floating shelves are one of the best ways to add storage and visual impact to a wall without eating up floor space or cluttering a room with bulky furniture. They work in nearly every design style, from ultra-modern to farmhouse, and they're significantly cheaper than built-in cabinetry.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    That said, they're not right for every situation. Here's an honest look at the good and the not-so-good, so you can decide if they're the right move for your space.
+  </p>
+
+  <!-- PROS & CONS TWO-COLUMN -->
+  <div class="pros-cons-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1.5em 0 2em;">
+
+    <!-- PROS -->
+    <div>
+      <h4 style="font-size: 1.125em; font-weight: 600; color: #484643; border-bottom: 2px solid #67AFCE; padding-bottom: 0.4em; margin: 0 0 1em;">✓ The Pros</h4>
+      <ul style="padding-left: 1.25rem; margin: 0; list-style-type: disc;">
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">Clean, open look.</strong> No chunky brackets, no cabinet doors. Floating shelves keep a room feeling light and airy — especially important in smaller spaces.
+        </li>
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">Versatile and customizable.</strong> You can get them in any length, depth, wood species, or finish. A 36" walnut shelf for your living room and a 12" white-painted shelf for your bathroom can both come from the same brand. No two need to be the same.
+        </li>
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">Cheaper than cabinets.</strong> A run of floating shelves almost always costs less than the equivalent in upper cabinets — sometimes significantly less, depending on material and length.
+        </li>
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">Works in any room.</strong> Kitchen, bathroom, living room, bedroom, office, entryway — floating shelves are genuinely one of the most versatile shelving options out there.
+        </li>
+        <li style="margin-bottom: 0; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">Easy to relocate.</strong> Unlike built-ins, a floating shelf can be moved, swapped, or removed with minimal wall damage (just a few small screw holes to patch).
+        </li>
+      </ul>
+    </div>
+
+    <!-- CONS -->
+    <div>
+      <h4 style="font-size: 1.125em; font-weight: 600; color: #484643; border-bottom: 2px solid #67AFCE; padding-bottom: 0.4em; margin: 0 0 1em;">✗ The Cons</h4>
+      <ul style="padding-left: 1.25rem; margin: 0; list-style-type: disc;">
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">They require studs (or blocking).</strong> This is the big one. Floating shelves need to be anchored into solid wall structure — drywall alone won't cut it for anything beyond the lightest display shelf. If your studs aren't where you need them, you may need to hire someone to add blocking.
+        </li>
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">They collect dust.</strong> No doors means no protection from dust. If your shelves are near a kitchen stove or cooktop, cooking oils can also leave a film over time. A quick wipe-down as part of your regular cleaning routine keeps this in check.
+        </li>
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">Installation is trickier than it looks.</strong> Getting a shelf perfectly level, hitting the right studs, and making sure the bracket slides in cleanly requires some patience and the right tools. Not impossible for a DIYer, but it's not a 10-minute job.
+        </li>
+        <li style="margin-bottom: 0.85em; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">Limited weight vs. traditional shelving.</strong> A properly installed floating shelf into two studs can hold 90–100 lbs — plenty for books, dishes, and decor. But if you're thinking about storing heavy appliances or a massive book collection, you'll want to plan your studs and brackets carefully.
+        </li>
+        <li style="margin-bottom: 0; line-height: 1.6; color: #484643; font-size: 1.05em;">
+          <strong style="display: block; margin-bottom: 0.15em;">They show everything.</strong> That's the point — but it also means clutter is on full display. Floating shelves work best when you're intentional about what goes on them.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- FLOATING SHELVES VS CABINETS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Floating Shelves vs. Cabinets: Which Is Better?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    It depends on what you need. Here's the quick version:
+  </p>
+
+  <div style="overflow-x: auto; margin: 1em 0 1.75em;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 1em; line-height: 1.55; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+      <thead>
+        <tr>
+          <th style="background: #484643; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; width: 28%;"></th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; width: 36%;">Floating Shelves</th>
+          <th style="background: #7F8953; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; width: 36%;">Upper Cabinets</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB;"><strong style="color: #484643;">Visual weight</strong></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Light, open</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Heavy, closed</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB;"><strong style="color: #484643;">Best for</strong></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Display, easy-access items</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Hidden storage, lots of stuff</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB;"><strong style="color: #484643;">Cost</strong></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Generally lower</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Generally higher</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB;"><strong style="color: #484643;">Room feel</strong></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">More spacious</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">More traditional</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB;"><strong style="color: #484643;">Dust &amp; mess</strong></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Shows everything</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Hides everything</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB;"><strong style="color: #484643;">Installation</strong></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Needs studs, moderate DIY</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Needs studs + professional install</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB;"><strong style="color: #484643;">Customization</strong></td>
+          <td style="padding: 0.65em 1em; vertical-align: top; color: #484643;">Highly customizable</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; color: #484643;">Standard sizes or custom cabinet shop</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    <strong>The smart move for most kitchens:</strong> a mix. Use floating shelves for the items you actually use every day and want easy access to — plates, glasses, your coffee mugs. Keep cabinets for the stuff you don't want to look at (the mixer you use twice a year, the mismatched Tupperware).
+  </p>
+  <div style="text-align:right; margin: 0 0 0.9em;">
+    <a href="#Top" style="color:#67AFCE; text-decoration: underline; font-weight:600; font-size:0.95em;">Back to top ↑</a>
+  </div>
+  <!-- ─── SECTION 3: TECHNICAL GUIDE ─── -->
+  <h2 id="Technical" style="font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3; margin-top: 2.5em; margin-bottom: 0.4em; padding-top: 0.5em; border-top: 2px solid #67AFCE;">
+    A Technical Guide to Floating Shelves: Questions about Floating Shelf Installation, Weight Capacity, Tools and Materials
+  </h2>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/floating-shelf-faq-uber-strong_15fbbef1-06fc-4dd2-b2ad-f9082d2430a4.jpg?v=1739285135" alt="Heavy duty floating shelf bracket mounted on wall showing solid steel construction with support rods" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Heavy duty floating shelf bracket
+    </figcaption>
+  </figure>
+
+  <!-- WEIGHT CAPACITY -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How much weight can a floating shelf hold?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The short answer: a lot of weight—if it is done right. A floating shelf can hold 45–50 lbs for every wall stud that your floating shelf bracket is attached to. The more detailed answer depends on a number of factors, including 1) where and how the shelf is installed, 2) the quality &amp; design of the shelf and bracket, and 3) the dimensions (length x depth) of the floating shelf. <a href="https://shelfology.com/blogs/shelfology-u/how-much-weight-can-a-floating-shelf-hold" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Learn more about how to calculate floating shelf weight capacity</a>.
+  </p>
+
+  <!-- WEIGHT CAPACITY TABLE -->
+  <div style="overflow-x: auto; margin: 1em 0 1.75em;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 1em; line-height: 1.55; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+      <thead>
+        <tr>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Installation Method</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Weight Capacity</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">1 wall stud</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">45–50 lbs</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Minimum. Only for small, light shelves.</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">2 wall studs</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">90–100 lbs</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Standard for most home installations.</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">3 wall studs</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">135–150 lbs</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Good for longer shelves or heavier loads.</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Wall studs + blocking</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">200+ lbs</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Maximum strength. Every hole in the bracket screws into solid wood.</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Drywall anchors only</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Not recommended</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Will eventually pull out under real weight. Use as supplemental support only.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INSTALLATION -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How do you install floating shelves?
+  </h3>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/floating-shelf-faq-aksel-installation_180d8d9f-ef33-465d-8204-9a700d35d80b.jpg?v=1739285166" alt="Step by step Aksel floating shelf installation showing bracket mounting into wall studs and shelf placement" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Aksel floating shelf installation
+    </figcaption>
+  </figure>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    To install a floating shelf: mount the bracket into at least one wall stud (two or more is strongly recommended), then slide the shelf over the bracket rods and secure.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Our floating shelves are heavy-duty. As such, never use just wall anchors as they will be levered right out of the wall by the weight of the shelf (which would result in a sad, <a href="https://shelfology.com/blogs/shelfology-u/how-to-fix-a-sagging-floating-shelf" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">saggy floating shelf</a>). At a bare minimum, ALWAYS <a href="https://shelfology.com/blogs/shelfology-u/trade-secrets-the-right-way-to-hang-floating-shelves" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">install floating shelf brackets</a> into at least one wall stud. However, we HIGHLY recommend attaching to 2 or more studs. The best practice is to install your shelf into wall blocking… which might require help from a pro. Once your bracket is installed, slide on and attach your floating shelf. Viola!
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Read more:<br>
+    <a href="https://shelfology.com/blogs/shelfology-u/floating-shelves-101-how-to-hang-your-shelves-like-a-boss" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Floating Shelves 101: How to Hang Your Shelves Like a Boss</a><br>
+    <a href="https://shelfology.com/blogs/shelfology-u/trade-secrets-the-right-way-to-hang-floating-shelves" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Trade Secrets: The Right Way to Install Floating Shelves</a>
+  </p>
+
+  <!-- TOOLS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What Tools Do I Need to Install Floating Shelves?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Here's everything you'll need before you start. Nothing exotic — most of this is already in your garage or available at any hardware store for under $50 total.
+  </p>
+
+  <div style="overflow-x: auto; margin: 1em 0 1.75em;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 1em; line-height: 1.55; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+      <thead>
+        <tr>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Tool</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">What It's For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Stud finder</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Locating wall studs behind drywall or plaster</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Level (4-foot preferred)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Making sure your bracket and shelf are perfectly straight</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Drill with bits</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Pilot holes and driving screws</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Screwdriver or driver bit</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Tightening screws into studs and anchors</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Pencil</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Marking stud locations and drill points</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Tape measure</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Measuring shelf placement and spacing</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Wood shims</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Leveling the bracket if your wall isn't perfectly flat</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; vertical-align: top; color: #484643;">Drywall anchors</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; color: #484643;">Supplemental support between studs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DRYWALL / PLASTER -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Can a floating shelf be installed on drywall or plaster?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Yes! This is the easiest and most common type of installation. The key is to locate the studs behind the wall. Use a stud finder, nail, or thin drill bit to find the studs behind your shelf. Mount the floating shelf bracket/hardware into each stud and use drywall anchors in every other available hole.
+  </p>
+
+  <!-- FINDING STUDS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How Do I Find Wall Studs Behind Plaster?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The easiest way to find studs is with a stud finder — available at any hardware store for under $30. Finding studs isn't rocket science. Before you go punching holes in the wall, there are some easy hacks for finding the studs. First, the easiest and, honestly, most effective way is to head to Home Depot and buy a stud finder. Done and dusted!
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Alternatively, you could go old school and just use "the knock test": start at light switches, outlets, or electrical boxes (they are typically installed on a stud). Gently knock on the wall listening for a change in density. Also, there are studs on either side of most windows. Another trusty method is to measure 16 inches from a corner and start knocking. If you need help, feel free to call one of our friendly installation support monkeys and they can try to walk you through it over the phone.
+  </p>
+
+  <!-- STUDS REQUIRED -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Do floating shelf brackets need to be installed into wall studs?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Yes. Studs are 100% critical to supporting a floating shelf, floating mantel or floating desk. If you just fasten a floating shelf to the wall without hitting any studs, you will end up with a lot of drywall holes and a damaged shelf on the floor. Drywall anchors have nowhere near the strength you need to support a shelf. So screw into at least two studs, then install drywall anchors into every other available hole.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    If the holes in the bracket don't line up with the studs in the walls (because of the unique construction of the wall), it is absolutely okay to drill a hole through the bracket back bar so you can hit a stud. In fact, we recommend that you attach into every stud your bracket crosses. If you use every secure attachment opportunity, you'll get the best results.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Wanna 10x your shelf strength? Try blocking. Blocking is the practice of placing horizontal wood pieces spanning between studs. If you place blocking behind your shelf, each hole in the bracket can be screwed into solid hardwood. EVERY. HOLE. IN. THE. BRACKET…. INSANE!!! I don't mean to yell, but this method is BY FAR, <a href="https://shelfology.com/blogs/shelfology-u/floating-shelves-101-how-to-hang-your-shelves-like-a-boss" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">the strongest way to install a floating shelf</a> or floating mantel.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Read more: <a href="https://shelfology.com/blogs/shelfology-u/how-to-fix-a-sagging-floating-shelf" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">How to Fix a Sagging Floating Shelf</a>
+  </p>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/floating-shelf-faq-blocking-illustration_2d498e48-aab4-470b-86c0-fbb5dbc631c2.jpg?v=1739285191" alt="Illustration showing horizontal blocking wood pieces installed between wall studs for maximum floating shelf support" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      How to Install Floating Shelves: Wanna 10x Your Shelf Capacity? Install Your Shelf into Blocking.
+    </figcaption>
+  </figure>
+
+  <!-- SMALL SHELF NO STUDS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What if I have a small shelf that I want to place where there are no studs?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Although we don't recommend it, it may happen that the sweet spot you've been dreaming of placing your floating shelf just happens to be between two studs. These would likely only occur if the shelf or bracket you use is around 10 inches.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    In this case, we would simply suggest that you install your shelf using ALL of the included wall anchors. But remember, this particular shelf will not be as strong as if you had it installed into a stud. Forget about placing your beloved bowling ball collection on it.
+  </p>
+
+  <!-- COMMAND STRIPS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Can I hang a floating shelf with Command Strips?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Bless those geniuses at 3M, but the answer is a resounding "No! Please no! Nyet. Nein. NO WAY." Save Command Strips for small framed pictures, birthday signs, and little Timmy's kindergarten artwork. MAYBE a picture ledge. We're not in the business of destroying the things we've made, and we're sure you want the shelf to stay up on the wall, right? Enough said.
+  </p>
+
+  <!-- SAGGING -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Do floating shelves naturally start to sag over time?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    No. While it's true that some inferior floating shelves can sag over time if not installed correctly or if they're overloaded, with Shelfology's <a href="https://shelfology.com/collections/floating-shelves" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">premium floating shelves</a>, that's not a concern! We use sturdy, durable materials and innovative design to ensure our shelves maintain their sleek, sturdy look for years to come. Here's the secret:
+  </p>
+
+  <ul style="padding-left: 1.5rem; margin: 0.5em 0 1.2em; color: #484643; font-size: 1.125em; line-height: 1.7;">
+    <li style="margin-bottom: 0.6em;">
+      <strong>Solid Construction:</strong> Our shelves are crafted from high-quality hardwood, engineered to withstand the test of time. No flimsy plywood here!
+    </li>
+    <li style="margin-bottom: 0.6em;">
+      <strong>Heavy-Duty Brackets:</strong> We offer a range of brackets designed to support significant weight, so you can confidently load up your shelves.
+    </li>
+    <li style="margin-bottom: 0;">
+      <strong>Proper Installation:</strong> It's crucial to follow our installation guidelines and use appropriate fasteners to secure your shelves for long-lasting stability.
+    </li>
+  </ul>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/aksel_floating-shelf-dutch-mocha-lifestyle_ci-1x1.jpg?v=1726852703" alt="Shelfology Aksel floating shelf in Dutch Mocha finish mounted on wall displaying books and decorative objects" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Shelfology floating shelf lifestyle
+    </figcaption>
+  </figure>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    With Shelfology, you can enjoy the beauty of floating shelves without worrying about sagging or instability. We're confident our shelves will be a stylish and functional part of your home for years to come.
+  </p>
+
+  <!-- WHY SAGGING -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Why is my floating shelf sagging? Or tilting? Or leaning?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    A sagging floating shelf is usually caused by one of three things: a crooked wall, an upside-down bracket, or not enough points of attachment. Great question — let's walk through each one. First, your wall may be crooked. Not "Gotham City" crooked, but just standard, "not-perfectly-straight" crooked. When you put the shelf on it, that lack of perfection becomes glaringly obvious.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Barring numbers 2 and 3 (below) being in play, you can easily solve this problem by using wood shims between the bracket and the wall to lever the shelf to its plumb (vertically straight) position. Wood shims are the key to straight doorways and window framing the world over, and they are also our secret weapon in the fight against shelf sag!
+  </p>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/how-to-fix-a-sagging-shelf-sagging-v-shims.jpg?v=1736902280" alt="Side by side comparison showing sagging floating shelf problem and the wood shim solution for leveling" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Wood shims fix sagging floating shelf
+    </figcaption>
+  </figure>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Second, your bracket might be upside down. Unfortunately, we have had several well-meaning DIY'ers put the bracket on the wall with the vertical drill holes facing downward. After all, it's easier to reach that way with the drill. But the laws of physics need those holes to be up at the top! Otherwise, once the weight of the shelf is added, your bracket and shelf will start to tip downward, making your shelf droop. So if your shelf is sagging, check that bracket and make sure that it's secured from the top down. If it's not, spin it right round.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Third, you might need to secure your shelf in more places. Ideally, you'll install into studs and blocking and get a minimum of 2 studs for each shelf you install. But if your shelf is longer than 2 studs in length, be sure to anchor into as many as you can. In cases of hollow walls or where fewer studs are available, drywall anchors, molly bolts, and lag bolts are the key to keeping your shelf upright and secured.
+  </p>
+
+  <!-- THICKNESS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How thick should wood be for floating shelves? How thick should floating shelves be?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The bare minimum would be 1.25" thick. But ultimately, the thickness of your shelf slab depends on how deep your shelf is going to be! Here's a quick reference using <a href="https://shelfology.com/collections/floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">our Aksel bracket options</a>:
+  </p>
+
+  <!-- BRACKET/THICKNESS TABLE -->
+  <div style="overflow-x: auto; margin: 1em 0 1.75em;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 1em; line-height: 1.55; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+      <thead>
+        <tr>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Bracket</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Max Shelf Depth</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Min Wood Thickness</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;"><a href="https://shelfology.com/products/aksel-ld-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel Light Duty</a></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">≤ 8"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">1.25"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Small display shelves, bathroom, entryway</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;"><a href="https://shelfology.com/products/aksel-md-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel Medium Duty</a></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">≤ 10"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">1.5"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Books, plants, standard kitchen shelves</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;"><a href="https://shelfology.com/products/aksel-hd-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel Heavy Duty</a></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">≤ 14"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">1.75"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Heavy books, cookware, bookshelves</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;"><a href="https://shelfology.com/products/aksel-xd-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel Xtra Duty</a></td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">7–17"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">2"</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Deep shelving, near-desk depth</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;"><a href="https://shelfology.com/products/yuri-xd-floating-desk-bracket-black" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Yuri Floating Desk</a></td>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Up to 24"</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">1.5"+ (varies by model)</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Desks, TV stands, countertops</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/aksel-wood-slab.jpg?v=1736438354" alt="Aksel wood slab floating shelf showing natural hardwood grain and thickness ready for bracket installation" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Aksel wood slab floating shelf
+    </figcaption>
+  </figure>
+
+  <!-- DEPTH -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How deep can I make my floating shelf?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    <a href="https://shelfology.com/products/aksel-xd-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Our Aksel XD floating shelf brackets</a> can easily float shelves up to 17" deep. That's practically a desk! Secure from 2 walls, or upgrade to a <a href="https://shelfology.com/products/yuri-xd-floating-desk-bracket-black" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Yuri Floating Desk bracket</a>, and you can go deeper: up to 24 inches!
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    For situations where you need to store a lot of weight, only go as deep as is necessary for your decor/storage needs. Basic physics dictates that the longer the lever (the shelf), the less force it takes to move it. So… the deeper the shelf, the less weight is required before it starts to sag. The takeaway: only float as deep as you need. If you go deeper than necessary, you will sacrifice weight capacity.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Ask one of our Shelf Geeks for help at 949.244.1083 if you want to create something deeper than our standard specs!
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Read more: <a href="https://shelfology.com/blogs/shelfology-u/floating-shelf-depth-guide-how-depth-impacts-stability" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Floating Shelf Depth Guide: How Depth Impacts Stability</a>
+  </p>
+
+  <!-- BEST BRACKET -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What is the best kind of floating shelf bracket?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Solid, heavy-duty brackets that are just under the length of your shelf. Look for brackets that have multiple rods added as the bracket gets longer. These brackets are quite specific to the job, which requires them to have a flat plate that mounts to the wall and horizontal rods that project out and do the supporting.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    For a bracket to work right, the rods need to be strong enough to support the shelf and everything on it, yet still small enough to disappear completely when the shelf is installed over them.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Of course, we are partial: <a href="https://shelfology.com/collections/wood-floating-shelves" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Our Aksel line of floating shelf brackets</a> features beefy 1/4" thick solid-steel construction and rods that are recessed into the backbar and 360-degree welded on the rear of the bracket (rather than front-facing welding which would further undermine the integrity of the construction). Only settle for a tried and true heavy-duty bracket if you want to build floating shelves that will stand the test of time.
+  </p>
+
+  <!-- HOW CONCEALED -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How are floating shelf brackets concealed behind the floating shelf?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    It is all about how the shelf is milled (the space for the bracket is carved out of the back of the wood slab to hide the bracket). Imagine the shelf as a glove and the bracket as a hand. The glove slides snuggly over the fingers and covers everything. In the same way, the shelf covers the bracket and rods, leaving just the backside of the bracket exposed.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    When you are ready to install your shelf, you install the bracket first, then slide the shelf over the bracket. Once they are together, the bracket disappears from sight and presto! Now you have a magically "floating" shelf.
+  </p>
+
+  <!-- BOOKS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Can a floating shelf hold books?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Absolutely—as long as the floating shelf is properly installed and made of the right materials. Some of the most popular floating shelves on Etsy and Amazon are made of particleboard or MDF and fastened to the wall using lesser materials. Floating shelves made from these kinds of unworthy materials would certainly NOT be suitable for anything heavy (like your precious library).
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The key to holding weight is 1) attaching the shelf to wall studs and 2) the support rods <em style="font-style: italic; color: #54737B;">inside of the shelf.</em> Without proper support, your shelf, be it made of MDF or hardwoods, will not hold <em style="font-style: italic; color: #54737B;">itself</em> up, let alone the book collection you've so carefully cultivated. Make sure to choose the right bracket for your shelf depth and thickness, and for the desired weight capacity.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Our <a href="https://shelfology.com/products/aksel-hd-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel HD floating shelf bracket</a> can float out to 14" deep (bookshelves are a standard 10" depth) and supports up to 80 lbs of weight capacity per rod, making it a great choice for a big book collection.
+  </p>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/aksel-bookshelf-main_22b7844e-18bc-48a1-af8d-a1594b15bbd9.jpg?v=1737326194" alt="Aksel floating bookshelf displaying rows of hardcover and paperback books on wall-mounted shelving unit" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Aksel floating bookshelf
+    </figcaption>
+  </figure>
+
+  <!-- TV -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Can I put my TV on a floating shelf?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Yes! But how big is your TV? The magic of floating shelves is all about the mysterious physical relationship between weight and leverage. If your TV is too heavy, the shelf is too shallow, or the support rods aren't correctly installed, you'll be out a TV. Make sure you've got proper support, and you'll be good to go!
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Deeper floating shelves require bigger brackets, and they aren't always hidden. Our <a href="https://shelfology.com/products/yuri-hd-floating-desk-bracket" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Yuri floating desk</a> and <a href="https://shelfology.com/products/drake-slimline-countertop-bracket" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Drake countertop</a> brackets are a great place to start. They leverage the strength of your stud in the wall to get you greater depth for something like a TV set to float on.
+  </p>
+
+  <!-- WOOD SPECIES -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What is the best wood for floating shelves?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Any solid hardwood will do. Some good options include Walnut, Maple, White Oak, Alder, or Mahogany. By far, Walnut is our most popular seller. Most of our wood shelves are also available "rough cut," which simply means that they have a more rustic, imperfect quality to them.
+  </p>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/floating-shelf-faq-wood-variety_87ec5473-93f0-46e9-b883-6b1ed06bb653.jpg?v=1739285249" alt="Variety of floating shelf wood species samples showing walnut maple oak alder and mahogany grain patterns side by side" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Juicy Hardwoods. Served Up Daily.
+    </figcaption>
+  </figure>
+
+  <!-- DO YOU SELL SLABS -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Do you sell the wood shelf slab or do I have to make/buy my own?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Heck yes, Napoleon! You obviously could make your own shelf, if you must. But if you want to save yourself time and effort, we will be happy to make you a turnkey, ready-to-hang, heirloom-quality floating shelf that is custom-made to your specific tastes. And we do it dang fast to boot!
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    A great ready-made option is our <a href="https://shelfology.com/collections/wood-floating-shelves" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">complete Aksel Floating Shelf system</a>. Another awesome option is the <a href="https://shelfology.com/collections/fireplace-mantels" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Glenn Floating Fireplace Mantel</a>. Whether you are building shelves or mantels yourself and need hardware and advice or if you are shopping for a complete floating shelf solution, our excellent team of Shelf Monkeys has you covered.
+  </p>
+  <div style="text-align:right; margin: 0 0 0.9em;">
+    <a href="#Top" style="color:#67AFCE; text-decoration: underline; font-weight:600; font-size:0.95em;">Back to top ↑</a>
+  </div>
+  <!-- ─── SECTION 4: SPACING & HEIGHT ─── -->
+  <h2 id="SpacingAndHeight" style="font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3; margin-top: 2.5em; margin-bottom: 0.4em; padding-top: 0.5em; border-top: 2px solid #67AFCE;">
+    Spacing &amp; Height Guide: How Far Apart and How High
+  </h2>
+
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How Far Apart Should Floating Shelves Be?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The short answer: 10–18 inches apart vertically is the sweet spot for most situations. But the right spacing really depends on what you're putting on them and where they're going.
+  </p>
+
+  <!-- SPACING TABLE -->
+  <div style="overflow-x: auto; margin: 1em 0 1.75em;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 1em; line-height: 1.55; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+      <thead>
+        <tr>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">What You're Displaying</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Recommended Vertical Spacing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Small decorative items (frames, candles, small plants)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">8–12 inches</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Books and standard dishware</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">12–15 inches</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">General mixed display</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">12–18 inches</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; vertical-align: top; color: #484643;">Tall items (vases, tall jars, small appliances)</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; color: #484643;">18–24 inches</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    <strong>A few rules of thumb:</strong>
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Measure for your tallest item first, then add 2–3 inches of breathing room. That's your minimum spacing. Don't go tighter than that or the shelf will feel cramped.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Keep your spacing consistent across a run of shelves — even spacing reads as intentional and clean. Uneven gaps look accidental.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    If you're doing multiple shelves on the same wall, the bottom shelf sets the tone. Get that one right (right height, right distance from whatever's below it — counter, couch, etc.) and space the rest evenly from there.
+  </p>
+
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How High Should Floating Shelves Be?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    For most rooms, hang floating shelves at eye level — about 4 to 5 feet from the floor. The exact height shifts depending on what's in the room. This one changes by room. Here's what actually works, based on what the space is doing:
+  </p>
+
+  <!-- HEIGHT TABLE -->
+  <div style="overflow-x: auto; margin: 1em 0 1.75em;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 1em; line-height: 1.55; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+      <thead>
+        <tr>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Room / Location</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Height from Reference Point</th>
+          <th style="background: #54737B; color: #FFFDFB; text-align: left; padding: 0.75em 1em; font-weight: 600; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em;">Why</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Kitchen (above counter)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">18–24 inches above countertop</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Easy reach for plates, glasses, and daily items</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Kitchen (multiple shelves)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">12–15 inches between each shelf</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Fits standard dishware with room to grab</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Living room (above couch)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">10–12 inches above the back of the couch</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Clears heads, stays visually connected to the furniture</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Living room (general display)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">4–5 feet from the floor (eye level)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Optimal for viewing and visual impact</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Bathroom (above toilet)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">24+ inches above the toilet tank</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Keeps things accessible without crowding</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Bathroom (above sink)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">12+ inches above the faucet/mirror</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Clears fixtures, keeps toiletries in reach</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Bedroom (above bed, no headboard)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">16 inches above the mattress</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; background: #FFFDFB; color: #484643;">Reachable without sitting up, safe clearance</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Bedroom (above headboard)</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">24 inches above the headboard</td>
+          <td style="padding: 0.65em 1em; border-bottom: 1px solid #54737B; vertical-align: top; color: #484643;">Visual breathing room, keeps things out of reach while sleeping</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Office / general</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Eye level, 4–5 feet from floor</td>
+          <td style="padding: 0.65em 1em; vertical-align: top; background: #FFFDFB; color: #484643;">Best for reading spines and grabbing things while seated</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PRO TIP CALLOUT -->
+  <div style="background: #FFFDFB; border-left: 4px solid #67AFCE; padding: 1.25em 1.5em; margin: 1.25em 0 1.75em; border-radius: 0 6px 6px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+    <strong style="display: block; margin-bottom: 0.25em; font-size: 1.125em; color: #54737B;">Pro tip</strong>
+    <span style="font-size: 1.05em; color: #484643; line-height: 1.6;">Before you drill anything, tape out where the shelf will go using painter's tape. Live with it for a day. You'll immediately know if it feels too high, too low, or too close to something else.</span>
+  </div>
+  <div style="text-align:right; margin: 0 0 0.9em;">
+    <a href="#Top" style="color:#67AFCE; text-decoration: underline; font-weight:600; font-size:0.95em;">Back to top ↑</a>
+  </div>
+  <!-- ─── SECTION 5: ROOM-BY-ROOM ─── -->
+  <h2 id="RoomByRoom" style="font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3; margin-top: 2.5em; margin-bottom: 0.4em; padding-top: 0.5em; border-top: 2px solid #67AFCE;">
+    Room-by-Room Guide
+  </h2>
+
+  <!-- ROOM CARDS GRID -->
+  <div class="room-cards-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.75em; margin: 1.25em 0 2em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+
+    <!-- KITCHEN -->
+    <div style="border: 1px solid #54737B; border-radius: 6px; padding: 1.5em; background: #FFFDFB;">
+      <h4 style="margin: 0 0 0.75em; font-size: 1.125em; font-weight: 600; color: #54737B;">🍳 Kitchen</h4>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;">The kitchen is where floating shelves live or die based on how well you plan them.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Depth:</strong> 8–12 inches handles most kitchen needs. A 10–12 inch deep shelf is the sweet spot for standard dishware. If you're storing pots or large jars, go deeper — our <a href="https://shelfology.com/products/aksel-hd-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel HD bracket</a> handles shelves up to 14 inches deep.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Height:</strong> First shelf should sit 18–24 inches above your countertop. If you're stacking two or three shelves, keep 12–15 inches between each one.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">What to put on them:</strong> Daily-use items only. Plates, glasses, mugs, spice jars, a few cookbooks. If it comes out once a week or less, it belongs in a cabinet.</p>
+      <p style="margin: 0; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Watch out for:</strong> Grease and steam from the stove. Keep kitchen shelves a bit away from the cooktop if you can, and give them a quick wipe when you're cleaning up anyway.</p>
+    </div>
+
+    <!-- BATHROOM -->
+    <div style="border: 1px solid #54737B; border-radius: 6px; padding: 1.5em; background: #FFFDFB;">
+      <h4 style="margin: 0 0 0.75em; font-size: 1.125em; font-weight: 600; color: #54737B;">🚿 Bathroom</h4>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;">Bathrooms are one of the best places for floating shelves because every bathroom is short on wall space and long on need for it.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Depth:</strong> 6–8 inches is plenty. You're storing toiletries, small towels, candles — nothing deep. A lighter-duty bracket like our <a href="https://shelfology.com/products/aksel-ld-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel LD</a> is a great fit here.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Height:</strong> Keep them at least 24 inches above the toilet if they're in that zone. Above a sink, stay 12+ inches above the faucet or mirror so nothing gets in the way.</p>
+      <p style="margin: 0; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Material matters:</strong> Bathrooms are humid. If you're going with wood, make sure it's sealed or finished properly. Unfinished wood in a bathroom is a recipe for warping. All of our finished hardwood options hold up well in bathroom conditions.</p>
+    </div>
+
+    <!-- LIVING ROOM -->
+    <div style="border: 1px solid #54737B; border-radius: 6px; padding: 1.5em; background: #FFFDFB;">
+      <h4 style="margin: 0 0 0.75em; font-size: 1.125em; font-weight: 600; color: #54737B;">🛋️ Living Room</h4>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;">Living room shelves are mostly about display, which means aesthetics matter more here than in the kitchen or bathroom.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Depth:</strong> 6–10 inches works well. You don't need deep shelves for books and decor — and shallower shelves keep the room feeling open.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Height:</strong> If they're above your couch, go 10–12 inches above the back of the couch. For a general display wall, keep the center of your arrangement around eye level — about 4 to 5 feet off the floor.</p>
+      <p style="margin: 0; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Styling:</strong> Leave some empty space. A shelf that's 70% full looks intentional. A shelf that's 100% full looks cluttered. Group things in threes, vary the heights of your objects, and let the shelf breathe.</p>
+    </div>
+
+    <!-- HOME OFFICE -->
+    <div style="border: 1px solid #54737B; border-radius: 6px; padding: 1.5em; background: #FFFDFB;">
+      <h4 style="margin: 0 0 0.75em; font-size: 1.125em; font-weight: 600; color: #54737B;">💻 Home Office</h4>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;">A floating shelf above a desk or on a nearby wall keeps reference books, a plant, and a few personal items within reach without taking up any desk space.</p>
+      <p style="margin: 0 0 0.85em; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Depth:</strong> 6–8 inches is the sweet spot. Enough for books standing up, not so deep that it sticks out and crowds the room.</p>
+      <p style="margin: 0; font-size: 1.05em; line-height: 1.6; color: #484643;"><strong style="color: #484643;">Height:</strong> Above a desk, 12–18 inches above the desk surface. On a side wall, eye level while seated — about 4 feet from the floor.</p>
+    </div>
+
+  </div>
+
+  <!-- WALL DAMAGE -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    Do Floating Shelves Damage Walls?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Properly installed floating shelves cause minimal wall damage — just the small screw holes from the bracket mounting. If you ever remove the shelf, those holes are easily filled with spackle and painted over. Most people can't even tell they were there.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The key word is "properly." If you use drywall anchors that aren't rated for the weight, or if you skip the studs entirely, the shelf can pull out and take a chunk of drywall with it. That's the scenario that causes real damage. Install correctly into studs, and your walls will be fine.
+  </p>
+
+  <!-- LIFESPAN -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How Long Do Floating Shelves Last?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    A quality floating shelf made from solid hardwood with a heavy-duty steel bracket will last as long as it's on the wall — decades, easily. Wood is incredibly durable when it's properly sealed or finished, and steel brackets don't degrade under normal indoor conditions.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The things that shorten a floating shelf's life are moisture (unfinished wood in a humid bathroom), overloading (consistently exceeding the weight capacity), and poor installation (not anchored into studs). Avoid those three things and your shelf is a permanent fixture.
+  </p>
+
+  <!-- LIVE EDGE -->
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What Is a Live Edge Floating Shelf?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    A live edge shelf is cut from a wood slab that retains the natural, unfinished edge of the tree — bark, curves, and all the organic character that comes with it. Instead of being milled into a clean rectangle on all four sides, one or both of the long edges keep their raw, natural shape.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    Live edge shelves have a warm, rustic feel that works beautifully in both modern and traditional spaces. They're heavier than standard milled shelves (because they're thicker and often cut from wider slabs), so make sure your bracket is rated for the weight. Our <a href="https://shelfology.com/products/aksel-hd-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Aksel Heavy Duty</a> and <a href="https://shelfology.com/products/aksel-xd-floating-shelf-brackets" style="color: #67AFCE; text-decoration: underline; font-weight: 500; border-bottom: none !important;">Xtra Duty</a> brackets are both great options for live edge installations.
+  </p>
+  <!-- ─── SHOP FLOATING SHELF STYLES (product tile grid) ─── -->
+  <div style="margin: 3.75em 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 1em; flex-wrap: wrap; margin-bottom: 1em;">
+      <div>
+        <h2 style="margin: 0 0 0.4em; font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3;">Shop Floating Shelf Styles</h2>
+        <p style="margin: 0; color: #54737B; font-size: 1.05em; line-height: 1.6;">
+          Explore by material and features—then dive into sizes, finishes, and availability.
+        </p>
+      </div>
+
+      <a href="https://shelfology.com/collections/floating-shelves" style="
+ display:inline-block;
+ padding:0.625em 1em;
+ border-radius:999px;
+ background:#FFFDFB;
+ color:#484643;
+ font-weight:600;
+ font-size:0.95em;
+ text-decoration:none !important;
+
+ /* explicit border fix */
+ border:1px solid #54737B;
+ border-bottom:2px solid #54737B;
+
+ /* prevents theme overrides */
+ box-shadow: inset 0 -1px 0 rgba(84,115,123,0.35);
+ ">
+  Shop all floating shelves →
+</a>
+
+    </div>
+
+    <!-- 3-UP TILE GRID -->
+    <div class="tile-grid" style="display: grid; gap: 1em; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); width: 100%; align-items: stretch;">
+
+      <!-- TILE 1: WOOD -->
+      <a href="https://shelfology.com/collections/wood-floating-shelves" style="text-decoration: none !important; color: inherit; border-bottom: none !important; box-shadow: none !important; display: block;">
+        <div style="height: 100%; border: 1px solid #54737B; border-radius: 16px; overflow: hidden; background: #FFFDFB; display: flex; flex-direction: column;">
+          <div style="position: relative; width: 100%; padding-top: 75%; background: #FFFDFB; overflow: hidden;">
+            <img src="https://shelfology.com/cdn/shop/files/aksel_floating-shelf-concretey-lifestyle_ci-1x1.jpg?width=900" srcset="https://shelfology.com/cdn/shop/files/aksel_floating-shelf-concretey-lifestyle_ci-1x1.jpg?width=600 600w, https://shelfology.com/cdn/shop/files/aksel_floating-shelf-concretey-lifestyle_ci-1x1.jpg?width=900 900w, https://shelfology.com/cdn/shop/files/aksel_floating-shelf-concretey-lifestyle_ci-1x1.jpg?width=1200 1200w" sizes="(max-width: 768px) 92vw, 30vw" width="1200" height="900" loading="lazy" decoding="async" alt="Aksel wood floating shelf in concrete finish mounted on modern living room wall with decorative objects" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="padding: 1em 1em 1.1em; flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75em;">
+              <div style="font-weight: 700; font-size: 1.05em; line-height: 1.2; color: #484643;">Wood floating shelves</div>
+              <span style="font-weight: 700; font-size: 0.95em; white-space: nowrap; color: #67AFCE;">Shop →</span>
+            </div>
+            <div style="margin-top: 0.45em; color: #54737B; font-size: 0.95em; line-height: 1.5;">
+              Solid hardwood shelves for warm, timeless interiors.
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- TILE 2: METAL -->
+      <a href="https://shelfology.com/collections/metal-floating-shelves" style="text-decoration: none !important; color: inherit; border-bottom: none !important; box-shadow: none !important; display: block;">
+        <div style="height: 100%; border: 1px solid #54737B; border-radius: 16px; overflow: hidden; background: #FFFDFB; display: flex; flex-direction: column;">
+          <div style="position: relative; width: 100%; padding-top: 75%; background: #FFFDFB; overflow: hidden;">
+            <img src="https://shelfology.com/cdn/shop/files/tromso-fm5-entertainment-system-8x10.jpg?width=900" srcset="https://shelfology.com/cdn/shop/files/tromso-fm5-entertainment-system-8x10.jpg?width=600 600w, https://shelfology.com/cdn/shop/files/tromso-fm5-entertainment-system-8x10.jpg?width=900 900w, https://shelfology.com/cdn/shop/files/tromso-fm5-entertainment-system-8x10.jpg?width=1200 1200w" sizes="(max-width: 768px) 92vw, 30vw" width="1200" height="900" loading="lazy" decoding="async" alt="Tromso metal floating shelf entertainment system with clean industrial lines in modern living space" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="padding: 1em 1em 1.1em; flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75em;">
+              <div style="font-weight: 700; font-size: 1.05em; line-height: 1.2; color: #484643;">Metal floating shelves</div>
+              <span style="font-weight: 700; font-size: 0.95em; white-space: nowrap; color: #67AFCE;">Shop →</span>
+            </div>
+            <div style="margin-top: 0.45em; color: #54737B; font-size: 0.95em; line-height: 1.5;">
+              Modern, minimal designs with an industrial edge.
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- TILE 3: LED -->
+      <a href="https://shelfology.com/collections/led-floating-shelves" style="text-decoration: none !important; color: inherit; border-bottom: none !important; box-shadow: none !important; display: block;">
+        <div style="height: 100%; border: 1px solid #54737B; border-radius: 16px; overflow: hidden; background: #FFFDFB; display: flex; flex-direction: column;">
+          <div style="position: relative; width: 100%; padding-top: 75%; background: #FFFDFB; overflow: hidden;">
+            <img src="https://shelfology.com/cdn/shop/files/aksel-radius-aksel-led-yuri-rem-ellie-book-wedgie-modern-home-office-detail-2-light-8x10-8x10.jpg?width=900" srcset="https://shelfology.com/cdn/shop/files/aksel-radius-aksel-led-yuri-rem-ellie-book-wedgie-modern-home-office-detail-2-light-8x10-8x10.jpg?width=600 600w, https://shelfology.com/cdn/shop/files/aksel-radius-aksel-led-yuri-rem-ellie-book-wedgie-modern-home-office-detail-2-light-8x10-8x10.jpg?width=900 900w, https://shelfology.com/cdn/shop/files/aksel-radius-aksel-led-yuri-rem-ellie-book-wedgie-modern-home-office-detail-2-light-8x10-8x10.jpg?width=1200 1200w" sizes="(max-width: 768px) 92vw, 30vw" width="1200" height="900" loading="lazy" decoding="async" alt="Aksel LED floating shelf with integrated lighting illuminating books and decor in modern home office" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="padding: 1em 1em 1.1em; flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75em;">
+              <div style="font-weight: 700; font-size: 1.05em; line-height: 1.2; color: #484643;">LED floating shelves</div>
+              <span style="font-weight: 700; font-size: 0.95em; white-space: nowrap; color: #67AFCE;">Shop →</span>
+            </div>
+            <div style="margin-top: 0.45em; color: #54737B; font-size: 0.95em; line-height: 1.5;">
+              Integrated lighting for ambiance and display moments.
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+  <div style="text-align:right; margin: 0 0 0.9em;">
+    <a href="#Top" style="color:#67AFCE; text-decoration: underline; font-weight:600; font-size:0.95em;">Back to top ↑</a>
+  </div>
+  <!-- ─── SECTION 6: STYLE GUIDE ─── -->
+  <h2 id="Style" style="font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3; margin-top: 2.5em; margin-bottom: 0.4em; padding-top: 0.5em; border-top: 2px solid #67AFCE;">
+    Floating Shelf Style Guide: Tips for Styling and Decorating Floating Shelves
+  </h2>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/floating-shelf-faq-tromso-lifestyle_721f7373-b56a-4b66-997c-f85858708a80.jpg?v=1739285279" alt="Tromso floating shelf beautifully styled with mix of books plants frames and decorative objects in living room" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Floating Shelf Style Guide
+    </figcaption>
+  </figure>
+
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    How should I decorate my floating shelves?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    The key rules: keep it uncluttered, layer objects at different heights and textures, and leave breathing room at each end of the shelf. Let your floating shelf decor speak to your style and bring out the best in your room! Try not to clutter your shelves. Also, we suggest layering objects of different heights and textures to create some variety, which is aesthetically pleasing.
+  </p>
+
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What should I put on my floating shelves?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    It's usually a good idea to leave some space at either end of your shelf to avoid a "crowded" look. And don't be afraid to think out of the box! A floating shelf is more than just storage. It is a magical place where you can display your family photos, mint-condish Detective Comics #27, your coveted 1978 Special Edition Star Wars Villains action figure set, or that original 1959 Barbie that you've been dying to proudly display. Let your freak flag fly!
+  </p>
+
+  <figure style="margin: 2.5em auto; max-width: 720px;">
+    <img src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/tromso-fm5-entertainment-system-8x10.jpg?v=1728426829" alt="Tromso floating shelf entertainment system styled with media equipment books and decorative accessories" style="width: 100%; height: auto; border-radius: 8px; display: block;">
+    <figcaption style="font-size: 0.875em; color: #54737B; font-style: italic; text-align: center; margin-top: 0.7em;">
+      Tromso floating shelf styling
+    </figcaption>
+  </figure>
+
+  <h3 style="font-size: 1.375em; font-weight: 600; color: #54737B; line-height: 1.4; margin-top: 1.5em; margin-bottom: 0.7em;">
+    What wood-finishing options are available for floating shelves?
+  </h3>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    We offer both finished and unfinished wood options. Take one of our beautiful hardwoods home in a Clear Satin finish to let its natural color and beauty shine through. Or choose one of our ultra-modern black or white painted finishes. Mahogany, nutmeg, espresso, and hatch grey stains are also available in either regular or "rough cuts" for a more rustic look.
+  </p>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    All of our hardwoods are also available "unfinished" for a softer look. Unfinished shelves are ready to be painted and stained right out of the box using the color of your choosing.
+  </p>
+
+  <!-- ─── QUICK REFERENCE BLOCK ─── -->
+  <div style="background: #484643; border-radius: 8px; padding: 2em; margin: 3em 0 1em; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+    <h3 style="margin: 0 0 1.25em; font-size: 1.375em; color: #FFFDFB; font-weight: 600; line-height: 1.4;">Quick Reference: Floating Shelf Specs at a Glance</h3>
+    <table style="width: 100%; border-collapse: collapse; font-size: 1em;">
+      <tbody>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; width: 58%; font-weight: 500;">Weight per stud</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">45–50 lbs</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Minimum wood thickness</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">1.25"</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Standard shelf spacing</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">10–18 inches apart</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Kitchen shelf height</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">18–24" above countertop</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Studs required?</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">Yes — always at least 2</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Can I use Command Strips?</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">No</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Best wood species</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">Walnut, White Oak, Maple, Alder, Mahogany</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Strongest install method</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">Wall studs + blocking</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #67AFCE; font-weight: 500;">Max depth (standard bracket)</td>
+          <td style="padding: 0.6em 0; border-bottom: 1px solid #54737B; vertical-align: top; color: #FFFDFB; font-weight: 600;">17" (Aksel XD)</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.6em 0; vertical-align: top; color: #67AFCE; font-weight: 500;">Max depth (desk bracket)</td>
+          <td style="padding: 0.6em 0; vertical-align: top; color: #FFFDFB; font-weight: 600;">24" (Yuri XD)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align:right; margin: 0 0 0.9em;">
+    <a href="#Top" style="color:#67AFCE; text-decoration: underline; font-weight:600; font-size:0.95em;">Back to top ↑</a>
+  </div>
+  <!-- ─── USE-CASE COLLECTIONS (tile grid) ─── -->
+  <div style="margin: 3.75em 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;">
+
+    <div style="margin-bottom: 1em;">
+      <h2 style="margin: 0 0 0.4em; font-size: 1.75em; font-weight: 700; color: #54737B; line-height: 1.3;">Find Floating Shelves That Fit Your Space</h2>
+      <p style="margin: 0; color: #54737B; font-size: 1.05em; line-height: 1.6;">
+        See real-world floating shelf solutions based on how and where you plan to use them.
+      </p>
+    </div>
+
+    <!-- 3-UP TILE GRID -->
+    <div class="tile-grid" style="display: grid; gap: 1em; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); width: 100%; align-items: stretch;">
+
+      <!-- TILE 1: LIVING ROOM -->
+      <a href="https://shelfology.com/collections/living-room-floating-shelves" style="text-decoration: none !important; color: inherit; border-bottom: none !important; box-shadow: none !important; display: block;">
+        <div style="height: 100%; border: 1px solid #54737B; border-radius: 16px; overflow: hidden; background: #FFFDFB; display: flex; flex-direction: column;">
+          <div style="position: relative; width: 100%; padding-top: 56.25%; background: #FFFDFB; overflow: hidden;">
+            <img src="https://shelfology.com/cdn/shop/files/tromso-radius-tungsten-modern-lounge-8x10_9ec2a0ae-100f-45d2-8e40-82c13c004a9d.jpg?width=900" srcset="https://shelfology.com/cdn/shop/files/tromso-radius-tungsten-modern-lounge-8x10_9ec2a0ae-100f-45d2-8e40-82c13c004a9d.jpg?width=600 600w, https://shelfology.com/cdn/shop/files/tromso-radius-tungsten-modern-lounge-8x10_9ec2a0ae-100f-45d2-8e40-82c13c004a9d.jpg?width=900 900w, https://shelfology.com/cdn/shop/files/tromso-radius-tungsten-modern-lounge-8x10_9ec2a0ae-100f-45d2-8e40-82c13c004a9d.jpg?width=1200 1200w" sizes="(max-width: 768px) 92vw, 30vw" width="1200" height="675" loading="lazy" decoding="async" alt="Tromso Radius tungsten floating shelves styled in a modern living room lounge with books and decor" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="padding: 1em 1em 1.1em; flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75em;">
+              <div style="font-weight: 700; font-size: 1.05em; line-height: 1.2; color: #484643;">Living room floating shelves</div>
+              <span style="font-weight: 700; font-size: 0.95em; white-space: nowrap; color: #67AFCE;">Explore →</span>
+            </div>
+            <div style="margin-top: 0.45em; color: #54737B; font-size: 0.95em; line-height: 1.5;">
+              Statement walls, books, art, and media setups—built to look clean and intentional.
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- TILE 2: KITCHEN -->
+      <a href="https://shelfology.com/collections/kitchen-floating-shelves" style="text-decoration: none !important; color: inherit; border-bottom: none !important; box-shadow: none !important; display: block;">
+        <div style="height: 100%; border: 1px solid #54737B; border-radius: 16px; overflow: hidden; background: #FFFDFB; display: flex; flex-direction: column;">
+          <div style="position: relative; width: 100%; padding-top: 56.25%; background: #FFFDFB; overflow: hidden;">
+            <img src="https://shelfology.com/cdn/shop/files/aksel-radius-edo-peggy-round-kitchen.jpg?width=900" srcset="https://shelfology.com/cdn/shop/files/aksel-radius-edo-peggy-round-kitchen.jpg?width=600 600w, https://shelfology.com/cdn/shop/files/aksel-radius-edo-peggy-round-kitchen.jpg?width=900 900w, https://shelfology.com/cdn/shop/files/aksel-radius-edo-peggy-round-kitchen.jpg?width=1200 1200w" sizes="(max-width: 768px) 92vw, 30vw" width="1200" height="675" loading="lazy" decoding="async" alt="Aksel Radius Edo floating shelves in a bright kitchen with round accessories and open pantry display" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="padding: 1em 1em 1.1em; flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75em;">
+              <div style="font-weight: 700; font-size: 1.05em; line-height: 1.2; color: #484643;">Kitchen floating shelves</div>
+              <span style="font-weight: 700; font-size: 0.95em; white-space: nowrap; color: #67AFCE;">Explore →</span>
+            </div>
+            <div style="margin-top: 0.45em; color: #54737B; font-size: 0.95em; line-height: 1.5;">
+              Practical open shelving for daily use—great for dishes, mugs, spices, and decor.
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- TILE 3: HEAVY-DUTY -->
+      <a href="https://shelfology.com/collections/heavy-duty-floating-shelves" style="text-decoration: none !important; color: inherit; border-bottom: none !important; box-shadow: none !important; display: block;">
+        <div style="height: 100%; border: 1px solid #54737B; border-radius: 16px; overflow: hidden; background: #FFFDFB; display: flex; flex-direction: column;">
+          <div style="position: relative; width: 100%; padding-top: 56.25%; background: #FFFDFB; overflow: hidden;">
+            <img src="https://shelfology.com/cdn/shop/files/16x9-carousel-gym.jpg?width=900" srcset="https://shelfology.com/cdn/shop/files/16x9-carousel-gym.jpg?width=600 600w, https://shelfology.com/cdn/shop/files/16x9-carousel-gym.jpg?width=900 900w, https://shelfology.com/cdn/shop/files/16x9-carousel-gym.jpg?width=1200 1200w" sizes="(max-width: 768px) 92vw, 30vw" width="1200" height="675" loading="lazy" decoding="async" alt="Heavy duty floating shelves mounted in a home gym holding weights and equipment with clean modern finish" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div style="padding: 1em 1em 1.1em; flex: 1;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.75em;">
+              <div style="font-weight: 700; font-size: 1.05em; line-height: 1.2; color: #484643;">Heavy-duty floating shelves</div>
+              <span style="font-weight: 700; font-size: 0.95em; white-space: nowrap; color: #67AFCE;">Explore →</span>
+            </div>
+            <div style="margin-top: 0.45em; color: #54737B; font-size: 0.95em; line-height: 1.5;">
+              Engineered for higher weight capacity—ideal for heavier display and storage needs.
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <p style="font-size: 1.125em; color: #484643; line-height: 1.7; margin-bottom: 1.2em;">
+    <strong>You've got this.</strong> This guide covered everything from the basics all the way through installation, weight capacity, spacing, height placement, room-by-room decisions, and styling — so you're not walking into this blind. The truth is, floating shelves are one of the more forgiving home projects out there once you nail the two things that actually matter: hit your studs, and pick a bracket that matches your depth. Get those right, and the rest is just having fun. If you hit a snag along the way — or just want to talk shop — our team of Shelf Geeks is a phone call away at 949.244.1083. We do this every day, and we genuinely love helping people get their shelves up and looking great. Now go float something.
+  </p>
+
+  <div style="text-align:right; margin: 0 0 0.9em;">
+    <a href="#Top" style="color:#67AFCE; text-decoration: underline; font-weight:600; font-size:0.95em;">Back to top ↑</a>
+  </div>
+
+</article>
