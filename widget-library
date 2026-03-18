@@ -1,0 +1,939 @@
+<!--
+╔══════════════════════════════════════════════════════════════╗
+║         SHELFOLOGY WIDGET LIBRARY — MASTER FILE              ║
+║  Copy any widget block directly into Shopify's HTML editor.  ║
+╚══════════════════════════════════════════════════════════════╝
+-->
+
+
+<!-- ============================================================
+     BACK TO TOP WIDGET
+     Paste once per page, near the bottom of content.
+     ============================================================ -->
+
+<button
+  id="shlf-btt"
+  onclick="shlfScrollToTop();"
+  aria-label="Back to top"
+  title="Back to top"
+  style="
+    position: fixed;
+    bottom: 2em;
+    left: 50%;
+    transform: translateX(-50%) translateY(12px);
+    z-index: 9999;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #67AFCE;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(103,175,206,0.35);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+    pointer-events: none;
+  "
+  onmouseover="this.style.background='#54737B';"
+  onmouseout="this.style.background='#67AFCE';">
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFDFB" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+
+</button>
+
+<script>
+(function() {
+  var btn = document.getElementById('shlf-btt');
+  var THRESHOLD = 400;
+
+  function getScrollTop() {
+    return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  }
+
+  function updateBtn() {
+    if (!btn) return;
+    if (getScrollTop() > THRESHOLD) {
+      btn.style.opacity = '1';
+      btn.style.transform = 'translateX(-50%) translateY(0)';
+      btn.style.pointerEvents = 'auto';
+    } else {
+      btn.style.opacity = '0';
+      btn.style.transform = 'translateX(-50%) translateY(12px)';
+      btn.style.pointerEvents = 'none';
+    }
+  }
+
+  window.shlfScrollToTop = function() {
+    try {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (e) {
+      window.scrollTo(0, 0);
+    }
+  };
+
+  if (window.addEventListener) {
+    window.addEventListener('scroll', updateBtn, { passive: true });
+  } else if (window.attachEvent) {
+    window.attachEvent('onscroll', updateBtn);
+  }
+
+  updateBtn();
+})();
+</script>
+
+
+<!-- ============================================================
+     TABLE OF CONTENTS WIDGET
+     Add id attributes to section headings to wire up links.
+     ============================================================ -->
+
+<nav aria-label="Table of contents" id="shlf-toc" style="margin:2em 0;max-width:640px;">
+
+  <p style="margin:0 0 0.6em 0;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#54737B;">Jump to a topic:</p>
+
+  <ul style="margin:0;padding:0;list-style:none;border-left:2px solid #67AFCE;">
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="#TheBasics" class="shlf-toc-link"
+         style="display:inline;color:#67AFCE;border:none !important;border-bottom:none !important;box-shadow:none !important;font-weight:500;font-size:0.95em;line-height:1.4;text-decoration:none !important;">
+        Floating Shelf 101: The Basics
+      </a>
+    </li>
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="#ProsAndCons" class="shlf-toc-link"
+         style="display:inline;color:#67AFCE;border:none !important;border-bottom:none !important;box-shadow:none !important;font-weight:500;font-size:0.95em;line-height:1.4;text-decoration:none !important;">
+        Are Floating Shelves a Good Idea? Pros, Cons, and How They Compare
+      </a>
+    </li>
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="#Technical" class="shlf-toc-link"
+         style="display:inline;color:#67AFCE;border:none !important;border-bottom:none !important;box-shadow:none !important;font-weight:500;font-size:0.95em;line-height:1.4;text-decoration:none !important;">
+        A Technical Guide: Installation, Weight Capacity, Tools, and Materials
+      </a>
+    </li>
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="#SpacingAndHeight" class="shlf-toc-link"
+         style="display:inline;color:#67AFCE;border:none !important;border-bottom:none !important;box-shadow:none !important;font-weight:500;font-size:0.95em;line-height:1.4;text-decoration:none !important;">
+        Spacing &amp; Height Guide: How Far Apart and How High
+      </a>
+    </li>
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="#RoomByRoom" class="shlf-toc-link"
+         style="display:inline;color:#67AFCE;border:none !important;border-bottom:none !important;box-shadow:none !important;font-weight:500;font-size:0.95em;line-height:1.4;text-decoration:none !important;">
+        Room-by-Room Guide: Kitchen, Bathroom, Living Room, and More
+      </a>
+    </li>
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="#Style" class="shlf-toc-link"
+         style="display:inline;color:#67AFCE;border:none !important;border-bottom:none !important;box-shadow:none !important;font-weight:500;font-size:0.95em;line-height:1.4;text-decoration:none !important;">
+        Floating Shelf Style Guide: Tips for Styling and Decorating
+      </a>
+    </li>
+
+  </ul>
+
+</nav>
+
+<script>
+(function() {
+  var links = document.querySelectorAll('.shlf-toc-link');
+  var anchors = [];
+  var i;
+
+  function smoothScrollToTarget(target) {
+    if (!target) return;
+    if (target.scrollIntoView) {
+      try {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      } catch (e) {}
+    }
+    var top = target.getBoundingClientRect().top + (window.pageYOffset || document.documentElement.scrollTop || 0);
+    window.scrollTo(0, top);
+  }
+
+  for (i = 0; i < links.length; i++) {
+    (function(link) {
+      link.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        var id = href ? href.replace('#', '') : '';
+        var target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          smoothScrollToTarget(target);
+        }
+      });
+    })(links[i]);
+  }
+
+  for (i = 0; i < links.length; i++) {
+    var href = links[i].getAttribute('href');
+    var id = href ? href.replace('#', '') : '';
+    var el = document.getElementById(id);
+    if (el) anchors.push({ el: el, link: links[i] });
+  }
+
+  if ('IntersectionObserver' in window && anchors.length) {
+    var active = null;
+    var observer = new IntersectionObserver(function(entries) {
+      var j, k, match;
+      for (j = 0; j < entries.length; j++) {
+        if (entries[j].isIntersecting) {
+          if (active) {
+            active.style.color = '#67AFCE';
+            active.style.fontWeight = '500';
+            if (active.parentElement) active.parentElement.style.paddingLeft = '1em';
+          }
+          match = null;
+          for (k = 0; k < anchors.length; k++) {
+            if (anchors[k].el === entries[j].target) {
+              match = anchors[k];
+              break;
+            }
+          }
+          if (match) {
+            active = match.link;
+            active.style.color = '#54737B';
+            active.style.fontWeight = '700';
+            if (active.parentElement) active.parentElement.style.paddingLeft = '1.35em';
+          }
+        }
+      }
+    }, { rootMargin: '0px 0px -60% 0px', threshold: 0 });
+
+    for (i = 0; i < anchors.length; i++) {
+      observer.observe(anchors[i].el);
+    }
+  }
+})();
+</script>
+
+
+<!-- ============================================================
+     HEADING & TEXT REFERENCE
+     Copy-paste patterns for consistent formatting.
+     ============================================================ -->
+
+<h2 class="heading leading-none title-md" style="color:#67AFCE;">Your Section Heading Here</h2>
+
+<h3 class="heading leading-none title-sm" style="color:#67AFCE;">Your Subsection Heading Here</h3>
+
+<div class="rte body subtext-md leading-normal" style="color:#54737B;line-height:1.85;">
+  <p>Your body text goes here. This is the standard paragraph style used throughout the guide pages. Keep paragraphs short — two to four sentences works best.</p>
+  <p>Second paragraph. Links, <strong>bold text</strong>, and <em>italics</em> all render correctly inside this container.</p>
+</div>
+
+<div class="rte body subtext-sm leading-normal text-opacity" style="color:#54737B;">
+  <p>Caption or supporting small text goes here.</p>
+</div>
+
+
+<!-- ============================================================
+     IMAGE WITH CAPTION
+     Responsive image with a centered caption below.
+     ============================================================ -->
+
+<figure style="margin:2.5em auto;max-width:720px;">
+  <img
+    src="https://cdn.shopify.com/s/files/1/0873/0705/9496/files/floating-shelf-faq-blocking-illustration_2d498e48-aab4-470b-86c0-fbb5dbc631c2.jpg?v=1739285191"
+    alt="Illustration showing horizontal blocking wood pieces installed between wall studs for maximum floating shelf support"
+    style="width:100%;height:auto;border-radius:8px;display:block;">
+  <figcaption style="font-size:0.875em;color:#54737B;font-style:italic;text-align:center;margin-top:0.7em;">
+    How to Install Floating Shelves: Wanna 10x Your Shelf Capacity? Install Your Shelf into Blocking.
+  </figcaption>
+</figure>
+
+
+<!-- ============================================================
+     RELATED POSTS WIDGET
+     Minimal inline list of related blog post links.
+     ============================================================ -->
+
+<aside aria-label="Related posts" style="margin:2em 0;max-width:640px;">
+
+  <p style="margin:0 0 0.6em 0;font-size:0.75em;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#54737B;">You may also like</p>
+
+  <ul style="margin:0;padding:0;list-style:none;border-left:2px solid #67AFCE;">
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="/blogs/shelfology-u/a-brief-history-of-floating-shelves-and-open-shelving"
+         style="display:inline;color:#67AFCE;font-weight:500;font-size:0.95em;line-height:1.4;border:none !important;border-bottom:none !important;box-shadow:none !important;text-decoration:none !important;">
+        A Brief History of Floating Shelves and Open Shelving
+      </a>
+    </li>
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="/blogs/shelfology-u/how-much-weight-can-a-floating-shelf-hold"
+         style="display:inline;color:#67AFCE;font-weight:500;font-size:0.95em;line-height:1.4;border:none !important;border-bottom:none !important;box-shadow:none !important;text-decoration:none !important;">
+        How Much Weight Can a Floating Shelf Hold?
+      </a>
+    </li>
+
+    <li style="margin:0;padding:0.4em 0 0.4em 1em;">
+      <a href="/blogs/shelfology-u/floating-shelf-depth-guide-how-depth-impacts-stability"
+         style="display:inline;color:#67AFCE;font-weight:500;font-size:0.95em;line-height:1.4;border:none !important;border-bottom:none !important;box-shadow:none !important;text-decoration:none !important;">
+        Floating Shelf Depth Guide: How Depth Impacts Stability
+      </a>
+    </li>
+
+  </ul>
+
+</aside>
+
+
+<!-- ============================================================
+     READY TO SHOP WIDGET
+     Inline CRO shopping widget with 3 collection cards.
+     ============================================================ -->
+
+<div style="margin:2em 0;max-width:100%;">
+
+  <div style="margin-bottom:0.75em;">
+    <h2 class="heading title-md" style="margin:0 0 0.25em 0;">Ready to shop?</h2>
+    <p style="margin:0;font-size:0.95em;color:#484643;line-height:1.5;">Browse our floating shelves by style, size, and finish, or chat with a Shelf Geek to help you choose.</p>
+  </div>
+
+  <div class="card-grid card-grid--3 mobile:card-grid--2 grid">
+
+    <div class="card media-card media-card--card overflow-hidden">
+      <a href="/collections/aksel-floating-shelves"
+         class="media-card__link flex flex-col w-full h-full relative"
+         aria-label="Wood Floating Shelves"
+         style="border:none !important;border-top:none !important;border-bottom:none !important;box-shadow:none !important;text-decoration:none !important;">
+        <div class="media relative overflow-hidden"
+             style="overflow:hidden !important;border-radius:8px 8px 0 0 !important;isolation:isolate;">
+          <div style="position:relative;width:100%;padding-top:75%;">
+            <img
+              src="https://shelfology.com/cdn/shop/files/aksel-aksel-radius-popsicle-ellie-book-wedgie-rem-modern-lobby-detail.jpg?v=1752625966&width=800"
+              alt="Aksel wood floating shelves in a modern lobby with layered shelf arrangement displaying books and decorative plants"
+              width="800" height="600" loading="lazy"
+              style="display:block;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:8px 8px 0 0 !important;transform:translateZ(0);">
+          </div>
+        </div>
+        <div class="media-card__content flex justify-between items-center gap-4 w-full text-left"
+             style="border-radius:0 0 8px 8px !important;padding-top:0.5em;padding-bottom:0.5em;">
+          <div class="media-card__text shrink-1 grid gap-0d5">
+            <p class="flex" style="margin:0;">
+              <span class="heading text-xl-3xl tracking-tighter leading-tight relative">Wood Floating Shelves</span>
+            </p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-arrow-right icon-xs transform shrink-0" width="35" height="20" viewBox="0 0 35 20" fill="none" aria-hidden="true">
+            <path d="M25.9222 20L24.4453 18.4984L30.6712 12.1683L31.8425 11.3139L31.7279 10.9256L30.2892 11.0809H0V8.91909H30.2892L31.7279 9.07443L31.8425 8.68608L30.6712 7.83172L24.4453 1.50162L25.9222 0L35 9.22977V10.7702L25.9222 20Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <div class="card media-card media-card--card overflow-hidden">
+      <a href="/collections/tromso-floating-shelves"
+         class="media-card__link flex flex-col w-full h-full relative"
+         aria-label="Steel Floating Shelves"
+         style="border:none !important;border-top:none !important;border-bottom:none !important;box-shadow:none !important;text-decoration:none !important;">
+        <div class="media relative overflow-hidden"
+             style="overflow:hidden !important;border-radius:8px 8px 0 0 !important;isolation:isolate;">
+          <div style="position:relative;width:100%;padding-top:75%;">
+            <img
+              src="https://shelfology.com/cdn/shop/files/tromso-fm3-ellie-modern-claymore-armybrat-livingroom-detail-2.jpg?v=1768401928&width=800"
+              alt="Tromso FM3 steel floating shelf in a modern living room displaying books and decorative objects against a dark wall"
+              width="800" height="600" loading="lazy"
+              style="display:block;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:8px 8px 0 0 !important;transform:translateZ(0);">
+          </div>
+        </div>
+        <div class="media-card__content flex justify-between items-center gap-4 w-full text-left"
+             style="border-radius:0 0 8px 8px !important;padding-top:0.5em;padding-bottom:0.5em;">
+          <div class="media-card__text shrink-1 grid gap-0d5">
+            <p class="flex" style="margin:0;">
+              <span class="heading text-xl-3xl tracking-tighter leading-tight relative">Steel Floating Shelves</span>
+            </p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-arrow-right icon-xs transform shrink-0" width="35" height="20" viewBox="0 0 35 20" fill="none" aria-hidden="true">
+            <path d="M25.9222 20L24.4453 18.4984L30.6712 12.1683L31.8425 11.3139L31.7279 10.9256L30.2892 11.0809H0V8.91909H30.2892L31.7279 9.07443L31.8425 8.68608L30.6712 7.83172L24.4453 1.50162L25.9222 0L35 9.22977V10.7702L25.9222 20Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <div class="card media-card media-card--card overflow-hidden">
+      <a href="/collections/floating-shelves"
+         class="media-card__link flex flex-col w-full h-full relative"
+         aria-label="All Floating Shelves"
+         style="border:none !important;border-top:none !important;border-bottom:none !important;box-shadow:none !important;text-decoration:none !important;">
+        <div class="media relative overflow-hidden"
+             style="overflow:hidden !important;border-radius:8px 8px 0 0 !important;isolation:isolate;">
+          <div style="position:relative;width:100%;padding-top:75%;">
+            <img
+              src="https://shelfology.com/cdn/shop/files/geo-aksel-led-mosey-peek-modern-office-detail-2-night.jpg?v=1768401842&width=800"
+              alt="Modern home office at night with LED-lit floating shelves displaying books and geometric decorative objects on wall"
+              width="800" height="600" loading="lazy"
+              style="display:block;position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;border-radius:8px 8px 0 0 !important;transform:translateZ(0);">
+          </div>
+        </div>
+        <div class="media-card__content flex justify-between items-center gap-4 w-full text-left"
+             style="border-radius:0 0 8px 8px !important;padding-top:0.5em;padding-bottom:0.5em;">
+          <div class="media-card__text shrink-1 grid gap-0d5">
+            <p class="flex" style="margin:0;">
+              <span class="heading text-xl-3xl tracking-tighter leading-tight relative">All Floating Shelves</span>
+            </p>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-arrow-right icon-xs transform shrink-0" width="35" height="20" viewBox="0 0 35 20" fill="none" aria-hidden="true">
+            <path d="M25.9222 20L24.4453 18.4984L30.6712 12.1683L31.8425 11.3139L31.7279 10.9256L30.2892 11.0809H0V8.91909H30.2892L31.7279 9.07443L31.8425 8.68608L30.6712 7.83172L24.4453 1.50162L25.9222 0L35 9.22977V10.7702L25.9222 20Z" fill="currentColor"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     SIDE-BY-SIDE BULLETED LISTS WIDGET
+     Two-column pros/cons or comparison layout.
+     ============================================================ -->
+
+<div style="margin:2em 0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',Arial,sans-serif;">
+  <div style="display:flex;flex-wrap:wrap;gap:2em;">
+
+    <div style="flex:1 1 260px;min-width:0;">
+      <h3 style="font-size:1.25em;font-weight:700;color:#54737B;line-height:1.3;margin:0 0 0.75em 0;padding-bottom:0.4em;border-bottom:2px solid #67AFCE;">Pros</h3>
+      <ul style="margin:0;padding:0 0 0 1.25em;color:#484643;font-size:1em;line-height:1.7;">
+        <li style="margin-bottom:0.6em;"><strong>Clean, open look.</strong> No chunky brackets, no cabinet doors. Floating shelves keep a room feeling light and airy — especially important in smaller spaces.</li>
+        <li style="margin-bottom:0.6em;"><strong>Versatile and customizable.</strong> You can get them in any length, depth, wood species, or finish. A 36&quot; walnut shelf for your living room and a 12&quot; white-painted shelf for your bathroom can both come from the same brand. No two need to be the same.</li>
+        <li style="margin-bottom:0.6em;"><strong>Cheaper than cabinets.</strong> A run of floating shelves almost always costs less than the equivalent in upper cabinets — sometimes significantly less, depending on material and length.</li>
+        <li style="margin-bottom:0.6em;"><strong>Works in any room.</strong> Kitchen, bathroom, living room, bedroom, office, entryway — floating shelves are genuinely one of the most versatile shelving options out there.</li>
+        <li style="margin-bottom:0.6em;"><strong>Easy to relocate.</strong> Unlike built-ins, a floating shelf can be moved, swapped, or removed with minimal wall damage (just a few small screw holes to patch).</li>
+      </ul>
+    </div>
+
+    <div style="flex:1 1 260px;min-width:0;">
+      <h3 style="font-size:1.25em;font-weight:700;color:#54737B;line-height:1.3;margin:0 0 0.75em 0;padding-bottom:0.4em;border-bottom:2px solid #67AFCE;">Cons</h3>
+      <ul style="margin:0;padding:0 0 0 1.25em;color:#484643;font-size:1em;line-height:1.7;">
+        <li style="margin-bottom:0.6em;"><strong>They require studs (or blocking).</strong> This is the big one. Floating shelves need to be anchored into solid wall structure — drywall alone won't cut it for anything beyond the lightest display shelf. If your studs aren't where you need them, you may need to hire someone to add blocking.</li>
+        <li style="margin-bottom:0.6em;"><strong>They collect dust.</strong> No doors means no protection from dust. If your shelves are near a kitchen stove or cooktop, cooking oils can also leave a film over time. A quick wipe-down as part of your regular cleaning routine keeps this in check.</li>
+        <li style="margin-bottom:0.6em;"><strong>Installation is trickier than it looks.</strong> Getting a shelf perfectly level, hitting the right studs, and making sure the bracket slides in cleanly requires some patience and the right tools. Not impossible for a DIYer, but it's not a 10-minute job.</li>
+        <li style="margin-bottom:0.6em;"><strong>Limited weight vs. traditional shelving.</strong> A properly installed floating shelf into two studs can hold 90–100 lbs — plenty for books, dishes, and decor. But if you're thinking about storing heavy appliances or a massive book collection, you'll want to plan your studs and brackets carefully.</li>
+        <li style="margin-bottom:0.6em;"><strong>They show everything.</strong> That's the point — but it also means clutter is on full display. Floating shelves work best when you're intentional about what goes on them.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ============================================================
+     FAQ ACCORDION WIDGET
+     Native HTML details/summary — no JS required.
+     ============================================================ -->
+
+<div class="faqs with-border flex flex-col relative" style="max-width:100%;">
+  <div class="grow grid gap-2 md:gap-3">
+
+    <div class="accordion">
+      <details class="details">
+        <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+          <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight"><strong>How much weight can a floating shelf hold?</strong></span>
+          <svg class="icon icon-plus-2 icon-xs shrink-0" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path></svg>
+        </summary>
+        <div class="details__content text-base rte">
+          <p>The short answer: a lot of weight—if it is done right. A floating shelf can hold 45–50 lbs for every wall stud that your floating shelf bracket is attached to. The more detailed answer depends on a number of factors, including 1) where and how the shelf is installed, 2) the quality &amp; design of the shelf and bracket, and 3) the dimensions (length x depth) of the floating shelf. <a href="https://shelfology.com/blogs/shelfology-u/how-much-weight-can-a-floating-shelf-hold">Learn more about how to calculate floating shelf weight capacity</a>.</p>
+          <p><strong>Installation Method Capacity:</strong></p>
+          <ul>
+            <li><strong>1 wall stud:</strong> 45–50 lbs<br>Minimum. Only for small, light shelves.</li>
+            <li><strong>2 wall studs:</strong> 90–100 lbs<br>Standard for most home installations.</li>
+            <li><strong>3 wall studs:</strong> 135–150 lbs<br>Good for longer shelves or heavier loads.</li>
+            <li><strong>Wall studs + blocking:</strong> 200+ lbs<br>Maximum strength. Every hole in the bracket screws into solid wood.</li>
+            <li><strong>Drywall anchors only:</strong> Not recommended<br>Will eventually pull out under real weight. Use as supplemental support only.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <div class="accordion">
+      <details class="details">
+        <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+          <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight"><strong>How do you install floating shelves?</strong></span>
+          <svg class="icon icon-plus-2 icon-xs shrink-0" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path></svg>
+        </summary>
+        <div class="details__content text-base rte">
+          <p>To install a floating shelf: mount the bracket into at least one wall stud (two or more is strongly recommended), then slide the shelf over the bracket rods and secure.</p>
+          <p>Our floating shelves are heavy-duty. As such, never use just wall anchors as they will be levered right out of the wall by the weight of the shelf (which would result in a sad, <a href="https://shelfology.com/blogs/shelfology-u/how-to-fix-a-sagging-floating-shelf">saggy floating shelf</a>). At a bare minimum, ALWAYS <a href="https://shelfology.com/blogs/shelfology-u/trade-secrets-the-right-way-to-hang-floating-shelves">install floating shelf brackets</a> into at least one wall stud. However, we HIGHLY recommend attaching to 2 or more studs. The best practice is to install your shelf into wall blocking… which might require help from a pro. Once your bracket is installed, slide on and attach your floating shelf. Viola!</p>
+          <p>Read more: <a href="https://shelfology.com/blogs/shelfology-u/floating-shelves-101-how-to-hang-your-shelves-like-a-boss">Floating Shelves 101: How to Hang Your Shelves Like a Boss</a><br><a href="https://shelfology.com/blogs/shelfology-u/trade-secrets-the-right-way-to-hang-floating-shelves">Trade Secrets: The Right Way to Install Floating Shelves</a></p>
+        </div>
+      </details>
+    </div>
+
+    <div class="accordion">
+      <details class="details">
+        <summary class="details__summary flex items-center justify-between gap-2 cursor-pointer">
+          <span class="text-base lg:text-lg xl:text-xl font-medium leading-tight"><strong>What tools do I need to install floating shelves?</strong></span>
+          <svg class="icon icon-plus-2 icon-xs shrink-0" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path></svg>
+        </summary>
+        <div class="details__content text-base rte">
+          <p>Here's everything you'll need before you start. Nothing exotic — most of this is already in your garage or available at any hardware store for under $50 total.</p>
+          <p><strong>Stud finder:</strong> Locating wall studs behind drywall or plaster</p>
+          <p><strong>Level (4-foot preferred):</strong> Making sure your bracket and shelf are perfectly straight</p>
+          <p><strong>Drill with bits:</strong> Pilot holes and driving screws</p>
+          <p><strong>Screwdriver or driver bit:</strong> Tightening screws into studs and anchors</p>
+          <p><strong>Pencil:</strong> Marking stud locations and drill points</p>
+          <p><strong>Tape measure:</strong> Measuring shelf placement and spacing</p>
+          <p><strong>Wood shims:</strong> Leveling the bracket if your wall isn't perfectly flat</p>
+          <p><strong>Drywall anchors:</strong> Supplemental support between studs</p>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ============================================================
+     ROOM-BY-ROOM EXPANDABLE CARDS WIDGET
+     Image cards that open a slide-in drawer on click.
+     ============================================================ -->
+
+<div id="shlf-overlay"
+     onclick="shlfCloseAll()"
+     aria-hidden="true"
+     style="display:none;position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,0.4);z-index:998;"></div>
+
+<script>
+(function() {
+  function shlfGetDrawers() {
+    return document.querySelectorAll('.shlf-drawer');
+  }
+
+  function shlfEachDrawer(callback) {
+    var drawers = shlfGetDrawers();
+    var i;
+    for (i = 0; i < drawers.length; i++) {
+      callback(drawers[i]);
+    }
+  }
+
+  function shlfLockScroll(lock) {
+    var html = document.documentElement;
+    var body = document.body;
+    if (lock) {
+      html.style.overflow = 'hidden';
+      body.style.overflow = 'hidden';
+    } else {
+      html.style.overflow = '';
+      body.style.overflow = '';
+    }
+  }
+
+  function shlfHideDrawer(drawer) {
+    if (!drawer) return;
+    if (drawer._shlfTimer) clearTimeout(drawer._shlfTimer);
+    drawer.style.transform = 'translateX(100%)';
+    drawer.setAttribute('aria-hidden', 'true');
+    drawer._shlfTimer = setTimeout(function() {
+      drawer.style.display = 'none';
+    }, 300);
+  }
+
+  window.shlfOpen = function(id) {
+    var overlay = document.getElementById('shlf-overlay');
+    var drawer = document.getElementById(id);
+
+    shlfEachDrawer(function(d) {
+      if (d._shlfTimer) clearTimeout(d._shlfTimer);
+      d.style.display = 'none';
+      d.style.transform = 'translateX(100%)';
+      d.setAttribute('aria-hidden', 'true');
+    });
+
+    if (!drawer || !overlay) return;
+
+    drawer.style.display = 'flex';
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.style.display = 'block';
+    overlay.setAttribute('aria-hidden', 'false');
+    shlfLockScroll(true);
+
+    setTimeout(function() {
+      drawer.style.transform = 'translateX(0)';
+    }, 20);
+  };
+
+  window.shlfClose = function(id) {
+    var drawer = document.getElementById(id);
+    var overlay = document.getElementById('shlf-overlay');
+
+    if (!drawer) return;
+
+    shlfHideDrawer(drawer);
+
+    setTimeout(function() {
+      var anyOpen = false;
+      shlfEachDrawer(function(d) {
+        if (d.style.display !== 'none') anyOpen = true;
+      });
+      if (!anyOpen && overlay) {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden', 'true');
+        shlfLockScroll(false);
+      }
+    }, 300);
+  };
+
+  window.shlfCloseAll = function() {
+    var overlay = document.getElementById('shlf-overlay');
+
+    shlfEachDrawer(function(d) {
+      shlfHideDrawer(d);
+    });
+
+    setTimeout(function() {
+      if (overlay) {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+      shlfLockScroll(false);
+    }, 300);
+  };
+
+  document.addEventListener('keydown', function(e) {
+    e = e || window.event;
+    var key = e.key || e.keyCode;
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+      window.shlfCloseAll();
+    }
+  });
+})();
+</script>
+
+<div class="portfolio card-grid card-grid--4 mobile:card-grid--1 grid">
+
+  <div class="profile card relative">
+    <picture class="media media--portrait mobile:media--portrait block relative overflow-hidden">
+      <img src="https://shelfology.com/cdn/shop/files/kitchen-room-guide.jpg?v=1772217546&width=800"
+           alt="Kitchen with floating wood shelves above countertop displaying plates glasses and cookbooks"
+           width="800" height="800" loading="lazy" style="display:block;width:100%;height:auto;">
+    </picture>
+    <div class="profile__content absolute left-0 bottom-0 w-full flex items-center justify-between gap-8">
+      <p class="heading lg:text-3xl text-2xl leading-none tracking-tight">Kitchen</p>
+      <button type="button"
+              class="profile__button flex items-center justify-center rounded-full shrink-0"
+              onclick="shlfOpen('shlf-drawer-kitchen')"
+              aria-label="Open Kitchen"
+              aria-controls="shlf-drawer-kitchen"
+              aria-haspopup="dialog">
+        <svg class="icon icon-plus-2 icon-md" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="shlf-drawer-kitchen" class="shlf-drawer"
+       role="dialog" aria-modal="true" aria-hidden="true"
+       style="display:none;position:fixed;top:0;right:0;width:480px;max-width:90vw;height:100vh;background:#FFFDFB;z-index:999;transform:translateX(100%);transition:transform 0.3s ease;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,0.12);overflow:hidden;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1.5em 1.5em 1em;border-bottom:1px solid rgba(54,73,87,0.1);">
+      <span class="heading title-md">Kitchen</span>
+      <button type="button" onclick="shlfClose('shlf-drawer-kitchen')" class="button button--secondary button--close" style="flex-shrink:0;" aria-label="Close Kitchen drawer">
+        <span class="btn-fill" data-fill></span>
+        <span class="btn-text"><svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path></svg></span>
+      </button>
+    </div>
+    <div style="overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1.5em;flex:1;">
+      <div class="rte text-base md:text-lg">
+        <p>The kitchen is where floating shelves live or die based on how well you plan them.</p>
+        <p><strong>Depth:</strong> 8–12 inches handles most kitchen needs. A 10–12 inch deep shelf is the sweet spot for standard dishware. If you're storing pots or large jars, go deeper — our <a href="https://shelfology.com/products/aksel-hd-floating-shelf-brackets">Aksel HD bracket</a> handles shelves up to 14 inches deep.</p>
+        <p><strong>Height:</strong> First shelf should sit 18–24 inches above your countertop. If you're stacking two or three shelves, keep 12–15 inches between each one.</p>
+        <p><strong>What to put on them:</strong> Daily-use items only. Plates, glasses, mugs, spice jars, a few cookbooks. If it comes out once a week or less, it belongs in a cabinet.</p>
+        <p><strong>Watch out for:</strong> Grease and steam from the stove. Keep kitchen shelves a bit away from the cooktop if you can, and give them a quick wipe when you're cleaning up anyway.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile card relative">
+    <picture class="media media--portrait mobile:media--portrait block relative overflow-hidden">
+      <img src="https://shelfology.com/cdn/shop/files/bathroom-room-guide.jpg?v=1772219070&width=800"
+           alt="Bathroom with floating shelf above toilet displaying towels candles and toiletries"
+           width="800" height="800" loading="lazy" style="display:block;width:100%;height:auto;">
+    </picture>
+    <div class="profile__content absolute left-0 bottom-0 w-full flex items-center justify-between gap-8">
+      <p class="heading lg:text-3xl text-2xl leading-none tracking-tight">Bathroom</p>
+      <button type="button"
+              class="profile__button flex items-center justify-center rounded-full shrink-0"
+              onclick="shlfOpen('shlf-drawer-bathroom')"
+              aria-label="Open Bathroom"
+              aria-controls="shlf-drawer-bathroom"
+              aria-haspopup="dialog">
+        <svg class="icon icon-plus-2 icon-md" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="shlf-drawer-bathroom" class="shlf-drawer"
+       role="dialog" aria-modal="true" aria-hidden="true"
+       style="display:none;position:fixed;top:0;right:0;width:480px;max-width:90vw;height:100vh;background:#FFFDFB;z-index:999;transform:translateX(100%);transition:transform 0.3s ease;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,0.12);overflow:hidden;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1.5em 1.5em 1em;border-bottom:1px solid rgba(54,73,87,0.1);">
+      <span class="heading title-md">Bathroom</span>
+      <button type="button" onclick="shlfClose('shlf-drawer-bathroom')" class="button button--secondary button--close" style="flex-shrink:0;" aria-label="Close Bathroom drawer">
+        <span class="btn-fill" data-fill></span>
+        <span class="btn-text"><svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path></svg></span>
+      </button>
+    </div>
+    <div style="overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1.5em;flex:1;">
+      <div class="rte text-base md:text-lg">
+        <p>Bathrooms are one of the best places for floating shelves because every bathroom is short on wall space and long on need for it.</p>
+        <p><strong>Depth:</strong> 6–8 inches is plenty. You're storing toiletries, small towels, candles — nothing deep. A lighter-duty bracket like our <a href="https://shelfology.com/products/aksel-ld-floating-shelf-brackets">Aksel LD</a> is a great fit here.</p>
+        <p><strong>Height:</strong> Keep them at least 24 inches above the toilet if they're in that zone. Above a sink, stay 12+ inches above the faucet or mirror so nothing gets in the way.</p>
+        <p><strong>Material matters:</strong> Bathrooms are humid. If you're going with wood, make sure it's sealed or finished properly. Unfinished wood in a bathroom is a recipe for warping. All of our finished hardwood options hold up well in bathroom conditions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile card relative">
+    <picture class="media media--portrait mobile:media--portrait block relative overflow-hidden">
+      <img src="https://shelfology.com/cdn/shop/files/living-room-guide.jpg?v=1772218733&width=800"
+           alt="Modern living room with floating shelves displaying books plants and decorative objects on white wall"
+           width="800" height="800" loading="lazy" style="display:block;width:100%;height:auto;">
+    </picture>
+    <div class="profile__content absolute left-0 bottom-0 w-full flex items-center justify-between gap-8">
+      <p class="heading lg:text-3xl text-2xl leading-none tracking-tight">Living Room</p>
+      <button type="button"
+              class="profile__button flex items-center justify-center rounded-full shrink-0"
+              onclick="shlfOpen('shlf-drawer-living')"
+              aria-label="Open Living Room"
+              aria-controls="shlf-drawer-living"
+              aria-haspopup="dialog">
+        <svg class="icon icon-plus-2 icon-md" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="shlf-drawer-living" class="shlf-drawer"
+       role="dialog" aria-modal="true" aria-hidden="true"
+       style="display:none;position:fixed;top:0;right:0;width:480px;max-width:90vw;height:100vh;background:#FFFDFB;z-index:999;transform:translateX(100%);transition:transform 0.3s ease;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,0.12);overflow:hidden;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1.5em 1.5em 1em;border-bottom:1px solid rgba(54,73,87,0.1);">
+      <span class="heading title-md">Living Room</span>
+      <button type="button" onclick="shlfClose('shlf-drawer-living')" class="button button--secondary button--close" style="flex-shrink:0;" aria-label="Close Living Room drawer">
+        <span class="btn-fill" data-fill></span>
+        <span class="btn-text"><svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path></svg></span>
+      </button>
+    </div>
+    <div style="overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1.5em;flex:1;">
+      <div class="rte text-base md:text-lg">
+        <p>Living room shelves are mostly about display, which means aesthetics matter more here than in the kitchen or bathroom.</p>
+        <p><strong>Depth:</strong> 6–10 inches works well. You don't need deep shelves for books and decor — and shallower shelves keep the room feeling open.</p>
+        <p><strong>Height:</strong> If they're above your couch, go 10–12 inches above the back of the couch. For a general display wall, keep the center of your arrangement around eye level — about 4 to 5 feet off the floor.</p>
+        <p><strong>Styling:</strong> Leave some empty space. A shelf that's 70% full looks intentional. A shelf that's 100% full looks cluttered. Group things in threes, vary the heights of your objects, and let the shelf breathe.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile card relative">
+    <picture class="media media--portrait mobile:media--portrait block relative overflow-hidden">
+      <img src="https://shelfology.com/cdn/shop/files/office-room-guide.jpg?v=1772219286&width=800"
+           alt="Home office with floating shelf above desk displaying books plants and personal items on wall"
+           width="800" height="800" loading="lazy" style="display:block;width:100%;height:auto;">
+    </picture>
+    <div class="profile__content absolute left-0 bottom-0 w-full flex items-center justify-between gap-8">
+      <p class="heading lg:text-3xl text-2xl leading-none tracking-tight">Home Office</p>
+      <button type="button"
+              class="profile__button flex items-center justify-center rounded-full shrink-0"
+              onclick="shlfOpen('shlf-drawer-office')"
+              aria-label="Open Home Office"
+              aria-controls="shlf-drawer-office"
+              aria-haspopup="dialog">
+        <svg class="icon icon-plus-2 icon-md" viewBox="0 0 14 14" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 1V13M13 7H1"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="shlf-drawer-office" class="shlf-drawer"
+       role="dialog" aria-modal="true" aria-hidden="true"
+       style="display:none;position:fixed;top:0;right:0;width:480px;max-width:90vw;height:100vh;background:#FFFDFB;z-index:999;transform:translateX(100%);transition:transform 0.3s ease;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,0.12);overflow:hidden;">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:1.5em 1.5em 1em;border-bottom:1px solid rgba(54,73,87,0.1);">
+      <span class="heading title-md">Home Office</span>
+      <button type="button" onclick="shlfClose('shlf-drawer-office')" class="button button--secondary button--close" style="flex-shrink:0;" aria-label="Close Home Office drawer">
+        <span class="btn-fill" data-fill></span>
+        <span class="btn-text"><svg class="icon icon-close icon-sm" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15L15 5M5 5L15 15"></path></svg></span>
+      </button>
+    </div>
+    <div style="overflow-y:auto;-webkit-overflow-scrolling:touch;padding:1.5em;flex:1;">
+      <div class="rte text-base md:text-lg">
+        <p>A floating shelf above a desk or on a nearby wall keeps reference books, a plant, and a few personal items within reach without taking up any desk space.</p>
+        <p><strong>Depth:</strong> 6–8 inches is the sweet spot. Enough for books standing up, not so deep that it sticks out and crowds the room.</p>
+        <p><strong>Height:</strong> Above a desk, 12–18 inches above the desk surface. On a side wall, eye level while seated — about 4 feet from the floor.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     IMAGE WITH TEXT WIDGET
+     Two-column layout: image left, text right.
+     To flip: change flex-direction:row to flex-direction:row-reverse
+     ============================================================ -->
+
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;gap:2.5em;align-items:flex-start;margin:2em 0;">
+
+  <div style="flex:1 1 320px;min-width:0;">
+    <img
+      src="https://shelfology.com/cdn/shop/files/aksel-aksel-radius-popsicle-ellie-book-wedgie-rem-modern-lobby-detail.jpg?v=1752625966&width=800"
+      alt="Aksel wood floating shelves in a modern lobby with layered shelf arrangement displaying books and decorative plants"
+      width="800" height="800" loading="lazy"
+      style="width:100%;height:auto;display:block;border-radius:12px;object-fit:cover;">
+  </div>
+
+  <div class="rich-text lg:text-left text-left relative z-1" style="flex:1 1 320px;min-width:0;">
+    <h3 class="heading leading-none title-sm">The Bottom Line</h3>
+    <div class="rte body subtext-sm leading-normal">
+      <p>A floating shelf only looks effortless if what's behind the wall is doing its job.</p>
+      <p>The <strong>Aksel® Floating Shelf Bracket system</strong> gives you clear choices based on how your shelf is built, how big it is, and what it needs to hold — so you can build with confidence and enjoy the clean, floating look you're after.</p>
+      <p><strong>Still unsure?</strong> Choose the stronger bracket. Overbuilding costs a little more. Underbuilding costs you twice.</p>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ============================================================
+     FULL-WIDTH HERO VIDEO WIDGET
+     Autoplay, muted, looping video with play/pause button.
+     ============================================================ -->
+
+<div style="position:relative;display:block;overflow:hidden;width:100%;padding-top:56.25%;background:#000;margin:0 0 2em 0;">
+
+  <video
+    id="shlf-hero-video"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;display:block;"
+    autoplay muted loop playsinline preload="metadata"
+    poster="https://shelfology.com/cdn/shop/files/preview_images/83a7dd019f254bffb7646b715a9153af.thumbnail.0000000000.jpg?v=1728408543&width=1920">
+    <source
+      src="https://shelfology.com/cdn/shop/videos/c/vp/83a7dd019f254bffb7646b715a9153af/83a7dd019f254bffb7646b715a9153af.HD-1080p-7.2Mbps-36000893.mp4?v=0"
+      type="video/mp4">
+  </video>
+
+  <button
+    id="shlf-video-btn"
+    onclick="shlfToggleVideo();"
+    aria-label="Pause video"
+    style="position:absolute;bottom:1.25em;right:1.25em;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,0.18);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:background 0.2s ease;"
+    onmouseover="this.style.background='rgba(255,255,255,0.32)';"
+    onmouseout="this.style.background='rgba(255,255,255,0.18)';">
+    <svg id="shlf-icon-play" style="display:none;" viewBox="0 0 36 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true">
+      <path d="M34 17.5006C34 18.3302 33.5707 19.0963 32.8683 19.5206L9.535 33.6629C9.164 33.8869 8.74867 34 8.33333 34C7.93667 34 7.54 33.8986 7.183 33.6936C6.45267 33.274 6 32.4915 6 31.6429V3.35817C6 2.50962 6.45267 1.72708 7.183 1.30752C7.91333 0.885606 8.814 0.899749 9.535 1.33816L32.8683 15.4805C33.5707 15.9048 34 16.6709 34 17.5006"/>
+    </svg>
+    <svg id="shlf-icon-pause" style="display:block;" viewBox="0 0 36 36" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true">
+      <path stroke-linecap="round" stroke-width="6" d="M9 4V32"/>
+      <path stroke-linecap="round" stroke-width="6" d="M27 4V32"/>
+    </svg>
+  </button>
+
+</div>
+
+<script>
+(function() {
+  window.shlfToggleVideo = function() {
+    var video = document.getElementById('shlf-hero-video');
+    var btn = document.getElementById('shlf-video-btn');
+    var play = document.getElementById('shlf-icon-play');
+    var pause = document.getElementById('shlf-icon-pause');
+
+    if (!video || !btn || !play || !pause) return;
+
+    if (video.paused) {
+      var promise = video.play();
+      if (promise && typeof promise.then === 'function') {
+        promise.then(function() {
+          play.style.display = 'none';
+          pause.style.display = 'block';
+          btn.setAttribute('aria-label', 'Pause video');
+        }).catch(function() {});
+      } else {
+        play.style.display = 'none';
+        pause.style.display = 'block';
+        btn.setAttribute('aria-label', 'Pause video');
+      }
+    } else {
+      video.pause();
+      play.style.display = 'block';
+      pause.style.display = 'none';
+      btn.setAttribute('aria-label', 'Play video');
+    }
+  };
+})();
+</script>
+
+
+<!-- ============================================================
+     TABLE WIDGET
+     ADA/WCAG 2.1 AA compliant. Mobile horizontal scroll.
+     ============================================================ -->
+
+<div role="region"
+     aria-label="Scrollable table"
+     style="overflow-x:auto;-webkit-overflow-scrolling:touch;touch-action:pan-x;margin:1em 0 1.75em;">
+  <table style="width:100%;min-width:480px;border-collapse:collapse;background:#FFFDFB;">
+
+    <caption style="text-align:left;padding:0 0 0.6em 1em;font-weight:600;caption-side:top;">
+      Tools needed to install floating shelves
+    </caption>
+
+    <thead>
+      <tr>
+        <th scope="col" style="text-align:left;padding:0.75em 1em;font-weight:700;font-size:0.95em;text-transform:uppercase;letter-spacing:0.05em;background:#54737B !important;color:#FFFDFB !important;border-bottom:2px solid #54737B;">Tool</th>
+        <th scope="col" style="text-align:left;padding:0.75em 1em;font-weight:700;font-size:0.95em;text-transform:uppercase;letter-spacing:0.05em;background:#54737B !important;color:#FFFDFB !important;border-bottom:2px solid #54737B;">What It's For</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Stud finder</td>
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Locating wall studs behind drywall or plaster</td>
+      </tr>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Level (4-foot preferred)</td>
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Making sure your bracket and shelf are perfectly straight</td>
+      </tr>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Drill with bits</td>
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Pilot holes and driving screws</td>
+      </tr>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Screwdriver or driver bit</td>
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Tightening screws into studs and anchors</td>
+      </tr>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Pencil</td>
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Marking stud locations and drill points</td>
+      </tr>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Tape measure</td>
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Measuring shelf placement and spacing</td>
+      </tr>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Wood shims</td>
+        <td style="padding:0.75em 1em;border-bottom:1px solid #54737B;vertical-align:top;background:#FFFDFB !important;">Leveling the bracket if your wall isn't perfectly flat</td>
+      </tr>
+      <tr style="background:#FFFDFB !important;">
+        <td style="padding:0.75em 1em;vertical-align:top;background:#FFFDFB !important;">Drywall anchors</td>
+        <td style="padding:0.75em 1em;vertical-align:top;background:#FFFDFB !important;">Supplemental support between studs</td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
