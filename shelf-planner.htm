@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shelfology — Shelf Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"></script>
+<style>
+  :root {
+    --panel:  #FDFCFA;
+    --border: #E8E2D9;
+    --text:   #1C1A17;
+    --muted:  #8A8278;
+    --accent: #2C2416;
+    --hi:     #6B5A3E;
+    --r:      3px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: 'DM Sans', sans-serif; color: var(--text); background: #EFECE6; overflow: hidden; }
+
+  /* ── Header ── */
+  header { display: flex; align-items: center; justify-content: space-between; padding: 0 22px; height: 52px; background: var(--panel); border-bottom: 1px solid var(--border); flex-shrink: 0; z-index: 10; }
+  .logo { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 18px; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); }
+  .header-tag { font-size: 10px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+  .header-actions { display: flex; gap: 7px; }
+  .btn { font-family: 'DM Sans', sans-serif; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 13px; border-radius: var(--r); cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--muted); transition: all .15s; }
+  .btn:hover { border-color: var(--hi); color: var(--accent); }
+  .btn-primary { background: var(--accent); color: #FFF8F0; border-color: var(--accent); }
+  .btn-primary:hover { background: var(--hi); border-color: var(--hi); }
+
+  /* ── Layout ── */
+  .workspace { display: flex; height: calc(100vh - 52px); overflow: hidden; }
+
+  /* ── Sidebar ── */
+  .sidebar { width: 252px; flex-shrink: 0; background: var(--panel); border-right: 1px solid var(--border); overflow-y: auto; display: flex; flex-direction: column; }
+  .s-sec { padding: 14px 16px; border-bottom: 1px solid var(--border); }
+  .s-lbl { font-size: 9px; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
+  .s-lbl span { font-weight: 400; font-style: italic; color: var(--hi); font-size: 9px; letter-spacing: .05em; text-transform: none; }
+
+  /* ── Wall size inputs ── */
+  .wall-size-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+  .ws-field label { font-size: 9px; color: var(--muted); display: block; margin-bottom: 4px; letter-spacing: .05em; }
+  .ws-inputs { display: flex; gap: 4px; align-items: center; }
+  .ws-inputs input[type=number] {
+    width: 38px; padding: 5px 6px; font-size: 12px; font-family: 'DM Sans', sans-serif;
+    border: 1px solid var(--border); border-radius: var(--r); background: white;
+    color: var(--text); outline: none; text-align: center; -moz-appearance: textfield;
+  }
+  .ws-inputs input[type=number]::-webkit-inner-spin-button,
+  .ws-inputs input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; }
+  .ws-inputs input[type=number]:focus { border-color: var(--hi); }
+  .ws-unit { font-size: 9px; color: var(--muted); }
+  .ws-apply {
+    width: 100%; padding: 7px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+    background: var(--accent); color: white; border: none; border-radius: var(--r);
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background .15s;
+  }
+  .ws-apply:hover { background: var(--hi); }
+  .ws-current { font-size: 9px; color: var(--muted); margin-top: 7px; text-align: center; font-style: italic; }
+
+  /* ── Color grid ── */
+  .color-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 9px; }
+  .cswatch { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform .12s; }
+  .cswatch:hover { transform: scale(1.15); }
+  .cswatch.active { border-color: var(--accent) !important; box-shadow: 0 0 0 1px white, 0 0 0 3px var(--accent); }
+  .cswatch[data-cid="whitematte"] { border-color: #D0CCC5; }
+  .cswatch[data-cid="whitematte"].active { border-color: var(--accent) !important; }
+  .active-color-row { display: flex; align-items: center; gap: 8px; }
+  .active-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.12); flex-shrink: 0; transition: background .2s; }
+  .active-name { font-size: 11px; color: var(--text); font-weight: 500; }
+  .active-context { font-size: 9px; color: var(--muted); margin-top: 2px; letter-spacing: .03em; font-style: italic; }
+
+  /* ── Product cards ── */
+  .product-list { display: flex; flex-direction: column; gap: 7px; }
+  .product-card { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border: 1px solid var(--border); border-radius: var(--r); background: white; transition: border-color .15s; }
+  .product-card:hover { border-color: var(--hi); }
+  .product-thumb { width: 42px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .product-thumb canvas { display: block; }
+  .product-info { flex: 1; min-width: 0; }
+  .product-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .product-depth { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .product-price { font-size: 10px; color: var(--hi); font-weight: 500; margin-top: 2px; }
+  .add-btn { width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--border); background: white; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 1; color: var(--hi); cursor: pointer; flex-shrink: 0; transition: all .13s; user-select: none; }
+  .add-btn:hover { background: var(--accent); color: white; border-color: var(--accent); }
+
+  /* ── Length slider ── */
+  .len-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 9px; }
+  .len-val { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: var(--accent); line-height: 1; }
+  .len-unit { font-size: 11px; color: var(--muted); }
+  input[type=range] { width: 100%; height: 2px; -webkit-appearance: none; background: var(--border); border-radius: 2px; outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--accent); border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,.22); cursor: pointer; }
+  .len-ticks { display: flex; justify-content: space-between; margin-top: 8px; }
+  .len-tick { font-size: 9px; color: var(--muted); cursor: pointer; padding: 2px 3px; border-radius: 2px; transition: all .11s; }
+  .len-tick:hover { color: var(--accent); background: var(--border); }
+  .len-tick.on { color: var(--accent); font-weight: 500; }
+  .len-hint { font-size: 9px; color: var(--muted); margin-top: 8px; font-style: italic; }
+
+  /* ── Wall color ── */
+  .wall-colors { display: flex; gap: 7px; flex-wrap: wrap; }
+  .wcol { width: 24px; height: 24px; border-radius: var(--r); cursor: pointer; border: 2px solid transparent; transition: all .13s; }
+  .wcol:hover { transform: scale(1.1); }
+  .wcol.active { border-color: var(--accent); box-shadow: 0 0 0 1px white, 0 0 0 3px var(--accent); }
+
+  /* ── Selection panel ── */
+  #selPanel { background: #FAF6F0; border-bottom: 1px solid var(--border); padding: 13px 16px; display: none; }
+  #selPanel.show { display: block; }
+  .sel-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
+  .sel-name { font-size: 12px; font-weight: 500; color: var(--accent); }
+  .sel-del { font-size: 10px; color: #A04040; cursor: pointer; text-transform: uppercase; letter-spacing: .08em; border: none; background: none; font-family: inherit; padding: 2px 6px; border-radius: 2px; }
+  .sel-del:hover { background: #FEF0F0; }
+  .sel-meta { font-size: 10px; color: var(--muted); margin-bottom: 2px; }
+  .sel-price { font-size: 13px; color: var(--accent); font-weight: 500; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+  /* ── Canvas area ── */
+  .canvas-area { flex: 1; display: flex; align-items: center; justify-content: center; background: #D8D4CD; position: relative; overflow: hidden; }
+
+  /* canvasWrap is sized by JS to match wall aspect ratio */
+  #canvasWrap {
+    position: relative;
+    box-shadow: 0 8px 48px rgba(0,0,0,.22), 0 2px 12px rgba(0,0,0,.10);
+    line-height: 0;
+  }
+  /* Grid canvas sits directly behind Fabric canvas */
+  #gridCanvas {
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 0;
+    display: block;
+  }
+  /* Fabric creates .canvas-container; we stack it above grid */
+  #canvasWrap .canvas-container {
+    position: relative !important;
+    z-index: 1;
+  }
+
+  .c-toolbar { position: absolute; top: 14px; right: 14px; display: flex; flex-direction: column; gap: 5px; z-index: 5; }
+  .c-tool { width: 32px; height: 32px; background: white; border: 1px solid var(--border); border-radius: var(--r); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px; transition: all .13s; box-shadow: 0 1px 3px rgba(0,0,0,.07); }
+  .c-tool:hover { background: var(--accent); color: white; border-color: var(--accent); }
+  .tips { position: absolute; top: 14px; left: 14px; background: rgba(255,255,255,.9); border: 1px solid var(--border); border-radius: var(--r); padding: 7px 11px; font-size: 10px; color: var(--muted); line-height: 1.7; pointer-events: none; z-index: 5; }
+  .tips strong { color: var(--accent); font-weight: 500; }
+
+  /* ── Right panel ── */
+  .right-panel { width: 190px; flex-shrink: 0; background: var(--panel); border-left: 1px solid var(--border); overflow-y: auto; display: flex; flex-direction: column; }
+  .r-sec { padding: 14px 13px; border-bottom: 1px solid var(--border); }
+
+  .item-list { display: flex; flex-direction: column; gap: 5px; }
+  .item-row { display: flex; align-items: flex-start; gap: 7px; padding: 7px 8px; border: 1px solid var(--border); border-radius: var(--r); background: white; cursor: pointer; transition: all .13s; }
+  .item-row:hover { border-color: var(--hi); }
+  .item-row.active { border-color: var(--accent); background: #FAF6F0; }
+  .i-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; border: 1px solid rgba(0,0,0,0.1); }
+  .i-body { flex: 1; min-width: 0; }
+  .i-name { font-size: 10px; color: var(--text); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .i-sub { font-size: 9px; color: var(--muted); margin-top: 1px; }
+  .i-price { font-size: 10px; color: var(--hi); font-weight: 500; margin-top: 2px; }
+  .i-del { font-size: 11px; color: var(--muted); cursor: pointer; padding: 0 2px; border-radius: 2px; flex-shrink: 0; line-height: 1.6; }
+  .i-del:hover { color: #A04040; background: #FEF0F0; }
+  .empty { font-size: 10px; color: var(--muted); text-align: center; line-height: 1.8; padding: 8px 0; }
+  .sum-row { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+  .sum-row span:last-child { color: var(--text); font-weight: 500; }
+  .sum-total { display: flex; justify-content: space-between; font-size: 12px; color: var(--accent); font-weight: 500; padding-top: 8px; border-top: 1px solid var(--border); margin-top: 4px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+
+  /* ── Toast ── */
+  .toast { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%) translateY(12px); background: var(--accent); color: white; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; padding: 9px 18px; border-radius: 20px; z-index: 200; opacity: 0; transition: all .26s; pointer-events: none; white-space: nowrap; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Shelfology</div>
+  <div class="header-tag">Tromso Shelf Planner</div>
+  <div class="header-actions">
+    <button class="btn" onclick="clearAll()">Clear All</button>
+    <button class="btn" onclick="saveImage()">&#8595; Save Image</button>
+    <button class="btn btn-primary" onclick="showToast('Add to Cart — coming in V2!')">Add to Cart</button>
+  </div>
+</header>
+
+<div class="workspace">
+
+  <!-- ══ LEFT SIDEBAR ══ -->
+  <div class="sidebar">
+
+    <!-- Selected shelf info -->
+    <div id="selPanel">
+      <div class="sel-head">
+        <div>
+          <div class="sel-name"  id="selName">&#8211;</div>
+          <div class="sel-meta"  id="selMeta">&#8211;</div>
+          <div class="sel-price" id="selPrice">&#8211;</div>
+        </div>
+        <button class="sel-del" onclick="deleteSelected()">&#10005; Remove</button>
+      </div>
+    </div>
+
+    <!-- Wall size -->
+    <div class="s-sec">
+      <div class="s-lbl">Wall Size</div>
+      <div class="wall-size-grid">
+        <div class="ws-field">
+          <label>Width</label>
+          <div class="ws-inputs">
+            <input type="number" id="wallWFt" min="4" max="30" value="12"> <span class="ws-unit">ft</span>
+            <input type="number" id="wallWIn" min="0" max="11" value="0">  <span class="ws-unit">in</span>
+          </div>
+        </div>
+        <div class="ws-field">
+          <label>Height</label>
+          <div class="ws-inputs">
+            <input type="number" id="wallHFt" min="4" max="16" value="8"> <span class="ws-unit">ft</span>
+            <input type="number" id="wallHIn" min="0" max="11" value="0"> <span class="ws-unit">in</span>
+          </div>
+        </div>
+      </div>
+      <button class="ws-apply" onclick="applyWallSize()">Apply Wall Size</button>
+      <div class="ws-current" id="wsCurrent">12 ft &times; 8 ft &nbsp;&#183;&nbsp; 1&#8243; = <span id="wsScale">?</span>px</div>
+    </div>
+
+    <!-- Powder coat color -->
+    <div class="s-sec">
+      <div class="s-lbl" id="colorLabel">Powder Coat Color</div>
+      <div class="color-grid" id="colorGrid"></div>
+      <div class="active-color-row">
+        <div class="active-dot" id="activeDot"></div>
+        <div>
+          <div class="active-name"    id="activeName">&#8211;</div>
+          <div class="active-context" id="activeCtx">Applies to next shelf added</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add a shelf -->
+    <div class="s-sec">
+      <div class="s-lbl">Add a Shelf</div>
+      <div class="product-list" id="productList"></div>
+    </div>
+
+    <!-- Shelf length -->
+    <div class="s-sec">
+      <div class="s-lbl" id="lenLabel">Length <span>&#8212; New Shelf</span></div>
+      <div class="len-head">
+        <div class="len-val" id="lenVal">24</div>
+        <div class="len-unit">inches</div>
+      </div>
+      <input type="range" id="lenSlider" min="6" max="84" step="1" value="24" oninput="onLenSlider(+this.value)">
+      <div class="len-ticks">
+        <span class="len-tick" onclick="setLen(12)">12&#8243;</span>
+        <span class="len-tick" onclick="setLen(24)">24&#8243;</span>
+        <span class="len-tick" onclick="setLen(36)">36&#8243;</span>
+        <span class="len-tick" onclick="setLen(48)">48&#8243;</span>
+        <span class="len-tick" onclick="setLen(60)">60&#8243;</span>
+        <span class="len-tick" onclick="setLen(72)">72&#8243;</span>
+      </div>
+      <div class="len-hint" id="lenHint">Sets length for next shelf added</div>
+    </div>
+
+    <!-- Wall color -->
+    <div class="s-sec">
+      <div class="s-lbl">Wall Color</div>
+      <div class="wall-colors">
+        <div class="wcol active" style="background:#FFFFFF" title="White"      onclick="setWallColor('#FFFFFF',this)"></div>
+        <div class="wcol"        style="background:#F7F4EF" title="Linen"      onclick="setWallColor('#F7F4EF',this)"></div>
+        <div class="wcol"        style="background:#E8E3D5" title="Warm Sand"  onclick="setWallColor('#E8E3D5',this)"></div>
+        <div class="wcol"        style="background:#D6D8CC" title="Sage"       onclick="setWallColor('#D6D8CC',this)"></div>
+        <div class="wcol"        style="background:#C8D4D9" title="Slate Blue" onclick="setWallColor('#C8D4D9',this)"></div>
+        <div class="wcol"        style="background:#2B2B2B" title="Charcoal"   onclick="setWallColor('#2B2B2B',this)"></div>
+        <div class="wcol"        style="background:#8B7355" title="Terracotta" onclick="setWallColor('#8B7355',this)"></div>
+        <div class="wcol"        style="background:#4A5568" title="Deep Navy"  onclick="setWallColor('#4A5568',this)"></div>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+
+  <!-- ══ CANVAS ══ -->
+  <div class="canvas-area" id="canvasArea">
+    <div id="canvasWrap">
+      <!-- gridCanvas is inserted by JS here, behind Fabric -->
+      <canvas id="c"></canvas>
+    </div>
+    <div class="tips">
+      <strong>+</strong> to add &nbsp;&#183;&nbsp; <strong>Drag</strong> to move &nbsp;&#183;&nbsp; <strong>Side handles</strong> to resize &nbsp;&#183;&nbsp; <strong>Click</strong> to recolor
+    </div>
+    <div class="c-toolbar">
+      <div class="c-tool" title="Bring Forward" onclick="bringFwd()">&#8593;</div>
+      <div class="c-tool" title="Send Backward" onclick="sendBk()">&#8595;</div>
+      <div class="c-tool" title="Duplicate"     onclick="duplicate()">&#10697;</div>
+      <div class="c-tool" title="Delete"        onclick="deleteSelected()">&#10005;</div>
+    </div>
+  </div>
+
+  <!-- ══ RIGHT PANEL ══ -->
+  <div class="right-panel">
+    <div class="r-sec">
+      <div class="s-lbl">On Your Wall</div>
+      <div class="item-list" id="itemList"></div>
+    </div>
+    <div class="r-sec">
+      <div class="s-lbl">Summary</div>
+      <div id="summary"></div>
+    </div>
+  </div>
+
+</div><!-- /workspace -->
+
+<div class="toast" id="toastEl"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+//  PRODUCTS
+// ══════════════════════════════════════════════════════
+var PRODUCTS = [
+  {
+    id:'tromso-fm1', name:'Tromso FM1', depth:'1\u2033 depth', depthPx:10,
+    minLen:6, maxLen:84, baseLen:6, basePrice:165,
+    priceTiers:[{upTo:36,rate:6.5},{upTo:60,rate:9},{upTo:84,rate:11}],
+  },
+  {
+    id:'tromso-fm5', name:'Tromso FM5', depth:'5\u2033 depth \u00b7 Most Popular', depthPx:30,
+    minLen:6, maxLen:84, baseLen:6, basePrice:200,
+    priceTiers:[{upTo:36,rate:8},{upTo:60,rate:10},{upTo:84,rate:13}],
+  },
+  {
+    id:'tromso', name:'Tromso', depth:'7\u2033 depth \u00b7 Classic', depthPx:42,
+    minLen:12, maxLen:60, baseLen:12, basePrice:220,
+    priceTiers:[{upTo:36,rate:9},{upTo:60,rate:12}],
+  },
+];
+
+// ══════════════════════════════════════════════════════
+//  POWDER COAT COLORS
+// ══════════════════════════════════════════════════════
+var COLORS = [
+  {id:'nightynight',   label:'Nighty Night',   hex:'#1C1916'},
+  {id:'tungsten',      label:'Tungsten',        hex:'#3A3530'},
+  {id:'arsenic',       label:'Arsenic',         hex:'#78746E'},
+  {id:'concretey',     label:'Concretey',       hex:'#B5B0A8'},
+  {id:'whitematte',    label:'White Matte',     hex:'#EEEAE4'},
+  {id:'steelyblue',    label:'Steely Blue',     hex:'#5A7A8C'},
+  {id:'winklerblue',   label:'Winkler Blue',    hex:'#3E5E8E'},
+  {id:'shelfgeekblue', label:'Shelf Geek Blue', hex:'#2C6AA8'},
+  {id:'aquasocks',     label:'Aqua Socks',      hex:'#3D9A8A'},
+  {id:'reallyred',     label:'Really Red',      hex:'#CC2828'},
+  {id:'punkrock',      label:'Punk Rock',       hex:'#C85818'},
+  {id:'oranjelo',      label:'Oranjelo',        hex:'#E07828'},
+  {id:'bananayellow',  label:'Banana Yellow',   hex:'#F0C820'},
+  {id:'pinkflash',     label:'Pink Flash',      hex:'#E87890'},
+  {id:'purpledusk',    label:'Purple Dusk',     hex:'#8A7090'},
+  {id:'nurple',        label:'Nurple',          hex:'#6840A0'},
+  {id:'cyrose',        label:'Cyrose',          hex:'#9A5A72'},
+  {id:'rawsteel',      label:'Raw Steel',       hex:'#8C8880'},
+];
+
+// ══════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════
+var canvas      = null;
+var gridCtx     = null;   // 2D context of the background grid canvas
+var PPI         = 8;      // pixels per inch — computed from wall size + screen space
+var wallWIn     = 144;    // wall width in inches  (default 12 ft)
+var wallHIn     = 96;     // wall height in inches (default 8 ft)
+var wallColor   = '#FFFFFF';
+var curColorId  = 'nightynight';
+var curLen      = 24;
+var items       = [];
+var selUid      = null;
+var uidCtr      = 0;
+
+// ══════════════════════════════════════════════════════
+//  BOOT
+// ══════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', function() {
+  buildColorGrid();
+  buildProductList();
+  syncColorUI();
+  syncLenUI(curLen);
+  initCanvas(wallWIn, wallHIn);
+  refreshUI();
+});
+
+// ══════════════════════════════════════════════════════
+//  CANVAS INIT  (called on first load and on wall resize)
+// ══════════════════════════════════════════════════════
+function initCanvas(wIn, hIn) {
+  var area = document.getElementById('canvasArea');
+  var areaW = area.clientWidth  - 60;
+  var areaH = area.clientHeight - 60;
+
+  // Letterbox: fit wall aspect ratio inside available area
+  var aspect  = wIn / hIn;
+  var canvasW, canvasH;
+  if (areaW / areaH > aspect) {
+    canvasH = areaH;
+    canvasW = Math.round(areaH * aspect);
+  } else {
+    canvasW = areaW;
+    canvasH = Math.round(areaW / aspect);
+  }
+
+  PPI = canvasW / wIn;
+
+  var wrap = document.getElementById('canvasWrap');
+  wrap.style.width  = canvasW + 'px';
+  wrap.style.height = canvasH + 'px';
+
+  // ── Build/rebuild grid canvas (sits behind Fabric) ──
+  var existingGrid = document.getElementById('gridCanvas');
+  if (existingGrid) existingGrid.parentNode.removeChild(existingGrid);
+
+  var gc = document.createElement('canvas');
+  gc.id     = 'gridCanvas';
+  gc.width  = canvasW;
+  gc.height = canvasH;
+  wrap.insertBefore(gc, wrap.firstChild);
+  gridCtx = gc.getContext('2d');
+
+  // ── Build/rebuild Fabric canvas ──
+  if (canvas) {
+    canvas.dispose();
+    // Fabric leaves behind its wrapper div; remove it
+    var oldContainer = wrap.querySelector('.canvas-container');
+    if (oldContainer) oldContainer.parentNode.removeChild(oldContainer);
+    // Re-create the raw canvas element Fabric needs
+    var newC = document.createElement('canvas');
+    newC.id = 'c';
+    wrap.appendChild(newC);
+  }
+
+  canvas = new fabric.Canvas('c', {
+    width: canvasW,
+    height: canvasH,
+    backgroundColor: null,   // transparent — grid canvas shows through
+    preserveObjectStacking: true,
+  });
+
+  // Wire events
+  canvas.on('selection:created', function(e){ onSelect(e.selected[0]); });
+  canvas.on('selection:updated', function(e){ onSelect(e.selected[0]); });
+  canvas.on('selection:cleared',  function(){ onDeselect(); });
+
+  canvas.on('object:scaling', function(e) {
+    var obj  = e.target;
+    if (!obj || !obj._uid || !obj._natW) return;
+    var item = items.find(function(i){ return i.uid === obj._uid; });
+    if (!item) return;
+    var rawLen = (obj.scaleX * obj._natW) / PPI;
+    var lenIn  = Math.round(Math.max(item.product.minLen, Math.min(item.product.maxLen, rawLen)));
+    var price  = calcPrice(item.product, lenIn);
+    syncLenUI(lenIn);
+    document.getElementById('selMeta').textContent  = lenIn + '\u2033 length';
+    document.getElementById('selPrice').textContent = '$' + price;
+    var pel = document.querySelector('[data-uid="' + obj._uid + '"] .i-price');
+    if (pel) pel.textContent = '$' + price;
+    var sel = document.querySelector('[data-uid="' + obj._uid + '"] .i-sub');
+    var cl  = (COLORS.find(function(c){ return c.id === item.colorId; }) || {label:'\u2013'}).label;
+    if (sel) sel.textContent = lenIn + '\u2033 \u00b7 ' + cl;
+    renderSummary();
+  });
+
+  canvas.on('object:scaled', function(e) {
+    var obj  = e.target;
+    if (!obj || !obj._uid || !obj._natW) return;
+    var item = items.find(function(i){ return i.uid === obj._uid; });
+    if (!item) return;
+    var rawLen = (obj.scaleX * obj._natW) / PPI;
+    var lenIn  = Math.round(Math.max(item.product.minLen, Math.min(item.product.maxLen, rawLen)));
+    obj.set({ scaleX: (lenIn * PPI) / obj._natW });
+    canvas.requestRenderAll();
+    item.lenIn = lenIn;
+    curLen     = lenIn;
+    syncLenUI(lenIn);
+    refreshUI();
+  });
+
+  // Draw the static grid onto gridCanvas
+  drawGrid(canvasW, canvasH);
+  updateWallSizeLabel(wIn, hIn);
+}
+
+// ══════════════════════════════════════════════════════
+//  GRID DRAWING  (onto the background canvas, drawn once)
+// ══════════════════════════════════════════════════════
+function drawGrid(W, H) {
+  var ctx    = gridCtx;
+  var RULER  = 28;         // ruler strip height at bottom
+  var gridH  = H - RULER;
+
+  // Wall background
+  ctx.fillStyle = wallColor;
+  ctx.fillRect(0, 0, W, H);
+
+  // Ruler strip
+  ctx.fillStyle = '#ECEAE6';
+  ctx.fillRect(0, gridH, W, RULER);
+
+  // Ruler / grid top border
+  ctx.strokeStyle = 'rgba(0,0,0,0.18)';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, gridH); ctx.lineTo(W, gridH); ctx.stroke();
+
+  // ── Vertical grid lines ──
+  var totalInches = wallWIn;
+  for (var i = 0; i <= totalInches; i++) {
+    var x       = Math.round(i * PPI);
+    var isFoot  = (i % 12 === 0);
+    var isSix   = (i % 6  === 0);
+
+    // Wall grid line
+    if (isFoot) {
+      ctx.strokeStyle = 'rgba(0,0,0,0.13)';
+      ctx.lineWidth   = 1;
+    } else if (isSix) {
+      ctx.strokeStyle = 'rgba(0,0,0,0.07)';
+      ctx.lineWidth   = 0.75;
+    } else {
+      ctx.strokeStyle = 'rgba(0,0,0,0.035)';
+      ctx.lineWidth   = 0.5;
+    }
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, gridH); ctx.stroke();
+
+    // Ruler tick
+    var tickH = isFoot ? 11 : isSix ? 7 : 4;
+    ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+    ctx.lineWidth   = isFoot ? 1 : 0.5;
+    ctx.beginPath(); ctx.moveTo(x, gridH); ctx.lineTo(x, gridH + tickH); ctx.stroke();
+  }
+
+  // ── Horizontal grid lines (every 6") ──
+  for (var y = PPI * 6; y < gridH; y += PPI * 6) {
+    var yIn    = Math.round(y / PPI);
+    var isHFt  = (yIn % 12 === 0);
+    ctx.strokeStyle = isHFt ? 'rgba(0,0,0,0.09)' : 'rgba(0,0,0,0.04)';
+    ctx.lineWidth   = 0.5;
+    ctx.beginPath(); ctx.moveTo(0, Math.round(y)); ctx.lineTo(W, Math.round(y)); ctx.stroke();
+  }
+
+  // ── Foot labels in ruler ──
+  ctx.font         = '500 10px "DM Sans", system-ui, sans-serif';
+  ctx.textBaseline = 'middle';
+  var midY = gridH + RULER * 0.6;
+
+  // "0" at left
+  ctx.fillStyle = 'rgba(0,0,0,0.32)';
+  ctx.textAlign = 'left';
+  ctx.fillText('0', 3, midY);
+
+  // 1ft … N ft
+  for (var ft = 1; ft * 12 <= totalInches; ft++) {
+    var lx = Math.round(ft * 12 * PPI);
+    ctx.fillStyle = 'rgba(0,0,0,0.42)';
+    ctx.textAlign = 'center';
+    ctx.fillText(ft + '\u2032', lx, midY);
+  }
+
+  // ── Ceiling shadow ──
+  var grad = ctx.createLinearGradient(0, 0, 0, 16);
+  grad.addColorStop(0, 'rgba(0,0,0,0.08)');
+  grad.addColorStop(1, 'rgba(0,0,0,0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, W, 16);
+}
+
+// Redraw grid (called when wall color changes)
+function redrawGrid() {
+  if (!gridCtx) return;
+  var W = parseInt(document.getElementById('canvasWrap').style.width);
+  var H = parseInt(document.getElementById('canvasWrap').style.height);
+  drawGrid(W, H);
+}
+
+// ══════════════════════════════════════════════════════
+//  WALL SIZE
+// ══════════════════════════════════════════════════════
+function applyWallSize() {
+  var wFt = parseInt(document.getElementById('wallWFt').value) || 12;
+  var wIn = parseInt(document.getElementById('wallWIn').value) || 0;
+  var hFt = parseInt(document.getElementById('wallHFt').value) || 8;
+  var hIn = parseInt(document.getElementById('wallHIn').value) || 0;
+
+  // Clamp reasonable values
+  wFt = Math.max(4, Math.min(30, wFt));
+  hFt = Math.max(4, Math.min(14, hFt));
+  wIn = Math.max(0, Math.min(11, wIn));
+  hIn = Math.max(0, Math.min(11, hIn));
+
+  wallWIn = wFt * 12 + wIn;
+  wallHIn = hFt * 12 + hIn;
+
+  // Clear shelves — positions would be wrong at a different PPI
+  if (items.length > 0) {
+    items.forEach(function(i){ if(canvas) canvas.remove(i.obj); });
+    items  = [];
+    selUid = null;
+    onDeselect();
+  }
+
+  initCanvas(wallWIn, wallHIn);
+  refreshUI();
+
+  var label = wFt + (wIn ? ' ft ' + wIn + '\u2033' : ' ft') +
+              ' \u00d7 ' +
+              hFt + (hIn ? ' ft ' + hIn + '\u2033' : ' ft');
+  showToast('Wall set to ' + label);
+}
+
+function updateWallSizeLabel(wIn, hIn) {
+  var wFt = Math.floor(wIn / 12), wR = wIn % 12;
+  var hFt = Math.floor(hIn / 12), hR = hIn % 12;
+  var wLabel = wFt + 'ft' + (wR ? ' ' + wR + '\u2033' : '');
+  var hLabel = hFt + 'ft' + (hR ? ' ' + hR + '\u2033' : '');
+  document.getElementById('wsCurrent').innerHTML =
+    wLabel + ' &times; ' + hLabel +
+    ' &nbsp;&#183;&nbsp; 1&#8243; = ' + PPI.toFixed(1) + 'px';
+}
+
+// ══════════════════════════════════════════════════════
+//  SHELF RENDERING
+// ══════════════════════════════════════════════════════
+function makeShelf(product, lenIn, colorId) {
+  var c    = COLORS.find(function(x){ return x.id === colorId; }) || COLORS[0];
+  var W    = Math.round(Math.max(product.minLen, Math.min(product.maxLen, lenIn)) * PPI);
+  var H    = product.depthPx;
+  var objs = [];
+
+  // Main face
+  objs.push(new fabric.Rect({ left:0, top:0, width:W, height:H, fill:c.hex, strokeWidth:0 }));
+  // Top sheen
+  objs.push(new fabric.Rect({ left:0, top:0, width:W, height:Math.max(2,Math.round(H*.12)), fill:lighten(c.hex,.35), opacity:.28, selectable:false, evented:false }));
+  // Bottom shadow
+  var sH = Math.max(2, Math.round(H*.15));
+  objs.push(new fabric.Rect({ left:0, top:H-sH, width:W, height:sH, fill:darken(c.hex,.32), opacity:.55, selectable:false, evented:false }));
+  // Invisible top padding (keeps group bbox clean)
+  objs.push(new fabric.Rect({ left:0, top:-4, width:W, height:4, fill:'rgba(0,0,0,0)', selectable:false, evented:false }));
+
+  var group = new fabric.Group(objs, {
+    left:60, top:80,
+    hasControls:true, lockRotation:true, lockScalingY:true,
+    cornerStyle:'circle', cornerSize:9, cornerColor:'#2C2416',
+    borderColor:'rgba(44,36,22,0.5)', borderDashArray:[4,3],
+    transparentCorners:false,
+    shadow:'0px 4px 14px rgba(0,0,0,0.22)',
+  });
+  group.setControlsVisibility({ mtr:false, mt:false, mb:false, tl:false, tr:false, bl:false, br:false });
+  group._natW = W;
+  group._pid  = product.id;
+  group._cid  = colorId;
+  return group;
+}
+
+function rebuildShelf(item, colorId) {
+  var old = item.obj;
+  var neu = makeShelf(item.product, item.lenIn, colorId);
+  neu.set({ left:old.left, top:old.top });
+  neu._uid = item.uid;
+  canvas.remove(old);
+  canvas.add(neu);
+  item.obj     = neu;
+  item.colorId = colorId;
+  canvas.setActiveObject(neu);
+  canvas.requestRenderAll();
+}
+
+// ══════════════════════════════════════════════════════
+//  COLOR / FINISH
+// ══════════════════════════════════════════════════════
+function buildColorGrid() {
+  var grid = document.getElementById('colorGrid');
+  grid.innerHTML = '';
+  COLORS.forEach(function(c) {
+    var el = document.createElement('div');
+    el.className        = 'cswatch' + (c.id === curColorId ? ' active' : '');
+    el.style.background = c.hex;
+    el.dataset.cid      = c.id;
+    el.title            = c.label;
+    el.addEventListener('click', function(){ onColorPick(c.id); });
+    grid.appendChild(el);
+  });
+}
+
+function onColorPick(cid) {
+  curColorId = cid;
+  syncColorUI();
+  if (selUid) {
+    var item = items.find(function(i){ return i.uid === selUid; });
+    if (item) { rebuildShelf(item, cid); item.colorId = cid; refreshUI(); }
+  }
+}
+
+function syncColorUI() {
+  document.querySelectorAll('.cswatch').forEach(function(el){ el.classList.toggle('active', el.dataset.cid === curColorId); });
+  var c = COLORS.find(function(x){ return x.id === curColorId; });
+  if (!c) return;
+  document.getElementById('activeDot').style.background = c.hex;
+  document.getElementById('activeName').textContent     = c.label;
+  if (selUid) {
+    var item = items.find(function(i){ return i.uid === selUid; });
+    document.getElementById('activeCtx').textContent  = item ? 'Applied to ' + item.product.name : '';
+    document.getElementById('colorLabel').innerHTML   = 'Powder Coat Color <span>\u2014 ' + (item ? item.product.name : '') + '</span>';
+  } else {
+    document.getElementById('activeCtx').textContent  = 'Applies to next shelf added';
+    document.getElementById('colorLabel').innerHTML   = 'Powder Coat Color';
+  }
+}
+
+// ══════════════════════════════════════════════════════
+//  PRODUCT LIST + MINI THUMBS
+// ══════════════════════════════════════════════════════
+function buildProductList() {
+  var list = document.getElementById('productList');
+  list.innerHTML = '';
+  PRODUCTS.forEach(function(p) {
+    var card    = document.createElement('div');
+    card.className = 'product-card';
+    var tid = 'thumb-' + p.id;
+    card.innerHTML =
+      '<div class="product-thumb" id="' + tid + '"></div>' +
+      '<div class="product-info">' +
+        '<div class="product-name">'  + p.name  + '</div>' +
+        '<div class="product-depth">' + p.depth + '</div>' +
+        '<div class="product-price">From $' + calcPrice(p, p.baseLen) + '</div>' +
+      '</div>' +
+      '<div class="add-btn">+</div>';
+    card.querySelector('.add-btn').addEventListener('click', function(e){ e.stopPropagation(); addShelf(p.id); });
+    list.appendChild(card);
+    drawThumb(p, tid);
+  });
+}
+
+function drawThumb(p, containerId) {
+  var wrap = document.getElementById(containerId); if (!wrap) return;
+  var mini = document.createElement('canvas');
+  mini.width = 42; mini.height = 24; wrap.appendChild(mini);
+  var ctx = mini.getContext('2d');
+  var c   = COLORS.find(function(x){ return x.id === curColorId; }) || COLORS[0];
+  var bH  = Math.max(4, Math.round(p.depthPx * 0.38));
+  var bY  = Math.round((24 - bH) / 2);
+  ctx.fillStyle = c.hex;
+  ctx.fillRect(2, bY, 38, bH);
+  ctx.fillStyle   = lighten(c.hex, 0.3); ctx.globalAlpha = 0.3;
+  ctx.fillRect(2, bY, 38, 2);
+  ctx.globalAlpha = 1;
+  ctx.fillStyle   = 'rgba(0,0,0,0.15)'; ctx.fillRect(2, bY + bH, 38, 2);
+}
+
+// ══════════════════════════════════════════════════════
+//  PRICING
+// ══════════════════════════════════════════════════════
+function calcPrice(product, lenIn) {
+  var len   = Math.max(product.minLen, Math.min(product.maxLen, lenIn));
+  var price = product.basePrice, prev = product.baseLen;
+  for (var i = 0; i < product.priceTiers.length; i++) {
+    var t = product.priceTiers[i];
+    if (len <= prev) break;
+    price += (Math.min(len, t.upTo) - prev) * t.rate;
+    prev   = t.upTo;
+    if (len <= t.upTo) break;
+  }
+  return Math.round(price);
+}
+
+// ══════════════════════════════════════════════════════
+//  COLOR UTILITIES
+// ══════════════════════════════════════════════════════
+function hexToRgb(h){ return {r:parseInt(h.slice(1,3),16),g:parseInt(h.slice(3,5),16),b:parseInt(h.slice(5,7),16)}; }
+function lighten(h,a){ var c=hexToRgb(h); return 'rgb('+Math.min(255,Math.round(c.r+(255-c.r)*a))+','+Math.min(255,Math.round(c.g+(255-c.g)*a))+','+Math.min(255,Math.round(c.b+(255-c.b)*a))+')'; }
+function darken(h,a){  var c=hexToRgb(h); return 'rgb('+Math.round(c.r*(1-a))+','+Math.round(c.g*(1-a))+','+Math.round(c.b*(1-a))+')'; }
+
+// ══════════════════════════════════════════════════════
+//  ADD / REMOVE / DUPLICATE
+// ══════════════════════════════════════════════════════
+function addShelf(pid) {
+  var product = PRODUCTS.find(function(p){ return p.id === pid; });
+  if (!product || !canvas) return;
+  var len = Math.max(product.minLen, Math.min(product.maxLen, curLen));
+  var uid = 'shelf-' + (++uidCtr);
+  var obj = makeShelf(product, len, curColorId);
+  var off = (uidCtr - 1) % 7;
+  obj.set({ left: 55 + off*22, top: 60 + off*36 });
+  obj._uid = uid;
+  canvas.add(obj);
+  canvas.setActiveObject(obj);
+  canvas.requestRenderAll();
+  items.push({ uid:uid, product:product, colorId:curColorId, lenIn:len, obj:obj });
+  refreshUI();
+  showToast(product.name + ' added \u00b7 ' + len + '\u2033 \u00b7 $' + calcPrice(product, len));
+}
+
+function removeByUid(uid) {
+  var item = items.find(function(i){ return i.uid === uid; }); if(!item) return;
+  canvas.remove(item.obj);
+  items = items.filter(function(i){ return i.uid !== uid; });
+  if (selUid === uid){ canvas.discardActiveObject(); onDeselect(); }
+  canvas.requestRenderAll(); refreshUI();
+}
+
+function deleteSelected(){ if(selUid) removeByUid(selUid); }
+
+function duplicate() {
+  var item = items.find(function(i){ return i.uid === selUid; }); if(!item) return;
+  var uid = 'shelf-' + (++uidCtr);
+  var obj = makeShelf(item.product, item.lenIn, item.colorId);
+  obj.set({ left:item.obj.left+18, top:item.obj.top+20 }); obj._uid = uid;
+  canvas.add(obj); canvas.setActiveObject(obj); canvas.requestRenderAll();
+  items.push({ uid:uid, product:item.product, colorId:item.colorId, lenIn:item.lenIn, obj:obj });
+  refreshUI(); showToast('Shelf duplicated');
+}
+
+function clearAll() {
+  items.forEach(function(i){ canvas.remove(i.obj); });
+  items=[]; selUid=null;
+  canvas.discardActiveObject(); canvas.requestRenderAll();
+  onDeselect(); refreshUI(); showToast('Canvas cleared');
+}
+
+function bringFwd(){ var o=canvas.getActiveObject(); if(o){ canvas.bringForward(o); canvas.requestRenderAll(); } }
+function sendBk(){   var o=canvas.getActiveObject(); if(o){ canvas.sendBackwards(o); canvas.requestRenderAll(); } }
+
+// ══════════════════════════════════════════════════════
+//  LENGTH
+// ══════════════════════════════════════════════════════
+function onLenSlider(val) {
+  curLen = val; syncLenUI(val);
+  if (!selUid) return;
+  var item = items.find(function(i){ return i.uid === selUid; }); if(!item) return;
+  var cl = Math.max(item.product.minLen, Math.min(item.product.maxLen, val));
+  item.obj.set({ scaleX:(cl * PPI) / item.obj._natW }); item.lenIn = cl;
+  canvas.requestRenderAll();
+  var price = calcPrice(item.product, cl);
+  document.getElementById('selMeta').textContent  = cl + '\u2033 length';
+  document.getElementById('selPrice').textContent = '$' + price;
+  var pe = document.querySelector('[data-uid="'+selUid+'"] .i-price'); if(pe) pe.textContent='$'+price;
+  var se = document.querySelector('[data-uid="'+selUid+'"] .i-sub');
+  if(se) se.textContent = cl+'\u2033 \u00b7 '+(COLORS.find(function(c){return c.id===item.colorId;})||{label:'\u2013'}).label;
+  renderSummary();
+}
+
+function setLen(val){ curLen=val; document.getElementById('lenSlider').value=val; onLenSlider(val); }
+
+function syncLenUI(val) {
+  document.getElementById('lenVal').textContent    = val;
+  document.getElementById('lenSlider').value       = val;
+  document.querySelectorAll('.len-tick').forEach(function(t){ t.classList.toggle('on', t.textContent === val+'\u2033'); });
+}
+
+// ══════════════════════════════════════════════════════
+//  WALL COLOR
+// ══════════════════════════════════════════════════════
+function setWallColor(hex, el) {
+  wallColor = hex;
+  redrawGrid();  // repaint the grid canvas with new background color
+  document.querySelectorAll('.wcol').forEach(function(s){ s.classList.toggle('active', s===el); });
+}
+
+// ══════════════════════════════════════════════════════
+//  SELECTION
+// ══════════════════════════════════════════════════════
+function onSelect(obj) {
+  if (!obj || !obj._uid){ onDeselect(); return; }
+  selUid = obj._uid;
+  var item = items.find(function(i){ return i.uid === selUid; }); if(!item){ onDeselect(); return; }
+  document.getElementById('selPanel').classList.add('show');
+  document.getElementById('selName').textContent  = item.product.name;
+  document.getElementById('selMeta').textContent  = item.lenIn + '\u2033 length';
+  document.getElementById('selPrice').textContent = '$' + calcPrice(item.product, item.lenIn);
+  curLen = item.lenIn; syncLenUI(item.lenIn);
+  document.getElementById('lenLabel').innerHTML  = 'Length <span>\u2014 ' + item.product.name + '</span>';
+  document.getElementById('lenHint').textContent = 'Adjusts this shelf';
+  curColorId = item.colorId; syncColorUI();
+  document.querySelectorAll('.item-row').forEach(function(r){ r.classList.toggle('active', r.dataset.uid === selUid); });
+}
+
+function onDeselect() {
+  selUid = null;
+  document.getElementById('selPanel').classList.remove('show');
+  document.getElementById('lenLabel').innerHTML  = 'Length <span>\u2014 New Shelf</span>';
+  document.getElementById('lenHint').textContent = 'Sets length for next shelf added';
+  document.querySelectorAll('.item-row').forEach(function(r){ r.classList.remove('active'); });
+  syncColorUI();
+}
+
+// ══════════════════════════════════════════════════════
+//  UI REFRESH
+// ══════════════════════════════════════════════════════
+function refreshUI() {
+  var listEl = document.getElementById('itemList');
+  if (items.length === 0) {
+    listEl.innerHTML = '<div class="empty">No shelves yet.<br>Pick a product and hit +.</div>';
+  } else {
+    listEl.innerHTML = '';
+    items.forEach(function(item) {
+      var c     = COLORS.find(function(x){ return x.id === item.colorId; }) || {hex:'#888',label:'\u2013'};
+      var price = calcPrice(item.product, item.lenIn);
+      var row   = document.createElement('div');
+      row.className   = 'item-row' + (item.uid === selUid ? ' active' : '');
+      row.dataset.uid = item.uid;
+      row.innerHTML   =
+        '<div class="i-dot" style="background:'+c.hex+'"></div>' +
+        '<div class="i-body">' +
+          '<div class="i-name">'+item.product.name+'</div>' +
+          '<div class="i-sub">'+item.lenIn+'\u2033 \u00b7 '+c.label+'</div>' +
+          '<div class="i-price">$'+price+'</div>' +
+        '</div>' +
+        '<div class="i-del" data-uid="'+item.uid+'">\u00d7</div>';
+      row.addEventListener('click', function(e) {
+        if (e.target.classList.contains('i-del')){ removeByUid(e.target.dataset.uid); return; }
+        canvas.setActiveObject(item.obj); canvas.requestRenderAll(); onSelect(item.obj);
+      });
+      listEl.appendChild(row);
+    });
+  }
+  renderSummary();
+}
+
+function renderSummary() {
+  var sumEl = document.getElementById('summary');
+  if (items.length === 0){ sumEl.innerHTML='<div class="empty">Add shelves to see pricing.</div>'; return; }
+  var tally={}, total=0;
+  items.forEach(function(item){ var p=calcPrice(item.product,item.lenIn); tally[item.product.name]=(tally[item.product.name]||0)+p; total+=p; });
+  sumEl.innerHTML = Object.entries(tally).map(function(e){ return '<div class="sum-row"><span>'+e[0]+'</span><span>$'+e[1]+'</span></div>'; }).join('') +
+    '<div class="sum-total"><span>Est. Total</span><span>$'+total+'</span></div>';
+}
+
+// ══════════════════════════════════════════════════════
+//  SAVE IMAGE
+// ══════════════════════════════════════════════════════
+function saveImage() {
+  if(!canvas) return;
+  canvas.discardActiveObject(); canvas.requestRenderAll();
+  setTimeout(function(){
+    // Composite: grid canvas + fabric canvas -> single image
+    var gc   = document.getElementById('gridCanvas');
+    var W    = gc.width, H = gc.height;
+    var out  = document.createElement('canvas');
+    out.width=W; out.height=H;
+    var ctx  = out.getContext('2d');
+    ctx.drawImage(gc, 0, 0);
+    ctx.drawImage(canvas.getElement(), 0, 0);
+    var url  = out.toDataURL('image/png');
+    var a    = document.createElement('a');
+    a.href   = url; a.download='shelfology-shelf-plan.png'; a.click();
+    showToast('Image saved!');
+  }, 120);
+}
+
+// ══════════════════════════════════════════════════════
+//  TOAST
+// ══════════════════════════════════════════════════════
+var _tt;
+function showToast(msg){
+  var el=document.getElementById('toastEl');
+  el.textContent=msg; el.classList.add('show');
+  clearTimeout(_tt); _tt=setTimeout(function(){ el.classList.remove('show'); },2400);
+}
+</script>
+</body>
+</html>
