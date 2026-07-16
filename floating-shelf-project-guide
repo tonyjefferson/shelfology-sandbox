@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to Plan a Floating Shelf Project | Shelfology</title>
+<meta name="description" content="Plan a floating shelf that won't sag: what your wall holds, how to size it, which wood to choose, and how to style it. Use our Shelf Chooser to size yours.">
+
+<style>
+/* ===== TonysTidbits tables: mobile-first, accessible ===== */
+.TonysTidbits .tt-tableWrap{margin:1.5rem 0;border:1px solid #d7dde2;border-radius:12px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.TonysTidbits .tt-tableWrap:focus-visible{outline:2px solid #364957;outline-offset:2px}
+.TonysTidbits table.tt-table{width:100%;border-collapse:collapse;background:#fff;color:#364957;font-size:1rem}
+.TonysTidbits table.tt-table caption{text-align:left;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-size:0.9375rem;color:#364957;padding:14px 16px 6px}
+.TonysTidbits table.tt-table th,.TonysTidbits table.tt-table td{text-align:left;vertical-align:top;padding:12px 16px;border-bottom:1px solid #e7ecef}
+.TonysTidbits table.tt-table thead th{background:#eef1f3;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;font-size:0.8125rem;color:#364957;border-bottom:1px solid #d7dde2}
+.TonysTidbits table.tt-table tbody th{font-weight:600}
+.TonysTidbits table.tt-table tbody tr:nth-child(even) td,.TonysTidbits table.tt-table tbody tr:nth-child(even) th{background:#fafbfc}
+.TonysTidbits table.tt-table tbody tr:last-child td,.TonysTidbits table.tt-table tbody tr:last-child th{border-bottom:0}
+.TonysTidbits .tt-note{margin:0;padding:10px 16px;font-size:0.8125rem;color:#5c6b76;background:#f7f9fa;border-top:1px solid #e7ecef}
+/* ===== 30-second quick box ===== */
+.TonysTidbits .tt-quickbox{background:#eef1f3;border-radius:12px;padding:16px 18px;margin:1.5rem 0}
+.TonysTidbits .tt-quickbox-title{font-weight:600;letter-spacing:0.08em;text-transform:uppercase;font-size:0.9375rem;color:#364957;margin:0 0 8px}
+.TonysTidbits .tt-quickbox ul{margin:0;padding-left:1.1rem}
+.TonysTidbits .tt-quickbox li{margin:5px 0}
+@media screen and (min-width:1024px){
+.TonysTidbits table.tt-table{font-size:1.125rem}
+.TonysTidbits table.tt-table thead th{font-size:0.875rem}
+.TonysTidbits table.tt-table caption{font-size:1rem}
+}
+/* ===== Shelf Chooser widget ===== */
+.shelfPlanner{font-family:inherit,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#364957;background:#ffffff;border:1px solid #d7dde2;border-radius:16px;padding:22px;max-width:820px;box-sizing:border-box;line-height:1.5;margin:1.5rem auto}
+.shelfPlanner *{box-sizing:border-box}
+.shelfPlanner .sp-h{font-size:1.5rem;font-weight:600;margin:0 0 4px;color:#364957}
+.shelfPlanner .sp-sub{font-size:14px;color:#5c6b76;margin:0 0 18px}
+.shelfPlanner .sp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.shelfPlanner .sp-span{grid-column:1 / -1}
+.shelfPlanner label{display:block;font-size:13px;font-weight:600;margin:0 0 6px}
+.shelfPlanner select{width:100%;height:42px;border:1px solid #cfd6db;border-radius:10px;background:#fff;padding:0 12px;font-size:14px;color:#364957;font-family:inherit}
+.shelfPlanner input[type=range]{width:100%;accent-color:#364957;margin-top:6px}
+.shelfPlanner .sp-len b{font-weight:700}
+.shelfPlanner .sp-res{margin-top:20px;border-top:1px solid #e7ecef;padding-top:18px}
+.shelfPlanner .sp-badge{display:inline-block;font-size:14px;font-weight:700;padding:8px 14px;border-radius:999px;margin-bottom:14px}
+.shelfPlanner .g{background:#e7f4ec;color:#1f6b46}
+.shelfPlanner .w{background:#fbf1db;color:#8a5a10}
+.shelfPlanner .b{background:#fbe9e7;color:#a82f22}
+.shelfPlanner .sp-bar{position:relative;height:26px;background:#eef1f3;border-radius:8px;overflow:hidden;margin-bottom:6px}
+.shelfPlanner .sp-fill{position:absolute;left:0;top:0;bottom:0;width:0;transition:width .2s ease}
+.shelfPlanner .fg{background:#43a06b}
+.shelfPlanner .fw{background:#e0a53c}
+.shelfPlanner .fb{background:#e05a4d}
+.shelfPlanner .sp-blab{font-size:12px;color:#5c6b76;margin:0 0 16px}
+.shelfPlanner .sp-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.shelfPlanner .sp-m{background:#f4f6f7;border-radius:10px;padding:11px 12px}
+.shelfPlanner .sp-m .k{font-size:12px;color:#5c6b76;margin:0 0 3px}
+.shelfPlanner .sp-m .v{font-size:19px;font-weight:700;margin:0}
+.shelfPlanner .sp-rec{font-size:14px;background:#eef1f3;border-left:3px solid #364957;padding:11px 13px;border-radius:0 8px 8px 0;margin-bottom:14px}
+.shelfPlanner ul.sp-warn{list-style:none;margin:0 0 16px;padding:0}
+.shelfPlanner ul.sp-warn li{font-size:13px;color:#3f4f5a;padding:7px 0 7px 22px;position:relative;border-top:1px solid #eef1f3}
+.shelfPlanner ul.sp-warn li:before{content:"!";position:absolute;left:0;top:7px;width:16px;height:16px;line-height:16px;text-align:center;font-size:11px;font-weight:700;color:#8a5a10;background:#fbf1db;border-radius:50%}
+.shelfPlanner ul.sp-warn li.crit:before{color:#a82f22;background:#fbe9e7}
+.shelfPlanner .sp-cta{display:flex;flex-wrap:wrap;gap:10px}
+.shelfPlanner a.sp-btn{display:inline-block;font-size:13px;font-weight:600;text-decoration:none;padding:10px 15px;border-radius:10px;border:1px solid #364957;color:#364957;background:#fff}
+.shelfPlanner a.sp-btn.pri{background:#364957;color:#fff}
+.shelfPlanner .sp-disc{font-size:11px;color:#8a97a1;margin:16px 0 0}
+@media screen and (max-width:560px){
+.shelfPlanner .sp-grid{grid-template-columns:1fr}
+.shelfPlanner .sp-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style>
+</head>
+<body>
+
+<article class="TonysTidbits rte">
+
+<h1>How to Plan a Floating Shelf Project: 9 Tips Before You Drill (Weight, Wood, Walls &amp; Style)</h1>
+
+<p><em>A floating shelf mounts on a concealed internal bracket, so no supports show. Plan your wall, weight, wood, and layout before you drill.</em></p>
+
+<p><strong>Last updated: July 16, 2026</strong></p>
+
+<p>The floating shelves that stay beautiful for years aren't impulse buys. They're a handful of small decisions, made in the right order, before the drill comes out.</p>
+
+<p>Most floating-shelf regret traces back to a question that got skipped: what is the wall actually made of, how much weight will the shelf hold, and how big should it be. Guess wrong on any of them and the shelf sags, bows, or works loose from the drywall a few months later. Plan them well and you get open shelving that carries real weight and still looks like you meant it.</p>
+
+<p>This guide walks the whole decision, from what sits behind your drywall to how you style the finished wall, written by the people who engineer the brackets. By the end you'll know what your wall can hold, how to size a shelf, which wood to choose, and how to style it once it's up.</p>
+
+<p>New to the category? Start with our <a href="https://shelfology.com/pages/the-ultimate-guide-to-floating-shelves">Ultimate Guide to Floating Shelves</a>, or browse the <a href="https://shelfology.com/collections/floating-shelves">Floating Shelves collection</a> to see what's possible.</p>
+
+<div class="tt-quickbox">
+<p class="tt-quickbox-title">Floating shelf planning in 30 seconds</p>
+<ul>
+<li><strong>Wall:</strong> Find your studs. Drywall alone won't hold real weight, while a single stud anchor carries roughly 45&ndash;50 lb.</li>
+<li><strong>Weight:</strong> Shelfology shelves span 25 to 350 lb depending on the bracket, the rod count, and how many studs you hit. Generic prong brackets give out above about 30 lb.</li>
+<li><strong>Size:</strong> Depth runs 6 to 12 in (6 to 8 in is typical; go 10 to 12 in in kitchens and living rooms). Run the shelf across at least two studs.</li>
+<li><strong>Wood:</strong> Denser hardwood holds more and looks richer.</li>
+<li><strong>Style:</strong> Mount at eye level, around 4 to 5 ft, leave some negative space, and start with your largest objects.</li>
+</ul>
+</div>
+
+<h2>1. Know What's Inside Your Walls</h2>
+
+<p>Your first floating-shelf decision isn't the shelf. It's the wall, because what's behind the drywall decides the hardware.</p>
+
+<p>Drywall on its own will not hold a loaded floating shelf; it's really just a skin over the wall. The strength lives in what sits behind it: wood or steel studs, brick, concrete, or older lath-and-plaster. Before you shop for anything, find your studs. Most are spaced 16 in on center, some 24 in, and older homes wander, so run a stud finder and confirm rather than assume.</p>
+
+<p>You can install without studs if you use heavy-duty toggles or anchors rated for the load, but stud-mounted is in a different league of strength. A single stud anchor holds roughly 45 to 50 lb, while even good drywall anchors carry a fraction of that. If the shelf will hold books, dishware, or anything you'd hate to see hit the floor, plan the layout around your studs rather than the other way around.</p>
+
+<p>Brick, concrete, and plaster each ask for their own fasteners: masonry anchors for brick and concrete, and extra care behind plaster, often with a stud or blocking to catch. Match the anchor to the wall before you match the shelf to the room. When you're ready to spec hardware, the <a href="https://shelfology.com/collections/floating-shelf-brackets">floating shelf bracket collection</a> is organized by capacity, and Home Depot's <a href="https://www.homedepot.com/c/ap/how-to-install-floating-shelves/9ba683603be9fa5395fab9010eac9457">install guide</a> is a solid primer on wall types.</p>
+
+<h2>2. Decide How Much Weight You Need to Float</h2>
+
+<p>This is the tip most guides skip, and it's the one that keeps shelves on the wall. Figure out the load first, then choose hardware to match it.</p>
+
+<p>Shelfology floating shelves span 25 to 350 pounds, depending on the bracket, how many support rods it uses, and how many studs you anchor into. The math is friendlier than it sounds. Each stud anchor carries roughly 45 to 50 lb, so a 3-foot shelf that hits two studs supports around 100 lb with the right internal bracket. Want more capacity? Add length across more studs, more rods, and a heavier bracket.</p>
+
+<p>Two failure points are worth planning around. Generic prong brackets, the thin metal spikes packed with cheap shelves, start giving out above about 30 lb because they rely on drywall grip, and drywall gives. MDF shelves are the other one: the bracket can be perfect and the shelf will still bow in the middle, because the material can't hold its own line under sustained weight.</p>
+
+<p>There's also a physics trade-off worth knowing before you size anything. A deeper shelf holds less, because depth acts as a lever arm, and weight sitting farther from the wall multiplies the force at the mounting point. That's why the next tip treats depth and load together instead of separately.</p>
+
+<p>Estimate your real-world load by what's going on the shelf:</p>
+
+<div class="tt-tableWrap" role="region" aria-labelledby="cap-load" tabindex="0">
+<table class="tt-table">
+<caption id="cap-load">Estimated load by what you're storing</caption>
+<thead>
+<tr>
+<th scope="col">What you're storing</th>
+<th scope="col">Rough weight per foot</th>
+<th scope="col">Plan for</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Books and media</th><td>~18 lb/ft</td><td>The heaviest everyday load; anchor into studs</td></tr>
+<tr><th scope="row">Dishware and glassware</th><td>~12 lb/ft</td><td>Moderate but concentrated; a rated internal bracket over two studs</td></tr>
+<tr><th scope="row">Decor, plants, frames</th><td>~5 lb/ft</td><td>Usually light; weigh the heavy outliers like a large planter</td></tr>
+</tbody>
+</table>
+<p class="tt-note">Estimates for planning. A quality internal bracket anchored into studs is assumed.</p>
+</div>
+
+<p>For the deeper dive, see <a href="https://shelfology.com/blogs/shelfology-u/how-much-weight-can-a-floating-shelf-hold">How Much Weight Can a Floating Shelf Hold?</a> and <a href="https://shelfology.com/blogs/shelfology-u/how-much-weight-can-floating-bookshelves-hold">How Much Weight Can Floating Bookshelves Hold?</a></p>
+
+<h2>Try It: The Shelf Chooser</h2>
+
+<p>Match your wall, size, wood, and what you'll store, and the Shelf Chooser estimates what the setup can hold and which hardware to use.</p>
+
+<div class="shelfPlanner" id="shelfPlanner">
+<p class="sp-h">Shelf Chooser</p>
+<p class="sp-sub">Answer a few questions and we'll estimate what your wall can hold and which setup to use.</p>
+<div class="sp-grid">
+<div><label for="sp_wall">What's behind the wall?</label>
+<select id="sp_wall">
+<option value="wood">Wood studs</option>
+<option value="steel">Steel studs</option>
+<option value="masonry">Brick or concrete</option>
+<option value="plaster">Lath and plaster</option>
+<option value="drywall">Drywall only, no studs where I want it</option>
+</select></div>
+<div><label for="sp_spacing">Stud spacing</label>
+<select id="sp_spacing">
+<option value="16">16 in on center</option>
+<option value="24">24 in on center</option>
+<option value="unsure">Not sure</option>
+</select></div>
+<div class="sp-span sp-len"><label for="sp_len">Shelf length: <b><span id="sp_lenOut">36</span> in</b></label>
+<input type="range" id="sp_len" min="12" max="96" step="1" value="36"></div>
+<div><label for="sp_depth">Depth</label>
+<select id="sp_depth">
+<option value="6">6 in</option>
+<option value="8">8 in</option>
+<option value="10" selected>10 in</option>
+<option value="12">12 in</option>
+</select></div>
+<div><label for="sp_thick">Thickness</label>
+<select id="sp_thick">
+<option value="1.5">1.5 in</option>
+<option value="1.75" selected>1.75 in</option>
+<option value="2">2 in</option>
+<option value="2.5">2.5 in</option>
+</select></div>
+<div><label for="sp_wood">Shelf material</label>
+<select id="sp_wood">
+<option value="oak">Solid white oak</option>
+<option value="walnut">Solid walnut</option>
+<option value="maple">Solid maple</option>
+<option value="mdf">MDF (not recommended)</option>
+</select></div>
+<div><label for="sp_load">Mostly holding&hellip;</label>
+<select id="sp_load">
+<option value="books">Books and media</option>
+<option value="dishware">Dishware and glassware</option>
+<option value="decor">Decor, plants, frames</option>
+<option value="mixed">A mix of things</option>
+</select></div>
+</div>
+<div class="sp-res">
+<span class="sp-badge" id="sp_badge">&mdash;</span>
+<div class="sp-bar"><div class="sp-fill" id="sp_fill"></div></div>
+<p class="sp-blab" id="sp_blab"></p>
+<div class="sp-metrics">
+<div class="sp-m"><p class="k">Anchor points</p><p class="v" id="sp_pts">&mdash;</p></div>
+<div class="sp-m"><p class="k">Est. capacity</p><p class="v" id="sp_cap">&mdash;</p></div>
+<div class="sp-m"><p class="k">Planned load</p><p class="v" id="sp_ld">&mdash;</p></div>
+<div class="sp-m"><p class="k">Shelf weight</p><p class="v" id="sp_sw">&mdash;</p></div>
+</div>
+<div class="sp-rec" id="sp_rec"></div>
+<ul class="sp-warn" id="sp_warn"></ul>
+<div class="sp-cta" id="sp_cta"></div>
+</div>
+<p class="sp-disc">Planning estimates only, based on quality internal brackets anchored into solid structure. Not an engineering guarantee. For heavy or custom loads, talk to a Shelf Geek.</p>
+</div>
+
+<h2>3. Get Thickness, Depth, and Length Right</h2>
+
+<p>Size isn't only a look. Thickness, depth, and length each change how much a shelf can carry, so decide them together.</p>
+
+<ul>
+<li><strong>Thickness</strong> sets the hardware. A thicker shelf needs a taller internal bracket, and a taller bracket needs more depth to seat properly, so thickness and depth move together.</li>
+<li><strong>Depth</strong> runs a standard 6 to 12 inches. Six to eight inches suits bathrooms, offices, and display walls, while 10 to 12 inches suits kitchens and living rooms where dishware and larger objects need the landing space. As tip 2 noted, deeper trades away capacity.</li>
+<li><strong>Length</strong> should cross at least two studs. A longer shelf isn't only more surface, it's more room for support rods and more stud anchor points, which means more strength rather than less. Length is one of the few dimensions where bigger is structurally better.</li>
+</ul>
+
+<div class="tt-tableWrap" role="region" aria-labelledby="cap-depth" tabindex="0">
+<table class="tt-table">
+<caption id="cap-depth">Floating shelf depth by room</caption>
+<thead>
+<tr>
+<th scope="col">Room / use</th>
+<th scope="col">Recommended depth</th>
+<th scope="col">Why</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Bathroom</th><td>6&ndash;8 in</td><td>Towels, bottles, and small decor don't need reach</td></tr>
+<tr><th scope="row">Office</th><td>6&ndash;8 in</td><td>Books and supplies sit fine on a shallow shelf</td></tr>
+<tr><th scope="row">Display / gallery wall</th><td>6&ndash;8 in</td><td>Frames lean, so shallow keeps the line clean</td></tr>
+<tr><th scope="row">Kitchen</th><td>10&ndash;12 in</td><td>Plates and larger items need landing space</td></tr>
+<tr><th scope="row">Living room</th><td>10&ndash;12 in</td><td>Books and bigger decor sit better on a deeper shelf</td></tr>
+</tbody>
+</table>
+<p class="tt-note">Deeper shelves hold less weight, since depth acts as a lever arm.</p>
+</div>
+
+<p>If depth is the dimension you're least sure about, the <a href="https://shelfology.com/blogs/shelfology-u/floating-shelf-depth-guide-how-depth-impacts-stability">Floating Shelf Depth Guide</a> walks through how depth changes stability.</p>
+
+<h2>4. Choose the Right Wood</h2>
+
+<p>Wood is where weight and looks meet, because density decides both how much the shelf weighs and how much it can hold.</p>
+
+<p>Denser species are heavier and stronger. A solid white oak shelf measuring 1.75 in &times; 14 in &times; 84 in tops 60 pounds on its own, before a single book goes on it, and that heft is exactly why it holds a load without flexing.</p>
+
+<div class="tt-tableWrap" role="region" aria-labelledby="cap-wood" tabindex="0">
+<table class="tt-table">
+<caption id="cap-wood">Hardwood options compared</caption>
+<thead>
+<tr>
+<th scope="col">Species</th>
+<th scope="col">Weight &amp; strength</th>
+<th scope="col">Look</th>
+<th scope="col">Best for</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">White oak</th><td>Dense, very strong</td><td>Bright, prominent grain</td><td>Kitchens, bookshelves, high-load runs</td></tr>
+<tr><th scope="row">Walnut</th><td>Dense, very strong</td><td>Dark, rich, smooth</td><td>Statement shelves, living rooms</td></tr>
+<tr><th scope="row">Maple</th><td>Dense, strong</td><td>Pale, subtle, smooth</td><td>Clean, modern looks</td></tr>
+</tbody>
+</table>
+<p class="tt-note">All three are solid hardwoods that carry weight without flexing. We don't recommend MDF for floating shelves, since it bows under sustained load.</p>
+</div>
+
+<p>Choose for the job first and the color second: match the species to the weight you sketched out in tip 2, then let the tone follow. For help narrowing it down, see <a href="https://shelfology.com/blogs/shelfology-u/ask-the-shelf-experts-what-are-the-best-woods-for-floating-shelves">Best Woods for Floating Shelves</a> and <a href="https://shelfology.com/blogs/shelfology-u/what-is-the-best-material-for-floating-shelves">Best Material for Floating Shelves</a>.</p>
+
+<h2>Not Sure What You Need? Start With a Common Setup</h2>
+
+<p>The quickest way to plan a shelf is to match your situation to one that's already been worked out. Here are the setups we spec most often, along with what we'd recommend for each. Find the one closest to yours, then adjust up or down from there.</p>
+
+<p><strong>A kitchen shelf for dishware and glassware.</strong> You're mounting over drywall with wood studs behind it, and the shelf carries everyday plates, glasses, and a few spice jars. Run it about 3 feet long so it crosses two studs, 10 inches deep for landing space, in solid hardwood.</p>
+<ul>
+<li>Anchor into both studs for roughly 90 to 100 lb of capacity, comfortably above a working kitchen shelf's real load.</li>
+<li>Use a rated internal bracket rather than the prongs packed with budget shelves, since concentrated dish weight is exactly what pulls prongs out of drywall.</li>
+</ul>
+
+<p><strong>A living-room bookshelf run.</strong> Books are the heaviest everyday load in the house, and this is where most shelves sag. Keep it to hardwood, run it long, and hit every stud you can.</p>
+<ul>
+<li>A 3-foot run on two studs handles a normal book load. If you're filling it wall to wall, add length so you pick up a third stud instead of piling weight onto two.</li>
+<li>Skip MDF here entirely, because it bows in the middle under sustained book weight even when the bracket is solid.</li>
+</ul>
+
+<p><strong>A bathroom shelf for towels and decor.</strong> The load is light, just rolled towels, a bottle or two, and a plant that tolerates humidity, so this one is about placement more than capacity. A 6-to-8-inch depth is plenty.</p>
+<ul>
+<li>Mount it where splash won't reach it constantly, over the toilet or beside the vanity rather than directly above the sink.</li>
+<li>Even at a light load, anchor into a stud if one is available. It costs nothing and removes the only real failure point.</li>
+</ul>
+
+<p><strong>A long decor or display shelf.</strong> You want a clean horizontal line for art, ceramics, and framed pieces, all lighter objects spread across a wide span. Length works in your favor here.</p>
+<ul>
+<li>Run it across at least two studs, ideally three on anything over 4 feet, and let the extra anchor points carry the span.</li>
+<li>Keep depth modest, around 6 to 8 inches. Deeper shelves hold less, and decor doesn't need the reach.</li>
+</ul>
+
+<p><strong>A rental, or a wall with no studs where you want the shelf.</strong> When you can't hit a stud, or would rather not commit to holes, it's better to change the approach than to force it. A picture ledge is usually the right answer.</p>
+<ul>
+<li>For a true floating shelf with no studs, use heavy-duty toggle bolts rated for the load and keep what goes on it light. Drywall alone won't carry real weight, and no anchor fully makes up for a missed stud.</li>
+<li>Better still, lean art and frames on a <a href="https://shelfology.com/collections/picture-ledges">picture ledge</a>, which holds the display without asking the wall to carry a loaded shelf, and lets you rearrange anytime.</li>
+</ul>
+
+<p>Still between two setups? Our Shelf Geeks will size the bracket, wood, and dimensions to your exact wall. <a href="https://shelfology.com/collections/floating-shelves">Start here</a>.</p>
+
+<h2>5. Plan Height and Spacing Before You Drill</h2>
+
+<p>Solid and engineered floating shelves aren't disposable, so plan placement, height, and spacing before you commit a hole to the wall. These are the numbers designers reach for:</p>
+
+<div class="tt-tableWrap" role="region" aria-labelledby="cap-spacing" tabindex="0">
+<table class="tt-table">
+<caption id="cap-spacing">Floating shelf height and spacing</caption>
+<thead>
+<tr>
+<th scope="col">Placement</th>
+<th scope="col">Measurement</th>
+</tr>
+</thead>
+<tbody>
+<tr><th scope="row">Mounting height (eye level)</th><td>4&ndash;5 ft from the floor</td></tr>
+<tr><th scope="row">Above a counter</th><td>16&ndash;24 in of clearance</td></tr>
+<tr><th scope="row">Above furniture</th><td>~10 in above a sofa back or console</td></tr>
+<tr><th scope="row">Between stacked shelves</th><td>10&ndash;15 in apart</td></tr>
+</tbody>
+</table>
+</div>
+
+<p>Measure, mark, and step back before you drill. A shelf mounted two inches off looks like a mistake for as long as it hangs, while one placed with intention disappears into the room.</p>
+
+<h2>6. Gather the Right Tools and Install with Care</h2>
+
+<p>Most DIY floating-shelf failures aren't bad shelves, they're rushed installs, so gather the right tools and slow down at the wall.</p>
+
+<p>You'll want a stud finder, a level, a drill, and the correct anchors for your wall from tip 1. For anything over a couple of feet, bring a helper, because holding a long shelf level while you drive fasteners solo is how walls end up with extra holes.</p>
+
+<p>Two mistakes account for most of the trouble. The first is skipping the studs and trusting drywall anchors with a real load. The second is overloading anchors rated for far less than what ends up on the shelf. Follow the bracket instructions closely, since an internal-bracket system is only as strong as the way it seats.</p>
+
+<p><a href="https://youtu.be/UVvW40L3RTM">Watch the install done once first</a>.</p>
+
+<p>Are floating shelves hard to install? Not for a capable DIYer; it's a one-afternoon job. The skill isn't muscle, it's patience: find the studs, level carefully, and don't shortcut the anchors.</p>
+
+<h2>7. Styling, Room by Room</h2>
+
+<p>A well-planned shelf still needs a plan for what goes on it, and the right approach shifts from room to room.</p>
+
+<p><strong>Kitchen.</strong> Keep everyday dishware, glassware, and spices within reach of where you cook. In a small kitchen, open shelves read lighter than upper cabinets and make the whole room feel bigger.</p>
+
+<p><strong>Living room.</strong> Books, art, and framed pieces belong here. Stagger the heights, mix a few larger objects with smaller ones, and let some shelves breathe instead of filling every inch.</p>
+
+<p><strong>Bathroom.</strong> Rolled towels, a plant that likes humidity, and everyday bottles all work well. Place shelves where splash won't reach them constantly, over the toilet or beside the vanity rather than straight above the sink.</p>
+
+<p><strong>Office and bedroom.</strong> Clear the desk by moving reference books and supplies up to the wall, and above a bed, a single well-placed shelf does more than a crowded gallery.</p>
+
+<p>A few styling rules designers lean on are worth borrowing:</p>
+<ul>
+<li>Arrange objects in a loose, asymmetric pattern across several shelves rather than lining everything up.</li>
+<li>Start with your largest objects and fill in around them.</li>
+<li>Leave some negative space, since the empty room is what makes the filled parts look styled instead of stuffed.</li>
+<li>Mix scale and texture, so a tall matte vase sits next to short glossy books, and wood meets ceramic.</li>
+</ul>
+
+<p>Shopping by room helps here: <a href="https://shelfology.com/pages/living-room">Living Room</a>, <a href="https://shelfology.com/pages/kitchen-shelving">Kitchen</a>, and <a href="https://shelfology.com/pages/bathroom">Bathroom</a>.</p>
+
+<h2>Building a Gallery Wall? Plan for Picture Ledges Too</h2>
+
+<p>A picture ledge is the low-commitment cousin of a fixed floating shelf: a shelf with a raised front lip, so you lean and layer framed art, photos, and records instead of hanging each one. Nothing gets nailed in place, so you can rearrange the whole wall on a Sunday afternoon. For renters, and for anyone who likes to change things up, it's the easiest way to turn a blank wall into a display.</p>
+
+<p>The one to build around is the <a href="https://shelfology.com/products/fat-lippie-picture-ledge">Fat Lippie Picture Ledge</a>: 10-gauge steel, offered in 3 in, 5 in, and 7 in depths and 12 in to 84 in lengths, with more than 30 powder-coat colors. The wide lip is the point, since it's built to hold more than pictures, and cookbooks, small plants, and record sleeves lean just as happily as frames. If you'd rather have a shaped profile than a straight line, the family runs to Bubble for nurseries and playrooms, Wave for offices and studios, and Mountain for kids' rooms.</p>
+
+<p>Planning a gallery wall uses the same rules as the rest of this guide:</p>
+<ul>
+<li>Anchor long runs into studs, because a loaded ledge is still a loaded shelf.</li>
+<li>Mix ledge lengths for rhythm instead of matching them all.</li>
+<li>Center the arrangement at eye level, around 4 to 5 ft, and space rows 10 to 15 inches apart.</li>
+<li>Overlap frames for a warm, lived-in look, or align them on a grid for something more minimal.</li>
+</ul>
+
+<p>Browse the full <a href="https://shelfology.com/collections/picture-ledges">Picture Ledges collection</a> to plan your run.</p>
+
+<h2>8. Add the Finishing Touches</h2>
+
+<p>Once the shelf is up and styled, a few small additions take it from functional to finished.</p>
+
+<p>Integrated LED lighting washes the wall and makes whatever's on the shelf the focal point after dark, which works especially well over a bar, a reading nook, or a display run. Hooks and rails underneath add hanging storage in a kitchen or entryway without a second shelf. Mixing materials, like a wood shelf beside a steel picture ledge, gives a wall depth. And layering a picture ledge in front of a deeper shelf lets you rotate art without touching the anchors. For the lighting details, see the <a href="https://shelfology.com/blogs/shelfology-u/the-essential-guide-to-floating-bookshelf-lighting">Floating Bookshelf Lighting guide</a>.</p>
+
+<h2>9. Care for Them So They Last</h2>
+
+<p>You planned these as forever shelves, so a little upkeep keeps them that way.</p>
+
+<p>Dust and wipe wood along the grain, using a finish-appropriate cleaner rather than anything harsh that can strip or cloud the surface. Wipe powder-coated steel with a damp cloth. Once or twice a year, press gently on each shelf and check that the anchors and brackets are still tight, since walls settle and loads change, and a 30-second check beats a surprise. Treated this way, a solid shelf outlasts the room it's in.</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<p><strong>How much weight can a floating shelf hold?</strong> Between 25 and 350 pounds, depending on the bracket, the shelf's dimensions, and how many studs it's anchored to, or roughly 45 to 50 pounds per stud with quality internal hardware. Generic prong brackets, by contrast, start failing above about 30 pounds.</p>
+
+<p><strong>How deep should a floating shelf be?</strong> Most floating shelves run 6 to 12 inches deep. Six to eight inches suits bathrooms, offices, and display walls, while 10 to 12 inches suits kitchens and living rooms where dishware and larger objects need more landing space. Keep in mind that deeper shelves hold less weight.</p>
+
+<p><strong>How high, and how far apart, should floating shelves be?</strong> Mount floating shelves about 4 to 5 feet from the floor, roughly eye level, and leave 16 to 24 inches of clearance above a counter. When stacking several, space them 10 to 15 inches apart so taller objects fit and the grouping reads as one intentional set.</p>
+
+<p><strong>Can I install floating shelves without studs?</strong> Yes, using heavy-duty toggle bolts or anchors rated for the load, though stud-mounted shelves are far stronger, since each stud anchor holds roughly 45 to 50 pounds. Drywall alone won't support meaningful weight, so anchor into studs whenever the shelf will carry books, dishware, or anything heavy.</p>
+
+<p><strong>Why do floating shelves sag or fall, and how do I prevent it?</strong> Almost always it's the bracket or the wall fixing, not the shelf itself. Prevent it by using a rated internal bracket instead of generic prongs, anchoring into studs rather than bare drywall, and avoiding MDF for heavy loads, since MDF bows under sustained weight.</p>
+
+<p><strong>What's the best wood for floating shelves?</strong> Dense hardwoods like white oak and walnut are the strongest, holding real weight without flexing. Maple is another strong, cleaner-grained option, while MDF bows under load, which makes it fine for light decor and wrong for anything heavy.</p>
+
+<p><strong>Are floating shelves still in style?</strong> Yes. Floating shelves remain a timeless, flexible way to add display and storage without taking up floor space, which is why they work across kitchens, living rooms, baths, and offices. The look reads clean and modern precisely because the hardware disappears.</p>
+
+<p><strong>What's the difference between a floating shelf and a picture ledge?</strong> A floating shelf mounts flush on a concealed internal bracket for storage and display. A picture ledge has a raised front lip, so you lean and layer framed art, photos, and records rather than hanging them, which makes it ideal for gallery walls and for anyone who likes to rearrange without new holes.</p>
+
+<p><strong>How do I plan a gallery wall with picture ledges?</strong> Anchor the ledges into studs, center the arrangement at eye level around 4 to 5 feet, and space rows 10 to 15 inches apart. Mix ledge lengths for rhythm, then overlap frames for a casual, lived-in look or align them on a grid for a clean, minimalist wall.</p>
+
+<h2>Ready to Build Yours?</h2>
+
+<p>Now for the fun part: your Way to Display.</p>
+
+<p>You know what your wall can hold, how to size it, which wood fits, and how to style the result. When you're ready to build it, our Shelf Geeks can spec the load, hardware, and dimensions for your exact wall, or take it fully custom. Start with the <a href="https://shelfology.com/collections/floating-shelves">Floating Shelves collection</a>, or plan a gallery wall with <a href="https://shelfology.com/collections/picture-ledges">Picture Ledges</a>.</p>
+
+</article>
+
+<script>
+(function(){
+var D={oak:47,walnut:40,maple:44,mdf:48};
+var PF={books:18,dishware:12,decor:5,mixed:10};
+var root=document.getElementById('shelfPlanner');
+if(!root)return;
+function g(id){return document.getElementById(id);}
+function calc(){
+var wall=g('sp_wall').value;
+var spSel=g('sp_spacing').value;
+var len=parseFloat(g('sp_len').value);
+var depth=parseFloat(g('sp_depth').value);
+var thick=parseFloat(g('sp_thick').value);
+var wood=g('sp_wood').value;
+var load=g('sp_load').value;
+g('sp_lenOut').textContent=len;
+var spacing=spSel==='24'?24:16;
+var unsure=spSel==='unsure';
+var pts=0,per=0,wallNote='';
+if(wall==='wood'){per=45;pts=Math.floor(len/spacing)+1;}
+else if(wall==='steel'){per=35;pts=Math.floor(len/spacing)+1;wallNote='Use fasteners rated for steel studs.';}
+else if(wall==='plaster'){per=35;pts=Math.floor(len/spacing)+1;wallNote='Anchor into the studs or blocking behind the plaster, not the plaster itself.';}
+else if(wall==='masonry'){per=55;pts=Math.floor(len/16)+1;wallNote='Use masonry anchors rated for brick or concrete.';}
+else{per=0;pts=0;}
+var depthFactor=Math.min(1,1-(depth-8)*0.035);
+var cap;
+if(wall==='drywall'){cap=22;}
+else{cap=pts*per*depthFactor;}
+if(wood==='mdf'){cap=Math.min(cap,40);}
+cap=Math.max(0,Math.round(cap/5)*5);
+var estLoad=Math.round(PF[load]*(len/12));
+var selfW=Math.round((thick*depth*len)/1728*D[wood]);
+var ratio=estLoad>0?cap/estLoad:99;
+var status;
+if(cap<=0)status='b';
+else if(ratio>=1.5)status='g';
+else if(ratio>=1.0)status='w';
+else status='b';
+if(wood==='mdf'&&status==='g')status='w';
+var badge=g('sp_badge');
+badge.className='sp-badge '+status;
+if(wall==='drywall')badge.textContent='Not enough support here';
+else if(status==='g')badge.textContent='Comfortable, with room to spare';
+else if(status==='w')badge.textContent=wood==='mdf'?"Workable, but we'd choose hardwood":'Cutting it close, plan carefully';
+else badge.textContent='Under-spec, adjust your plan';
+var fill=g('sp_fill');
+var pct=cap>0?Math.min(100,Math.round(estLoad/cap*100)):100;
+fill.style.width=pct+'%';
+fill.className='sp-fill '+(status==='g'?'fg':status==='w'?'fw':'fb');
+g('sp_blab').textContent='About '+estLoad+' lb of planned load against roughly '+cap+' lb of capacity.';
+g('sp_pts').textContent=wall==='drywall'?'0':pts;
+g('sp_cap').textContent='~'+cap+' lb';
+g('sp_ld').textContent='~'+estLoad+' lb';
+g('sp_sw').textContent='~'+selfW+' lb';
+var recBracket=wall==='drywall'?'heavy-duty toggle bolts, kept to light loads':'a rated internal floating-shelf bracket';
+var anchorTxt=wall==='drywall'?'drywall (no studs)':wall==='masonry'?(pts+' masonry anchor points'):(pts+' stud'+(pts===1?'':'s'));
+g('sp_rec').innerHTML='<b>Recommended setup:</b> '+recBracket+', anchored into '+anchorTxt+'. Estimated capacity ~'+cap+' lb versus ~'+estLoad+' lb planned.';
+var w=[];
+if(wood==='mdf')w.push({t:"MDF is a budget material that bows over time, even when the bracket is solid. We don't recommend it for floating shelves \u2014 solid white oak, walnut, or maple holds more and
